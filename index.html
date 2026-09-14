@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>حاسبة أذون الخزانة - جروب عملاء البنوك المصرية</title>
+    
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a')) e.preventDefault();
+            if (e.key === 'F12') e.preventDefault();
+        });
+
+        function normalizeInput(value) {
+            if (!value) return 0;
+            const arabicToEnglish = {
+                '٠': '0', '١': '1', '٢': '2', '٣': '3', '٤': '4',
+                '٥': '5', '٦': '6', '٧': '7', '٨': '8', '٩': '9'
+            };
+            let str = value.toString().replace(/[٠-٩]/g, d => arabicToEnglish[d]);
+            return parseFloat(str.replace(/[^0-9.]/g, '')) || 0;
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --box-bg: #131b2e;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #30363d;
+            --accent-red: #ef4444;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            height: 95vh;
+            background: var(--box-bg);
+            padding: 15px;
+            border-radius: 16px;
+            border: 2px solid var(--gold-primary);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-primary) var(--box-bg);
+        }
+
+        .container::-webkit-scrollbar {
+            width: 5px;
+        }
+        .container::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 10px;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .lang-select {
+            background: var(--bg-main);
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        img { width: 45px; height: auto; }
+
+        .sub-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .title {
+            text-align: center;
+            color: var(--gold-primary);
+            margin-bottom: 12px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .market-btns {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .market-btn {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid var(--gold-primary);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .market-btn.active {
+            background: var(--gold-primary);
+            color: #000;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 9px;
+            margin: 5px 0;
+            border-radius: 6px;
+            background: var(--bg-main);
+            color: var(--text-main);
+            border: 1px solid var(--gold-primary);
+            text-align: right;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background: var(--gold-primary);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .calc-btn:hover {
+            background: var(--gold-light);
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: var(--bg-main);
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid var(--gold-primary);
+            text-align: center;
+        }
+
+        .card span {
+            display: block;
+            font-size: 10px;
+            margin-bottom: 3px;
+            color: var(--text-muted);
+        }
+
+        .card h4 {
+            margin: 0;
+            color: var(--gold-primary);
+            font-size: 13px;
+        }
+
+        .total-box {
+            border: 2px solid var(--accent-red);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 10px;
+            background: var(--bg-main);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 11px;
+            color: var(--gold-primary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="top-row">
+        <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+        </select>
+        <img src="logo.png" alt="Logo">
+    </div>
+    
+    <div class="sub-title" id="subTitle">حاسبة اذون الخزانة</div>
+    <div class="title" id="groupTitle">جروب عملاء البنوك المصرية</div>
+
+    <div class="market-btns">
+        <button class="market-btn active" id="btn1" onclick="setMarket('primary')">السوق الأولي</button>
+        <button class="market-btn" id="btn2" onclick="setMarket('secondary')">السوق الثانوي</button>
+    </div>
+    
+    <input type="text" id="nominal" placeholder="القيمة الاسمية" oninput="format(this)">
+    <input type="text" id="rate" placeholder="سعر العائد (%)">
+    <select id="days"></select>
+    
+    <button class="calc-btn" id="calcBtn" onclick="calc()">احسب الآن</button>
+    
+    <div class="results">
+        <div class="card"><span id="lblPrice">سعر الشراء</span><h4 id="resPrice">0</h4></div>
+        <div class="card"><span id="lblReturn">مبلغ راجع يوم الاصدار</span><h4 id="resReturn">0</h4></div>
+        <div class="card"><span id="lblTax">الضريبة (20%)</span><h4 id="resTax">0</h4></div>
+        <div class="card"><span id="lblNet">الربح الصافي</span><h4 id="resNet">0</h4></div>
+    </div>
+    
+    <div class="total-box">
+        <span id="lblTotal" style="font-size:12px">المبلغ المسترد نهاية المدة:</span>
+        <h4 id="resTotal" style="margin:4px 0 0 0; color:var(--text-main);">0</h4>
+        <span id="lblAnnualYield" style="font-size:11px; margin-top:6px; display:block; color:var(--gold-primary);">نسبة العائد السنوي: <b id="resAnnualYield">0</b>%</span>
+    </div>
+
+    <div class="footer">
+        🛡️ جروب عملاء البنوك المصرية<br>
+        Developed by Tarek Metwally
+    </div>
+</div>
+
+<script>
+    let currentType = 'primary';
+
+    const translations = {
+        ar: {
+            dir: "rtl",
+            subTitle: "حاسبة اذون الخزانة",
+            groupTitle: "جروب عملاء البنوك المصرية",
+            btn1: "السوق الأولي",
+            btn2: "السوق الثانوي",
+            calcBtn: "احسب الآن",
+            lblPrice: "سعر الشراء",
+            lblReturn: "مبلغ راجع يوم الاصدار",
+            lblTax: "الضريبة (20%)",
+            lblNet: "الربح الصافي",
+            lblTotal: "المبلغ المسترد نهاية المدة:",
+            lblAnnualYield: "نسبة العائد السنوي: ",
+            daysUnit: " يوم"
+        },
+        en: {
+            dir: "ltr",
+            subTitle: "T-Bills Calculator",
+            groupTitle: "Egyptian Bank Clients Group",
+            btn1: "Primary Market",
+            btn2: "Secondary Market",
+            calcBtn: "Calculate Now",
+            lblPrice: "Purchase Price",
+            lblReturn: "Return at Issuance",
+            lblTax: "Tax (20%)",
+            lblNet: "Net Profit",
+            lblTotal: "Amount at Maturity:",
+            lblAnnualYield: "Net Annual Yield: ",
+            daysUnit: " Days"
+        },
+        fr: {
+            dir: "ltr",
+            subTitle: "Calculateur de Bons du Trésor",
+            groupTitle: "Groupe Clients Bancaires Égyptiens",
+            btn1: "Marché Primaire",
+            btn2: "Marché Secondaire",
+            calcBtn: "Calculer",
+            lblPrice: "Prix d'Achat",
+            lblReturn: "Retour à l'Émission",
+            lblTax: "Taxe (20%)",
+            lblNet: "Bénéfice Net",
+            lblTotal: "Montant à l'Échéance:",
+            lblAnnualYield: "Rendement Annuel Net: ",
+            daysUnit: " Jours"
+        },
+        de: {
+            dir: "ltr",
+            subTitle: "T-Bills Rechner",
+            groupTitle: "Ägyptische Bankkunden Gruppe",
+            btn1: "Primärmarkt",
+            btn2: "Sekundärmarkt",
+            calcBtn: "Berechnen",
+            lblPrice: "Kaufpreis",
+            lblReturn: "Rückgabe bei Ausgabe",
+            lblTax: "Steuer (20%)",
+            lblNet: "Nettogewinn",
+            lblTotal: "Auszahlungsbetrag:",
+            lblAnnualYield: "Netto-Rendite: ",
+            daysUnit: " Tage"
+        },
+        it: {
+            dir: "ltr",
+            subTitle: "Calcolatore Buoni del Tesoro",
+            groupTitle: "Gruppo Clienti Bancari Egiziani",
+            btn1: "Mercato Primario",
+            btn2: "Mercato Secondario",
+            calcBtn: "Calcola",
+            lblPrice: "Prezzo d'Acquisto",
+            lblReturn: "Ritorno all'Emissione",
+            lblTax: "Tassa (20%)",
+            lblNet: "Utile Netto",
+            lblTotal: "Importo a Scadenza:",
+            lblAnnualYield: "Rendimento Annuo Netto: ",
+            daysUnit: " Giorni"
+        }
+    };
+
+    function changeLanguage(lang) {
+        let t = translations[lang];
+        document.documentElement.dir = t.dir;
+        document.getElementById('subTitleinnerText').innerText = t.subTitle; // handled via property below
+        document.getElementById('subTitle').innerText = t.subTitle;
+        document.getElementById('groupTitle').innerText = t.groupTitle;
+        document.getElementById('btn1').innerText = t.btn1;
+        document.getElementById('btn2').innerText = t.btn2;
+        document.getElementById('calcBtn').innerText = t.calcBtn;
+        document.getElementById('lblPrice').innerText = t.lblPrice;
+        document.getElementById('lblReturn').innerText = t.lblReturn;
+        document.getElementById('lblTax').innerText = t.lblTax;
+        document.getElementById('lblNet').innerText = t.lblNet;
+        document.getElementById('lblTotal').innerText = t.lblTotal;
+        document.getElementById('lblAnnualYield').innerHTML = t.lblAnnualYield + "<b id='resAnnualYield'>0</b>%";
+        setMarket(currentType);
+    }
+
+    function format(input) {
+        let cleanVal = normalizeInput(input.value);
+        if (cleanVal > 0) input.value = Math.floor(cleanVal).toLocaleString();
+    }
+
+    function setMarket(type) {
+        currentType = type;
+        document.getElementById('btn1').className = type === 'primary' ? 'market-btn active' : 'market-btn';
+        document.getElementById('btn2').className = type === 'secondary' ? 'market-btn active' : 'market-btn';
+        
+        let select = document.getElementById('days');
+        let currentLang = document.getElementById('langSelect').value;
+        let unit = translations[currentLang].daysUnit;
+        select.innerHTML = "";
+        
+        if (type === 'primary') {
+            [91, 182, 273, 364].forEach(d => {
+                let opt = document.createElement("option");
+                opt.value = d;
+                opt.text = d + unit;
+                select.add(opt);
+            });
+        } else {
+            for (let i = 1; i <= 364; i++) {
+                let opt = document.createElement("option");
+                opt.value = i;
+                opt.text = i + unit;
+                select.add(opt);
+            }
+        }
+    }
+
+    function calc() {
+        let P = normalizeInput(document.getElementById('nominal').value);
+        let R = normalizeInput(document.getElementById('rate').value) / 100;
+        let D = parseInt(document.getElementById('days').value) || 0;
+        
+        let price = P / (1 + (R * D / 365));
+        let profit = P - price;
+        let tax = profit * 0.20;
+        let netProfit = profit - tax;
+        let finalAmount = price + netProfit; 
+        
+        let annualYield = (netProfit / price) * (365 / D) * 100;
+
+        document.getElementById('resPrice').innerText = Math.round(price).toLocaleString();
+        document.getElementById('resReturn').innerText = Math.round(profit).toLocaleString();
+        document.getElementById('resTax').innerText = Math.round(tax).toLocaleString();
+        document.getElementById('resNet').innerText = Math.round(netProfit).toLocaleString();
+        document.getElementById('resTotal').innerText = Math.round(finalAmount).toLocaleString();
+        document.getElementById('resAnnualYield').innerText = annualYield.toFixed(2);
+    }
+
+    window.onload = () => setMarket('primary');
+</script>
+</body>
+</html>
