@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>حاسبة أذون الخزانة - جروب عملاء البنوك المصرية</title>
+    <title>حاسبة أذون الخزانة المصرية</title>
     
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -98,23 +98,17 @@
         }
 
         .logo-img {
-            width: 45px;
-            height: auto;
-        }
-
-        .sub-title {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 12px;
-            margin-bottom: 2px;
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
 
         .title {
             text-align: center;
             color: var(--gold-primary);
-            margin-bottom: 10px;
+            margin: 10px 0 15px 0;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 16px;
         }
         
         .market-btns {
@@ -230,11 +224,10 @@
             <option value="de">🌐 Deutsch</option>
             <option value="it">🌐 Italiano</option>
         </select>
-        <img src="logo.png" alt="Logo" class="logo-img">
+        <img src="app-logo.png" alt="Logo" class="logo-img">
     </div>
     
-    <div class="sub-title" id="subTitle">حاسبة اذون الخزانة</div>
-    <div class="title" id="groupTitle">جروب عملاء البنوك المصرية</div>
+    <div class="title" id="mainTitle">حاسبة أذون الخزانة المصرية</div>
 
     <div class="market-btns">
         <button class="market-btn active" id="btn1" onclick="setMarket('primary')">السوق الأولي</button>
@@ -261,7 +254,7 @@
     </div>
 
     <div class="footer">
-        🛡️ جروب عملاء البنوك المصرية<br>
+        🇪🇬 حاسبة أذون الخزانة المصرية<br>
         Developed by Tarek Metwally
     </div>
 </div>
@@ -272,8 +265,7 @@
     const translations = {
         ar: {
             dir: "rtl",
-            subTitle: "حاسبة اذون الخزانة",
-            groupTitle: "جروب عملاء البنوك المصرية",
+            mainTitle: "حاسبة أذون الخزانة المصرية",
             btn1: "السوق الأولي",
             btn2: "السوق الثانوي",
             calcBtn: "احسب الآن",
@@ -287,8 +279,7 @@
         },
         en: {
             dir: "ltr",
-            subTitle: "T-Bills Calculator",
-            groupTitle: "Egyptian Bank Clients Group",
+            mainTitle: "Egyptian T-Bills Calculator",
             btn1: "Primary Market",
             btn2: "Secondary Market",
             calcBtn: "Calculate Now",
@@ -302,8 +293,7 @@
         },
         fr: {
             dir: "ltr",
-            subTitle: "Calculateur de Bons du Trésor",
-            groupTitle: "Groupe Clients Bancaires Égyptiens",
+            mainTitle: "Calculateur de Bons du Trésor Égyptien",
             btn1: "Marché Primaire",
             btn2: "Marché Secondaire",
             calcBtn: "Calculer",
@@ -317,8 +307,7 @@
         },
         de: {
             dir: "ltr",
-            subTitle: "T-Bills Rechner",
-            groupTitle: "Ägyptische Bankkunden Gruppe",
+            mainTitle: "Ägyptischer T-Bills Rechner",
             btn1: "Primärmarkt",
             btn2: "Sekundärmarkt",
             calcBtn: "Berechnen",
@@ -332,8 +321,7 @@
         },
         it: {
             dir: "ltr",
-            subTitle: "Calcolatore Buoni del Tesoro",
-            groupTitle: "Gruppo Clienti Bancari Egiziani",
+            mainTitle: "Calcolatore Buoni del Tesoro Egiziani",
             btn1: "Mercato Primario",
             btn2: "Mercato Secondario",
             calcBtn: "Calcola",
@@ -350,8 +338,7 @@
     function changeLanguage(lang) {
         let t = translations[lang];
         document.documentElement.dir = t.dir;
-        document.getElementById('subTitle').innerText = t.subTitle;
-        document.getElementById('groupTitle').innerText = t.groupTitle;
+        document.getElementById('mainTitle').innerText = t.mainTitle;
         document.getElementById('btn1').innerText = t.btn1;
         document.getElementById('btn2').innerText = t.btn2;
         document.getElementById('calcBtn').innerText = t.calcBtn;
