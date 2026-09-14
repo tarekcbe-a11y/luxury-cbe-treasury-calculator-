@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>الشروط والأحكام - حاسبة أذون الخزانة المصرية</title>
+
+<style>
+:root{
+  --bg:#061b2b;
+  --bg2:#0b2545;
+  --card:#102f4e;
+  --field:#1f3a5f;
+  --gold:#d4af37;
+  --gold2:#f0c94a;
+  --text:#f4f7fb;
+  --muted:#b8c6d6;
+  --green:#16a34a;
+  --red:#dc2626;
+  --border:#2c78a8;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  margin:0;
+  padding:12px;
+  width:100%;
+  max-width:100vw;
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at top,#0d3557 0%,var(--bg) 48%,#04131f 100%);
+  color:var(--text);
+  font-family:Arial,"Tahoma",sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+
+.page{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+  padding:18px;
+  background:rgba(8,30,49,.97);
+  border:1px solid rgba(212,175,55,.45);
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+
+.header{
+  text-align:center;
+}
+
+.header-top{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  direction:rtl;
+}
+
+.logo{
+  width:64px;
+  height:64px;
+  flex:0 0 64px;
+  display:block;
+}
+
+.brand{
+  margin:0;
+  color:var(--gold2);
+  font-size:23px;
+  font-weight:800;
+  line-height:1.35;
+}
+
+.subtitle{
+  margin:8px 0 16px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.languages{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.languages button{
+  border:1px solid var(--border);
+  background:var(--field);
+  color:var(--text);
+  border-radius:8px;
+  padding:7px 9px;
+  font-size:11px;
+  cursor:pointer;
+}
+
+.languages button.active{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#07131d;
+  font-weight:700;
+}
+
+.content{
+  text-align:right;
+}
+
+h1{
+  margin:4px 0 14px;
+  color:var(--gold2);
+  font-size:21px;
+  line-height:1.4;
+}
+
+h2{
+  margin:20px 0 8px;
+  color:var(--gold2);
+  font-size:17px;
+}
+
+p{
+  margin:0 0 12px;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.9;
+}
+
+ul{
+  margin:8px 0 14px;
+  padding-right:22px;
+}
+
+li{
+  margin-bottom:8px;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.card{
+  margin:14px 0;
+  padding:14px;
+  background:var(--card);
+  border:1px solid rgba(44,120,168,.65);
+  border-radius:14px;
+}
+
+.warning{
+  border-color:rgba(220,38,38,.65);
+  background:rgba(127,29,29,.22);
+}
+
+.warning strong{
+  color:#ff8585;
+}
+
+.actions{
+  display:flex;
+  gap:9px;
+  margin-top:20px;
+}
+
+.btn{
+  flex:1;
+  display:block;
+  padding:12px 8px;
+  border-radius:11px;
+  text-align:center;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  border:1px solid var(--gold);
+}
+
+.btn-primary{
+  background:var(--gold);
+  color:#07131d;
+}
+
+.btn-secondary{
+  background:transparent;
+  color:var(--gold2);
+}
+
+.footer{
+  margin-top:18px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.12);
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+}
+
+@media(max-width:380px){
+  .page{
+    padding:14px;
+  }
+
+  .brand{
+    font-size:20px;
+  }
+
+  .logo{
+    width:56px;
+    height:56px;
+    flex-basis:56px;
+  }
+
+  .languages button{
+    padding:6px 7px;
+    font-size:10px;
+  }
+}
+
+body{
+  touch-action:pan-y;
+  overscroll-behavior-x:none;
+}
+
+input,
+select,
+textarea{
+  font-size:16px;
+}
+
+::selection{
+  background:rgba(212,175,55,.35);
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <header class="header">
+
+    <div class="header-top">
+      <img class="logo" src="logo.svg" alt="حاسبة أذون الخزانة المصرية">
+
+      <h1 class="brand"
+          data-ar="حاسبة أذون الخزانة المصرية"
+          data-en="Egyptian Treasury Bills Calculator"
+          data-fr="Calculatrice des bons du Trésor égyptiens"
+          data-it="Calcolatore dei Buoni del Tesoro Egiziani"
+          data-de="Ägyptischer Schatzwechsel-Rechner">
+        حاسبة أذون الخزانة المصرية
+      </h1>
+    </div>
+
+    <div class="subtitle"
+         data-ar="الشروط والأحكام"
+         data-en="Terms and Conditions"
+         data-fr="Conditions générales"
+         data-it="Termini e condizioni"
+         data-de="Allgemeine Geschäftsbedingungen">
+      الشروط والأحكام
+    </div>
+
+    <div class="languages">
+      <button class="active" onclick="setLanguage('ar')">العربية</button>
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('fr')">Français</button>
+      <button onclick="setLanguage('it')">Italiano</button>
+      <button onclick="setLanguage('de')">Deutsch</button>
+    </div>
+
+  </header>
+
+  <main class="content">
+
+    <h1 data-ar="الشروط والأحكام"
+        data-en="Terms and Conditions"
+        data-fr="Conditions générales"
+        data-it="Termini e condizioni"
+        data-de="Allgemeine Geschäftsbedingungen">
+      الشروط والأحكام
+    </h1>
+
+    <div class="card">
+
+      <h2 data-ar="1. طبيعة الحاسبة"
+          data-en="1. Nature of the Calculator"
+          data-fr="1. Nature de la calculatrice"
+          data-it="1. Natura del calcolatore"
+          data-de="1. Art des Rechners">
+        1. طبيعة الحاسبة
+      </h2>
+
+      <p data-ar="حاسبة أذون الخزانة المصرية هي أداة حسابية تهدف إلى مساعدة المستخدم على تقدير قيمة الشراء والخصم والضريبة وصافي الربح والمبلغ المتوقع عند الاستحقاق بناءً على البيانات التي يدخلها المستخدم."
+         data-en="The Egyptian Treasury Bills Calculator is a calculation tool intended to help users estimate the purchase value, discount, tax, net profit, and expected amount at maturity based on the data entered by the user."
+         data-fr="La Calculatrice des bons du Trésor égyptiens est un outil de calcul destiné à aider l'utilisateur à estimer la valeur d'achat, l'escompte, l'impôt, le bénéfice net et le montant attendu à l'échéance selon les données saisies."
+         data-it="Il Calcolatore dei Buoni del Tesoro Egiziani è uno strumento di calcolo che aiuta l'utente a stimare il valore di acquisto, lo sconto, l'imposta, il profitto netto e l'importo previsto alla scadenza in base ai dati inseriti."
+         data-de="Der Ägyptische Schatzwechsel-Rechner ist ein Rechentool, das dem Nutzer helfen soll, Kaufwert, Abschlag, Steuer, Nettogewinn und den erwarteten Betrag bei Fälligkeit anhand der eingegebenen Daten zu schätzen.">
+        حاسبة أذون الخزانة المصرية هي أداة حسابية تهدف إلى مساعدة المستخدم على تقدير قيمة الشراء والخصم والضريبة وصافي الربح والمبلغ المتوقع عند الاستحقاق بناءً على البيانات التي يدخلها المستخدم.
+      </p>
+
+      <h2 data-ar="2. البيانات المدخلة"
+          data-en="2. Entered Data"
+          data-fr="2. Données saisies"
+          data-it="2. Dati inseriti"
+          data-de="2. Eingegebene Daten">
+        2. البيانات المدخلة
+      </h2>
+
+      <p data-ar="يتحمل المستخدم مسؤولية التأكد من صحة البيانات التي يقوم بإدخالها، مثل القيمة الاسمية وسعر أو معدل العائد وعدد الأيام."
+         data-en="The user is responsible for ensuring that the entered data, such as nominal value, annual rate, and number of days, is correct."
+         data-fr="L'utilisateur est responsable de l'exactitude des données saisies, telles que la valeur nominale, le taux annuel et le nombre de jours."
+         data-it="L'utente è responsabile della correttezza dei dati inseriti, come valore nominale, tasso annuo e numero di giorni."
+         data-de="Der Nutzer ist für die Richtigkeit der eingegebenen Daten, wie Nominalwert, Jahreszins und Anzahl der Tage, verantwortlich.">
+        يتحمل المستخدم مسؤولية التأكد من صحة البيانات التي يقوم بإدخالها، مثل القيمة الاسمية وسعر أو معدل العائد وعدد الأيام.
+      </p>
+
+      <h2 data-ar="3. مدد أذون الخزانة"
+          data-en="3. Treasury Bill Maturities"
+          data-fr="3. Échéances des bons du Trésor"
+          data-it="3. Scadenze dei Buoni del Tesoro"
+          data-de="3. Laufzeiten von Schatzwechseln">
+        3. مدد أذون الخزانة
+      </h2>
+
+      <p data-ar="تظهر في السوق الأولية مدد شائعة مثل 91 و182 و273 و364 يومًا. وقد تختلف المنتجات أو المدد المتاحة فعليًا وفقًا للطروحات وظروف السوق."
+         data-en="Common maturities in the primary market include 91, 182, 273, and 364 days. Actual available products or maturities may vary according to auctions and market conditions."
+         data-fr="Les échéances courantes sur le marché primaire comprennent 91, 182, 273 et 364 jours. Les produits ou échéances réellement disponibles peuvent varier selon les adjudications et les conditions du marché."
+         data-it="Le scadenze comuni nel mercato primario includono 91, 182, 273 e 364 giorni. I prodotti o le scadenze effettivamente disponibili possono variare in base alle aste e alle condizioni di mercato."
+         data-de="Übliche Laufzeiten am Primärmarkt sind 91, 182, 273 und 364 Tage. Die tatsächlich verfügbaren Produkte oder Laufzeiten können je nach Auktionen und Marktbedingungen variieren.">
+        تظهر في السوق الأولية مدد شائعة مثل 91 و182 و273 و364 يومًا. وقد تختلف المنتجات أو المدد المتاحة فعليًا وفقًا للطروحات وظروف السوق.
+      </p>
+
+      <h2 data-ar="4. نتائج الحساب"
+          data-en="4. Calculation Results"
+          data-fr="4. Résultats du calcul"
+          data-it="4. Risultati del calcolo"
+          data-de="4. Berechnungsergebnisse">
+        4. نتائج الحساب
+      </h2>
+
+      <p data-ar="جميع النتائج المعروضة هي نتائج حسابية تقديرية تعتمد على البيانات والمعادلات المستخدمة داخل الحاسبة. ولا تمثل عرضًا ملزمًا أو سعرًا مؤكدًا من أي بنك أو جهة مالية."
+         data-en="All displayed results are estimates based on the data and formulas used by the calculator. They do not constitute a binding offer or a confirmed price from any bank or financial institution."
+         data-fr="Tous les résultats affichés sont des estimations basées sur les données et les formules utilisées par la calculatrice. Ils ne constituent pas une offre contraignante ni un prix confirmé par une banque ou une institution financière."
+         data-it="Tutti i risultati visualizzati sono stime basate sui dati e sulle formule utilizzate dal calcolatore. Non costituiscono un'offerta vincolante né un prezzo confermato da una banca o da un'istituzione finanziaria."
+         data-de="Alle angezeigten Ergebnisse sind Schätzungen auf Grundlage der vom Rechner verwendeten Daten und Formeln. Sie stellen weder ein verbindliches Angebot noch einen bestätigten Preis einer Bank oder eines Finanzinstituts dar.">
+        جميع النتائج المعروضة هي نتائج حسابية تقديرية تعتمد على البيانات والمعادلات المستخدمة داخل الحاسبة. ولا تمثل عرضًا ملزمًا أو سعرًا مؤكدًا من أي بنك أو جهة مالية.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h2 data-ar="5. السوق الأولية والسوق الثانوية"
+          data-en="5. Primary and Secondary Markets"
+          data-fr="5. Marché primaire et marché secondaire"
+          data-it="5. Mercato primario e secondario"
+          data-de="5. Primär- und Sekundärmarkt">
+        5. السوق الأولية والسوق الثانوية
+      </h2>
+
+      <p data-ar="قد تختلف طريقة التسعير والبيانات المتاحة بين السوق الأولية والسوق الثانوية. وفي حالة التداول في السوق الثانوية قد يختلف السعر الفعلي عن السعر المستخدم في التقدير."
+         data-en="Pricing and available data may differ between the primary and secondary markets. In secondary-market transactions, the actual price may differ from the price used in the estimate."
+         data-fr="La tarification et les données disponibles peuvent différer entre le marché primaire et le marché secondaire. Dans les transactions sur le marché secondaire, le prix réel peut différer du prix utilisé dans l'estimation."
+         data-it="I prezzi e i dati disponibili possono differire tra mercato primario e secondario. Nelle operazioni sul mercato secondario, il prezzo effettivo può differire da quello utilizzato nella stima."
+         data-de="Preise und verfügbare Daten können sich zwischen Primär- und Sekundärmarkt unterscheiden. Bei Geschäften am Sekundärmarkt kann der tatsächliche Preis vom für die Schätzung verwendeten Preis abweichen.">
+        قد تختلف طريقة التسعير والبيانات المتاحة بين السوق الأولية والسوق الثانوية. وفي حالة التداول في السوق الثانوية قد يختلف السعر الفعلي عن السعر المستخدم في التقدير.
+      </p>
+
+      <h2 data-ar="6. الضرائب والخصومات"
+          data-en="6. Taxes and Deductions"
+          data-fr="6. Impôts et déductions"
+          data-it="6. Imposte e detrazioni"
+          data-de="6. Steuern und Abzüge">
+        6. الضرائب والخصومات
+      </h2>
+
+      <p data-ar="أي قيمة ضريبية تظهر داخل الحاسبة هي قيمة تقديرية وفق الإعداد المستخدم في عملية الحساب. يجب الرجوع إلى القواعد الرسمية السارية وقت تنفيذ العملية لمعرفة المعاملة الفعلية."
+         data-en="Any tax amount shown by the calculator is an estimate based on the setting used in the calculation. The applicable official rules should be checked at the time of the transaction to determine the actual treatment."
+         data-fr="Tout montant fiscal affiché par la calculatrice est une estimation basée sur le paramètre utilisé dans le calcul. Les règles officielles en vigueur au moment de la transaction doivent être vérifiées pour déterminer le traitement réel."
+         data-it="Qualsiasi importo fiscale mostrato dal calcolatore è una stima basata sull'impostazione utilizzata nel calcolo. Per determinare il trattamento effettivo, è necessario verificare le norme ufficiali in vigore al momento dell'operazione."
+         data-de="Jeder vom Rechner angezeigte Steuerbetrag ist eine Schätzung auf Grundlage der für die Berechnung verwendeten Einstellung. Für die tatsächliche Behandlung sind die zum Zeitpunkt der Transaktion geltenden offiziellen Regeln zu prüfen.">
+        أي قيمة ضريبية تظهر داخل الحاسبة هي قيمة تقديرية وفق الإعداد المستخدم في عملية الحساب. يجب الرجوع إلى القواعد الرسمية السارية وقت تنفيذ العملية لمعرفة المعاملة الفعلية.
+      </p>
+
+    </div>
+
+    <div class="card warning">
+
+      <h2 data-ar="7. إخلاء المسؤولية"
+          data-en="7. Disclaimer"
+          data-fr="7. Avis de non-responsabilité"
+          data-it="7. Esclusione di responsabilità"
+          data-de="7. Haftungsausschluss">
+        7. إخلاء المسؤولية
+      </h2>
+
+      <p data-ar="الحاسبة أداة للمساعدة في إجراء الحسابات فقط، ولا تُعد استشارة استثمارية أو مالية أو ضريبية. لا تعتمد على نتائج الحاسبة وحدها لاتخاذ قرار مالي."
+         data-en="The calculator is only a tool for performing calculations and does not constitute investment, financial, or tax advice. Do not rely solely on calculator results when making a financial decision."
+         data-fr="La calculatrice est uniquement un outil de calcul et ne constitue pas un conseil en investissement, financier ou fiscal. Ne vous fiez pas uniquement aux résultats de la calculatrice pour prendre une décision financière."
+         data-it="Il calcolatore è solo uno strumento per eseguire calcoli e non costituisce consulenza d'investimento, finanziaria o fiscale. Non basarsi esclusivamente sui risultati del calcolatore per prendere una decisione finanziaria."
+         data-de="Der Rechner ist ausschließlich ein Berechnungstool und stellt keine Anlage-, Finanz- oder Steuerberatung dar. Verlassen Sie sich bei einer finanziellen Entscheidung nicht ausschließlich auf die Ergebnisse des Rechners.">
+        الحاسبة أداة للمساعدة في إجراء الحسابات فقط، ولا تُعد استشارة استثمارية أو مالية أو ضريبية. لا تعتمد على نتائج الحاسبة وحدها لاتخاذ قرار مالي.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h2 data-ar="8. تحديث المعلومات"
+          data-en="8. Information Updates"
+          data-fr="8. Mise à jour des informations"
+          data-it="8. Aggiornamento delle informazioni"
+          data-de="8. Aktualisierung der Informationen">
+        8. تحديث المعلومات
+      </h2>
+
+      <p data-ar="قد تتغير أسعار العائد، شروط الطروحات، مدد الأذون، المعاملة الضريبية أو ظروف السوق بمرور الوقت. لذلك يجب التحقق من البيانات الرسمية قبل تنفيذ أي عملية فعلية."
+         data-en="Rates, auction terms, bill maturities, tax treatment, and market conditions may change over time. Official information should therefore be checked before carrying out any actual transaction."
+         data-fr="Les taux, conditions des adjudications, échéances, traitement fiscal et conditions du marché peuvent évoluer. Il convient donc de vérifier les informations officielles avant toute transaction réelle."
+         data-it="I tassi, le condizioni delle aste, le scadenze, il trattamento fiscale e le condizioni di mercato possono cambiare nel tempo. È quindi necessario verificare le informazioni ufficiali prima di effettuare una transazione reale."
+         data-de="Zinsen, Auktionsbedingungen, Laufzeiten, steuerliche Behandlung und Marktbedingungen können sich im Laufe der Zeit ändern. Vor einer tatsächlichen Transaktion sollten daher offizielle Informationen geprüft werden.">
+        قد تتغير أسعار العائد، شروط الطروحات، مدد الأذون، المعاملة الضريبية أو ظروف السوق بمرور الوقت. لذلك يجب التحقق من البيانات الرسمية قبل تنفيذ أي عملية فعلية.
+      </p>
+
+    </div>
+
+    <div class="actions">
+
+      <a class="btn btn-primary"
+         href="index.html"
+         data-ar="العودة للحاسبة"
+         data-en="Back to Calculator"
+         data-fr="Retour à la calculatrice"
+         data-it="Torna al calcolatore"
+         data-de="Zurück zum Rechner">
+        العودة للحاسبة
+      </a>
+
+      <a class="btn btn-secondary"
+         href="about.html"
+         data-ar="دليل الحاسبة"
+         data-en="Calculator Guide"
+         data-fr="Guide de la calculatrice"
+         data-it="Guida al calcolatore"
+         data-de="Rechner-Handbuch">
+        دليل الحاسبة
+      </a>
+
+    </div>
+
+  </main>
+
+  <footer class="footer"
+          data-ar="حاسبة أذون الخزانة المصرية"
+          data-en="Egyptian Treasury Bills Calculator"
+          data-fr="Calculatrice des bons du Trésor égyptiens"
+          data-it="Calcolatore dei Buoni del Tesoro Egiziani"
+          data-de="Ägyptischer Schatzwechsel-Rechner">
+    حاسبة أذون الخزانة المصرية
+  </footer>
+
+</div>
+
+<script>
+function setLanguage(lang){
+
+  document.documentElement.lang = lang;
+
+  const rtl = lang === "ar";
+  document.documentElement.dir = rtl ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-ar]").forEach(function(el){
+    const text = el.getAttribute("data-" + lang);
+
+    if(text !== null){
+      el.textContent = text;
+    }
+  });
+
+  document.querySelectorAll(".languages button").forEach(function(btn){
+    btn.classList.remove("active");
+  });
+
+  const buttons = document.querySelectorAll(".languages button");
+
+  const index = {
+    ar:0,
+    en:1,
+    fr:2,
+    it:3,
+    de:4
+  }[lang];
+
+  if(buttons[index]){
+    buttons[index].classList.add("active");
+  }
+
+  localStorage.setItem("calculatorLanguage", lang);
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+  const saved = localStorage.getItem("calculatorLanguage") || "ar";
+
+  setLanguage(saved);
+
+});
+
+document.addEventListener("contextmenu",function(e){
+  e.preventDefault();
+});
+</script>
+
+</body>
+</html>
