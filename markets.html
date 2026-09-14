@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+minimum-scale=1,
+user-scalable=no,
+viewport-fit=cover">
+
+<title>أسواق أذون الخزانة المصرية</title>
+
+<style>
+
+:root{
+--bg:#061b2b;
+--card:#102f4e;
+--field:#1f3a5f;
+--gold:#d4af37;
+--gold2:#f0c94a;
+--text:#f4f7fb;
+--muted:#b8c6d6;
+--green:#16a34a;
+--red:#dc2626;
+--border:#2c78a8;
+}
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html{
+margin:0;
+padding:0;
+width:100%;
+overflow-x:hidden;
+}
+
+body{
+margin:0;
+padding:0;
+width:100%;
+min-height:100vh;
+
+overflow-x:hidden;
+overflow-y:auto;
+
+background:
+linear-gradient(
+145deg,
+var(--bg),
+#09263c 55%,
+#061827
+);
+
+color:var(--text);
+
+font-family:Tahoma,Arial,sans-serif;
+
+line-height:1.85;
+
+-webkit-text-size-adjust:100%;
+}
+
+a{
+color:var(--gold2);
+text-decoration:none;
+}
+
+.page{
+width:calc(100% - 24px);
+max-width:520px;
+
+margin:12px auto;
+
+background:rgba(9,35,57,.96);
+
+border:1px solid var(--border);
+
+border-radius:20px;
+
+box-shadow:
+0 18px 45px rgba(0,0,0,.35);
+
+overflow:hidden;
+}
+
+.header{
+padding:14px;
+
+border-bottom:
+1px solid rgba(212,175,55,.35);
+}
+
+.header-top{
+display:flex;
+align-items:center;
+gap:12px;
+direction:rtl;
+}
+
+.logo{
+width:68px;
+height:68px;
+flex:0 0 68px;
+}
+
+.brand-wrap{
+flex:1;
+min-width:0;
+text-align:right;
+}
+
+.brand{
+font-size:21px;
+font-weight:800;
+color:var(--gold2);
+line-height:1.35;
+}
+
+.subtitle{
+font-size:12px;
+color:var(--muted);
+}
+
+.langs{
+display:flex;
+gap:7px;
+justify-content:center;
+overflow-x:auto;
+padding-top:10px;
+scrollbar-width:none;
+}
+
+.langs::-webkit-scrollbar{
+display:none;
+}
+
+.langs button{
+flex:0 0 auto;
+padding:6px 9px;
+border-radius:12px;
+border:1px solid var(--border);
+background:var(--field);
+color:var(--text);
+font-size:12px;
+}
+
+.langs button.active{
+color:var(--gold2);
+border-color:var(--gold2);
+}
+
+main{
+padding:16px;
+}
+
+h1{
+text-align:center;
+font-size:23px;
+color:var(--gold2);
+margin:8px 0 15px;
+}
+
+h2{
+font-size:18px;
+color:var(--gold2);
+margin:18px 0 8px;
+}
+
+p{
+margin:8px 0;
+}
+
+.card{
+background:
+linear-gradient(
+145deg,
+rgba(16,47,78,.98),
+rgba(11,37,69,.98)
+);
+
+border:1px solid var(--border);
+
+border-radius:15px;
+
+padding:14px;
+
+margin:11px 0;
+}
+
+.primary-card{
+border-color:var(--gold);
+}
+
+.secondary-card{
+border-color:#38bdf8;
+}
+
+.info{
+border-color:var(--gold);
+background:
+rgba(94,72,20,.25);
+}
+
+.warning{
+border-color:var(--red);
+background:
+rgba(127,29,29,.38);
+}
+
+.badge{
+display:inline-block;
+
+padding:4px 9px;
+
+border-radius:9px;
+
+background:var(--field);
+
+border:1px solid var(--border);
+
+font-size:12px;
+
+color:var(--gold2);
+
+font-weight:700;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+
+margin-top:10px;
+
+font-size:13px;
+}
+
+th,
+td{
+border:1px solid #3d6687;
+padding:8px;
+text-align:center;
+}
+
+th{
+color:var(--gold2);
+background:#0d2a47;
+}
+
+.back{
+display:block;
+text-align:center;
+
+padding:12px;
+
+margin-top:15px;
+
+background:
+linear-gradient(
+135deg,
+var(--gold),
+var(--gold2)
+);
+
+color:#071521;
+
+font-weight:800;
+
+border-radius:12px;
+}
+
+footer{
+padding:15px;
+
+text-align:center;
+
+border-top:
+1px solid rgba(212,175,55,.3);
+
+color:var(--muted);
+
+font-size:12px;
+}
+
+footer a{
+margin:0 5px;
+}
+
+body,
+.page,
+header,
+main,
+footer{
+max-width:100vw;
+overflow-x:hidden;
+}
+
+@media(max-width:420px){
+
+.page{
+width:calc(100% - 14px);
+margin:7px auto;
+}
+
+.logo{
+width:60px;
+height:60px;
+flex-basis:60px;
+}
+
+.brand{
+font-size:18px;
+}
+
+main{
+padding:13px;
+}
+
+h1{
+font-size:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+<header class="header">
+
+<div class="header-top">
+
+<img
+class="logo"
+src="logo.svg"
+alt="حاسبة أذون الخزانة المصرية">
+
+<div class="brand-wrap">
+
+<div
+class="brand"
+data-t="brand">
+
+حاسبة أذون الخزانة المصرية
+
+</div>
+
+<div
+class="subtitle"
+data-t="subtitle">
+
+دليل أسواق أذون الخزانة
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="langs">
+
+<button
+data-lang="ar"
+onclick="setLang('ar')">
+
+🇪🇬 عربي
+
+</button>
+
+<button
+data-lang="en"
+onclick="setLang('en')">
+
+🇬🇧 English
+
+</button>
+
+<button
+data-lang="fr"
+onclick="setLang('fr')">
+
+🇫🇷 Français
+
+</button>
+
+<button
+data-lang="it"
+onclick="setLang('it')">
+
+🇮🇹 Italiano
+
+</button>
+
+<button
+data-lang="de"
+onclick="setLang('de')">
+
+🇩🇪 Deutsch
+
+</button>
+
+</div>
+
+</header>
+
+
+<main>
+
+<h1 data-t="title">
+
+🏦 أسواق أذون الخزانة المصرية
+
+</h1>
+
+
+<div class="card">
+
+<p data-t="intro">
+
+يمكن تداول أذون الخزانة من خلال السوق الأولي عند الإصدار، أو السوق الثانوي بعد الإصدار وفقًا للأنظمة والقواعد المعمول بها.
+
+</p>
+
+</div>
+
+
+<div class="card primary-card">
+
+<span class="badge" data-t="primaryBadge">
+
+السوق الأولي
+
+</span>
+
+<h2 data-t="primaryTitle">
+
+ما هو السوق الأولي؟
+
+</h2>
+
+<p data-t="primaryText">
+
+هو السوق الذي يتم فيه طرح أذون الخزانة الجديدة للاكتتاب وفقًا لمواعيد وشروط الإصدار المحددة.
+
+</p>
+
+<h2 data-t="primaryHow">
+
+كيف يعمل؟
+
+</h2>
+
+<p data-t="primaryHowText">
+
+يتقدم المستثمر للاكتتاب في الإصدار من خلال القنوات والجهات المالية المتاحة، ويتم تحديد سعر أو عائد الإصدار وفقًا لآلية الطرح.
+
+</p>
+
+</div>
+
+
+<div class="card secondary-card">
+
+<span class="badge" data-t="secondaryBadge">
+
+السوق الثانوي
+
+</span>
+
+<h2 data-t="secondaryTitle">
+
+ما هو السوق الثانوي؟
+
+</h2>
+
+<p data-t="secondaryText">
+
+هو السوق الذي يمكن من خلاله تداول أذون الخزانة بعد إصدارها وقبل تاريخ استحقاقها، وفقًا للقواعد وآليات التداول المتاحة.
+
+</p>
+
+<h2 data-t="secondaryHow">
+
+لماذا يختلف السعر؟
+
+</h2>
+
+<p data-t="secondaryHowText">
+
+قد يختلف سعر الأذن في السوق الثانوي نتيجة تغيرات أسعار الفائدة والعرض والطلب والمدة المتبقية حتى الاستحقاق وظروف السوق.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2 data-t="compareTitle">
+
+مقارنة بين السوقين
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th data-t="factor">
+العنصر
+</th>
+
+<th data-t="primary">
+السوق الأولي
+</th>
+
+<th data-t="secondary">
+السوق الثانوي
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td data-t="timing">
+التوقيت
+</td>
+
+<td data-t="issue">
+عند الإصدار
+</td>
+
+<td data-t="afterIssue">
+بعد الإصدار
+</td>
+
+</tr>
+
+<tr>
+
+<td data-t="purpose">
+الغرض
+</td>
+
+<td data-t="newBills">
+شراء إصدار جديد
+</td>
+
+<td data-t="trade">
+التداول قبل الاستحقاق
+</td>
+
+</tr>
+
+<tr>
+
+<td data-t="price">
+السعر
+</td>
+
+<td data-t="issuePrice">
+وفق آلية الإصدار
+</td>
+
+<td data-t="marketPrice">
+يتأثر بالسوق
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="card">
+
+<h2 data-t="factorsTitle">
+
+عوامل تؤثر في السوق الثانوي
+
+</h2>
+
+<ul>
+
+<li data-t="factor1">
+مستويات أسعار الفائدة.
+</li>
+
+<li data-t="factor2">
+العرض والطلب.
+</li>
+
+<li data-t="factor3">
+المدة المتبقية حتى الاستحقاق.
+</li>
+
+<li data-t="factor4">
+ظروف السوق والسيولة.
+</li>
+
+<li data-t="factor5">
+سعر أو عائد الأذون الجديدة.
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="card info">
+
+<h2 data-t="investorTitle">
+
+ماذا يعني ذلك للمستثمر؟
+
+</h2>
+
+<p data-t="investorText">
+
+في السوق الأولي يكون التركيز على شروط الإصدار الجديد، بينما في السوق الثانوي قد يكون السعر مختلفًا عن سعر الإصدار نتيجة تغير ظروف السوق.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2 data-t="calculatorTitle">
+
+علاقة الحاسبة بالسوق
+
+</h2>
+
+<p data-t="calculatorText">
+
+الحاسبة تساعد في إجراء الحسابات التقديرية بناءً على القيمة الاسمية ومعدل العائد وعدد الأيام التي يتم إدخالها. ولا تعتبر سعرًا فعليًا لأي سوق.
+
+</p>
+
+</div>
+
+
+<div class="card warning">
+
+<h2 data-t="warningTitle">
+
+⚠️ تنبيه مهم
+
+</h2>
+
+<p data-t="warningText">
+
+أسعار أذون الخزانة الفعلية وعوائدها قد تختلف حسب الإصدار والسوق والوقت والجهة التي يتم التعامل من خلالها.
+
+</p>
+
+</div>
+
+
+<a
+class="back"
+href="index.html"
+data-t="back">
+
+🧮 العودة إلى الحاسبة
+
+</a>
+
+</main>
+
+
+<footer>
+
+<div data-t="footer">
+
+حاسبة أذون الخزانة المصرية
+
+</div>
+
+<div style="margin-top:6px">
+
+<a
+href="privacy.html"
+data-t="privacy">
+
+سياسة الخصوصية
+
+</a>
+
+|
+
+<a
+href="about.html"
+data-t="guide">
+
+الدليل
+
+</a>
+
+</div>
+
+</footer>
+
+
+</div>
+
+
+<script>
+
+const translations={
+
+ar:{
+brand:"حاسبة أذون الخزانة المصرية",
+subtitle:"دليل أسواق أذون الخزانة",
+title:"🏦 أسواق أذون الخزانة المصرية",
+intro:"يمكن تداول أذون الخزانة من خلال السوق الأولي عند الإصدار، أو السوق الثانوي بعد الإصدار وفقًا للأنظمة والقواعد المعمول بها.",
+
+primaryBadge:"السوق الأولي",
+primaryTitle:"ما هو السوق الأولي؟",
+primaryText:"هو السوق الذي يتم فيه طرح أذون الخزانة الجديدة للاكتتاب وفقًا لمواعيد وشروط الإصدار المحددة.",
+primaryHow:"كيف يعمل؟",
+primaryHowText:"يتقدم المستثمر للاكتتاب في الإصدار من خلال القنوات والجهات المالية المتاحة، ويتم تحديد سعر أو عائد الإصدار وفقًا لآلية الطرح.",
+
+secondaryBadge:"السوق الثانوي",
+secondaryTitle:"ما هو السوق الثانوي؟",
+secondaryText:"هو السوق الذي يمكن من خلاله تداول أذون الخزانة بعد إصدارها وقبل تاريخ استحقاقها، وفقًا للقواعد وآليات التداول المتاحة.",
+secondaryHow:"لماذا يختلف السعر؟",
+secondaryHowText:"قد يختلف سعر الأذن في السوق الثانوي نتيجة تغيرات أسعار الفائدة والعرض والطلب والمدة المتبقية حتى الاستحقاق وظروف السوق.",
+
+compareTitle:"مقارنة بين السوقين",
+factor:"العنصر",
+primary:"السوق الأولي",
+secondary:"السوق الثانوي",
+timing:"التوقيت",
+issue:"عند الإصدار",
+afterIssue:"بعد الإصدار",
+purpose:"الغرض",
+newBills:"شراء إصدار جديد",
+trade:"التداول قبل الاستحقاق",
+price:"السعر",
+issuePrice:"وفق آلية الإصدار",
+marketPrice:"يتأثر بالسوق",
+
+factorsTitle:"عوامل تؤثر في السوق الثانوي",
+factor1:"مستويات أسعار الفائدة.",
+factor2:"العرض والطلب.",
+factor3:"المدة المتبقية حتى الاستحقاق.",
+factor4:"ظروف السوق والسيولة.",
+factor5:"سعر أو عائد الأذون الجديدة.",
+
+investorTitle:"ماذا يعني ذلك للمستثمر؟",
+investorText:"في السوق الأولي يكون التركيز على شروط الإصدار الجديد، بينما في السوق الثانوي قد يكون السعر مختلفًا عن سعر الإصدار نتيجة تغير ظروف السوق.",
+
+calculatorTitle:"علاقة الحاسبة بالسوق",
+calculatorText:"الحاسبة تساعد في إجراء الحسابات التقديرية بناءً على القيمة الاسمية ومعدل العائد وعدد الأيام التي يتم إدخالها. ولا تعتبر سعرًا فعليًا لأي سوق.",
+
+warningTitle:"⚠️ تنبيه مهم",
+warningText:"أسعار أذون الخزانة الفعلية وعوائدها قد تختلف حسب الإصدار والسوق والوقت والجهة التي يتم التعامل من خلالها.",
+
+back:"🧮 العودة إلى الحاسبة",
+footer:"حاسبة أذون الخزانة المصرية",
+privacy:"سياسة الخصوصية",
+guide:"الدليل"
+},
+
+en:{
+brand:"Egyptian Treasury Bills Calculator",
+subtitle:"Treasury Bills Markets Guide",
+title:"🏦 Egyptian Treasury Bills Markets",
+intro:"Treasury Bills may be issued through the primary market and traded in the secondary market according to applicable rules.",
+
+primaryBadge:"Primary Market",
+primaryTitle:"What is the Primary Market?",
+primaryText:"The market where new Treasury Bills are offered for subscription according to specified issue dates and terms.",
+primaryHow:"How does it work?",
+primaryHowText:"Investors subscribe through available financial channels, while the issue price or yield is determined according to the offering mechanism.",
+
+secondaryBadge:"Secondary Market",
+secondaryTitle:"What is the Secondary Market?",
+secondaryText:"The market where Treasury Bills can be traded after issuance and before maturity according to applicable trading rules.",
+secondaryHow:"Why does the price change?",
+secondaryHowText:"Secondary market prices may change due to interest rates, supply and demand, remaining maturity and market conditions.",
+
+compareTitle:"Market Comparison",
+factor:"Item",
+primary:"Primary Market",
+secondary:"Secondary Market",
+timing:"Timing",
+issue:"At issuance",
+afterIssue:"After issuance",
+purpose:"Purpose",
+newBills:"New issue purchase",
+trade:"Trading before maturity",
+price:"Price",
+issuePrice:"According to issue mechanism",
+marketPrice:"Market driven",
+
+factorsTitle:"Factors Affecting the Secondary Market",
+factor1:"Interest rate levels.",
+factor2:"Supply and demand.",
+factor3:"Remaining maturity.",
+factor4:"Market conditions and liquidity.",
+factor5:"Price or yield of new bills.",
+
+investorTitle:"What Does This Mean for Investors?",
+investorText:"In the primary market, the focus is on the terms of the new issue. In the secondary market, the price may differ due to changing market conditions.",
+
+calculatorTitle:"Calculator and Markets",
+calculatorText:"The calculator provides estimates based on nominal value, yield rate and number of days entered. It does not represent an actual market price.",
+
+warningTitle:"⚠️ Important Notice",
+warningText:"Actual Treasury Bill prices and yields may vary by issue, market, time and financial institution.",
+
+back:"🧮 Back to Calculator",
+footer:"Egyptian Treasury Bills Calculator",
+privacy:"Privacy Policy",
+guide:"Guide"
+},
+
+fr:{
+brand:"Calculateur des bons du Trésor égyptiens",
+subtitle:"Guide des marchés",
+title:"🏦 Marchés des bons du Trésor égyptiens",
+intro:"Les bons du Trésor peuvent être émis sur le marché primaire et négociés sur le marché secondaire selon les règles applicables.",
+
+primaryBadge:"Marché primaire",
+primaryTitle:"Qu’est-ce que le marché primaire ?",
+primaryText:"C’est le marché où de nouveaux bons du Trésor sont proposés selon les dates et conditions de l’émission.",
+primaryHow:"Comment fonctionne-t-il ?",
+primaryHowText:"L’investisseur souscrit par les canaux financiers disponibles et le prix ou rendement est déterminé selon le mécanisme de l’émission.",
+
+secondaryBadge:"Marché secondaire",
+secondaryTitle:"Qu’est-ce que le marché secondaire ?",
+secondaryText:"C’est le marché où les bons peuvent être négociés après leur émission et avant leur échéance.",
+secondaryHow:"Pourquoi le prix change-t-il ?",
+secondaryHowText:"Le prix peut varier selon les taux d’intérêt, l’offre et la demande, la durée restante et les conditions du marché.",
+
+compareTitle:"Comparaison des marchés",
+factor:"Élément",
+primary:"Marché primaire",
+secondary:"Marché secondaire",
+timing:"Moment",
+issue:"À l’émission",
+afterIssue:"Après l’émission",
+purpose:"Objectif",
+newBills:"Nouvelle émission",
+trade:"Négociation avant échéance",
+price:"Prix",
+issuePrice:"Selon l’émission",
+marketPrice:"Déterminé par le marché",
+
+factorsTitle:"Facteurs du marché secondaire",
+factor1:"Niveaux des taux d’intérêt.",
+factor2:"Offre et demande.",
+factor3:"Durée restante.",
+factor4:"Conditions du marché et liquidité.",
+factor5:"Prix ou rendement des nouveaux bons.",
+
+investorTitle:"Que signifie cela pour l’investisseur ?",
+investorText:"Sur le marché primaire, l’attention porte sur les conditions de la nouvelle émission. Sur le marché secondaire, le prix peut varier avec les conditions du marché.",
+
+calculatorTitle:"Calculateur et marchés",
+calculatorText:"Le calculateur fournit des estimations selon la valeur nominale, le rendement et le nombre de jours saisis. Il ne représente pas un prix réel du marché.",
+
+warningTitle:"⚠️ Avis important",
+warningText:"Les prix et rendements réels peuvent varier selon l’émission, le marché, le moment et l’établissement financier.",
+
+back:"🧮 Retour au calculateur",
+footer:"Calculateur des bons du Trésor égyptiens",
+privacy:"Politique de confidentialité",
+guide:"Guide"
+},
+
+it:{
+brand:"Calcolatore dei Buoni del Tesoro egiziani",
+subtitle:"Guida ai mercati",
+title:"🏦 Mercati dei Buoni del Tesoro egiziani",
+intro:"I Buoni del Tesoro possono essere emessi sul mercato primario e negoziati sul mercato secondario secondo le regole applicabili.",
+
+primaryBadge:"Mercato primario",
+primaryTitle:"Cos’è il mercato primario?",
+primaryText:"È il mercato in cui vengono offerti nuovi Buoni del Tesoro secondo le date e le condizioni dell’emissione.",
+primaryHow:"Come funziona?",
+primaryHowText:"L’investitore sottoscrive tramite i canali finanziari disponibili e il prezzo o rendimento viene determinato secondo il meccanismo di emissione.",
+
+secondaryBadge:"Mercato secondario",
+secondaryTitle:"Cos’è il mercato secondario?",
+secondaryText:"È il mercato in cui i Buoni possono essere negoziati dopo l’emissione e prima della scadenza.",
+secondaryHow:"Perché cambia il prezzo?",
+secondaryHowText:"Il prezzo può variare in base ai tassi d’interesse, domanda e offerta, durata residua e condizioni di mercato.",
+
+compareTitle:"Confronto dei mercati",
+factor:"Elemento",
+primary:"Mercato primario",
+secondary:"Mercato secondario",
+timing:"Momento",
+issue:"All’emissione",
+afterIssue:"Dopo l’emissione",
+purpose:"Scopo",
+newBills:"Nuova emissione",
+trade:"Negoziazione prima della scadenza",
+price:"Prezzo",
+issuePrice:"Secondo l’emissione",
+marketPrice:"Determinato dal mercato",
+
+factorsTitle:"Fattori del mercato secondario",
+factor1:"Livelli dei tassi d’interesse.",
+factor2:"Domanda e offerta.",
+factor3:"Durata residua.",
+factor4:"Condizioni di mercato e liquidità.",
+factor5:"Prezzo o rendimento dei nuovi Buoni.",
+
+investorTitle:"Cosa significa per l’investitore?",
+investorText:"Nel mercato primario l’attenzione è sulle condizioni della nuova emissione. Nel mercato secondario il prezzo può variare con le condizioni di mercato.",
+
+calculatorTitle:"Calcolatore e mercati",
+calculatorText:"Il calcolatore fornisce stime basate su valore nominale, rendimento e giorni inseriti. Non rappresenta un prezzo reale di mercato.",
+
+warningTitle:"⚠️ Avviso importante",
+warningText:"Prezzi e rendimenti effettivi possono variare in base all’emissione, al mercato, al momento e all’istituto finanziario.",
+
+back:"🧮 Torna al calcolatore",
+footer:"Calcolatore dei Buoni del Tesoro egiziani",
+privacy:"Privacy Policy",
+guide:"Guida"
+},
+
+de:{
+brand:"Ägyptischer Schatzwechsel-Rechner",
+subtitle:"Leitfaden zu den Märkten",
+title:"🏦 Märkte für ägyptische Schatzwechsel",
+intro:"Schatzwechsel können am Primärmarkt ausgegeben und am Sekundärmarkt gemäß den geltenden Regeln gehandelt werden.",
+
+primaryBadge:"Primärmarkt",
+primaryTitle:"Was ist der Primärmarkt?",
+primaryText:"Der Markt, an dem neue Schatzwechsel gemäß den festgelegten Ausgabezeiten und Bedingungen angeboten werden.",
+primaryHow:"Wie funktioniert er?",
+primaryHowText:"Anleger zeichnen über verfügbare Finanzkanäle. Preis oder Rendite werden gemäß dem Ausgabeverfahren bestimmt.",
+
+secondaryBadge:"Sekundärmarkt",
+secondaryTitle:"Was ist der Sekundärmarkt?",
+secondaryText:"Der Markt, an dem Schatzwechsel nach der Ausgabe und vor der Fälligkeit gehandelt werden können.",
+secondaryHow:"Warum ändert sich der Preis?",
+secondaryHowText:"Der Preis kann sich durch Zinssätze, Angebot und Nachfrage, Restlaufzeit und Marktbedingungen verändern.",
+
+compareTitle:"Marktvergleich",
+factor:"Element",
+primary:"Primärmarkt",
+secondary:"Sekundärmarkt",
+timing:"Zeitpunkt",
+issue:"Bei Ausgabe",
+afterIssue:"Nach Ausgabe",
+purpose:"Zweck",
+newBills:"Neue Ausgabe",
+trade:"Handel vor Fälligkeit",
+price:"Preis",
+issuePrice:"Gemäß Ausgabe",
+marketPrice:"Marktbestimmt",
+
+factorsTitle:"Faktoren des Sekundärmarktes",
+factor1:"Zinsniveau.",
+factor2:"Angebot und Nachfrage.",
+factor3:"Restlaufzeit.",
+factor4:"Marktbedingungen und Liquidität.",
+factor5:"Preis oder Rendite neuer Schatzwechsel.",
+
+investorTitle:"Was bedeutet das für Anleger?",
+investorText:"Am Primärmarkt stehen die Bedingungen der neuen Ausgabe im Mittelpunkt. Am Sekundärmarkt kann der Preis aufgrund veränderter Marktbedingungen abweichen.",
+
+calculatorTitle:"Rechner und Märkte",
+calculatorText:"Der Rechner liefert Schätzungen anhand von Nominalwert, Rendite und eingegebenen Tagen. Er stellt keinen tatsächlichen Marktpreis dar.",
+
+warningTitle:"⚠️ Wichtiger Hinweis",
+warningText:"Tatsächliche Preise und Renditen können je nach Ausgabe, Markt, Zeitpunkt und Finanzinstitut variieren.",
+
+back:"🧮 Zum Rechner",
+footer:"Ägyptischer Schatzwechsel-Rechner",
+privacy:"Datenschutz",
+guide:"Leitfaden"
+}
+
+};
+
+
+function setLang(lang){
+
+localStorage.setItem(
+"tb_lang",
+lang
+);
+
+document.documentElement.lang=lang;
+
+document.documentElement.dir=
+lang==="ar" ? "rtl" : "ltr";
+
+
+document.querySelectorAll(
+"[data-t]"
+).forEach(el=>{
+
+const key=el.dataset.t;
+
+if(translations[lang][key]){
+
+el.textContent=
+translations[lang][key];
+
+}
+
+});
+
+
+document.querySelectorAll(
+"[data-lang]"
+).forEach(btn=>{
+
+btn.classList.toggle(
+"active",
+btn.dataset.lang===lang
+);
+
+});
+
+}
+
+
+setLang(
+localStorage.getItem("tb_lang")
+||"ar"
+);
+
+
+document.addEventListener(
+"contextmenu",
+e=>e.preventDefault()
+);
+
+</script>
+
+</body>
+
+</html>
