@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 
 <meta name="viewport"
 content="width=device-width,
@@ -12,9 +12,7 @@ minimum-scale=1,
 user-scalable=no,
 viewport-fit=cover">
 
-<meta name="description" content="حاسبة أذون الخزانة المصرية">
-
-<title>حاسبة أذون الخزانة المصرية</title>
+<title>دليل أذون الخزانة المصرية</title>
 
 <style>
 
@@ -23,16 +21,12 @@ viewport-fit=cover">
 --bg2:#0b2545;
 --card:#102f4e;
 --field:#1f3a5f;
-
 --gold:#d4af37;
 --gold2:#f0c94a;
-
 --text:#f4f7fb;
 --muted:#b8c6d6;
-
 --green:#16a34a;
 --red:#dc2626;
-
 --border:#2c78a8;
 }
 
@@ -45,16 +39,18 @@ html{
 margin:0;
 padding:0;
 width:100%;
-height:100%;
 overflow-x:hidden;
 }
 
 body{
 margin:0;
 padding:0;
+
 width:100%;
-min-height:100%;
+min-height:100vh;
+
 overflow-x:hidden;
+overflow-y:auto;
 
 background:
 linear-gradient(
@@ -74,17 +70,6 @@ sans-serif;
 line-height:1.8;
 
 -webkit-text-size-adjust:100%;
-touch-action:pan-y;
-}
-
-button,
-input,
-select{
-font:inherit;
-}
-
-button{
-touch-action:manipulation;
 }
 
 a{
@@ -96,8 +81,6 @@ text-decoration:none;
 
 width:calc(100% - 24px);
 max-width:520px;
-
-min-height:calc(100vh - 24px);
 
 margin:12px auto;
 
@@ -115,7 +98,7 @@ overflow:hidden;
 
 .header{
 
-padding:14px 14px 10px;
+padding:14px;
 
 border-bottom:
 1px solid rgba(212,175,55,.35);
@@ -138,17 +121,15 @@ width:68px;
 height:68px;
 
 flex:0 0 68px;
-
-display:block;
 }
 
 .brand-wrap{
 
 flex:1;
 
-text-align:right;
-
 min-width:0;
+
+text-align:right;
 }
 
 .brand{
@@ -159,18 +140,14 @@ font-weight:800;
 
 color:var(--gold2);
 
-margin:0;
-
 line-height:1.35;
 }
 
 .subtitle{
 
-color:var(--muted);
-
 font-size:12px;
 
-margin-top:2px;
+color:var(--muted);
 }
 
 .langs{
@@ -179,11 +156,11 @@ display:flex;
 
 gap:7px;
 
+justify-content:center;
+
 overflow-x:auto;
 
-padding:10px 2px 2px;
-
-justify-content:center;
+padding-top:10px;
 
 scrollbar-width:none;
 }
@@ -196,29 +173,24 @@ display:none;
 
 flex:0 0 auto;
 
-background:var(--field);
-
-color:var(--text);
-
-border:1px solid var(--border);
+padding:6px 9px;
 
 border-radius:12px;
 
-padding:6px 9px;
+border:1px solid var(--border);
 
-cursor:pointer;
+background:var(--field);
+
+color:var(--text);
 
 font-size:12px;
 }
 
 .langs button.active{
 
-border-color:var(--gold2);
-
 color:var(--gold2);
 
-box-shadow:
-0 0 0 1px var(--gold2);
+border-color:var(--gold2);
 }
 
 main{
@@ -228,11 +200,11 @@ padding:16px;
 
 h1{
 
-font-size:22px;
+text-align:center;
+
+font-size:23px;
 
 color:var(--gold2);
-
-text-align:center;
 
 margin:8px 0 12px;
 }
@@ -249,13 +221,6 @@ margin:18px 0 8px;
 p{
 
 margin:8px 0;
-
-color:var(--text);
-}
-
-.muted{
-
-color:var(--muted);
 }
 
 .card{
@@ -276,206 +241,43 @@ padding:14px;
 margin:10px 0;
 }
 
-label{
+.link{
 
 display:block;
 
-margin:10px 0 5px;
+padding:12px 14px;
+
+margin:9px 0;
+
+border-radius:12px;
+
+background:var(--field);
+
+border:1px solid var(--border);
 
 color:var(--text);
 
 font-weight:700;
 }
 
-input,
-select{
-
-width:100%;
-
-padding:12px;
-
-border-radius:11px;
-
-border:1px solid #4a789d;
-
-background:var(--field);
-
-color:var(--text);
-
-outline:none;
-
--webkit-appearance:none;
-appearance:none;
-}
-
-input:focus,
-select:focus{
-
-border-color:var(--gold2);
-}
-
-.row{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:9px;
-}
-
-.market{
-
-display:flex;
-
-gap:8px;
-
-margin-bottom:12px;
-}
-
-.market button,
-.primary{
-
-flex:1;
-
-padding:12px;
-
-border:1px solid var(--border);
-
-border-radius:11px;
-
-background:var(--field);
-
-color:var(--text);
-
-cursor:pointer;
-}
-
-.market button.active,
-.primary{
-
-background:
-linear-gradient(
-135deg,
-var(--gold),
-var(--gold2)
-);
-
-color:#071521;
+.link:hover{
 
 border-color:var(--gold2);
 
-font-weight:800;
-}
-
-.primary{
-
-width:100%;
-
-margin-top:12px;
-}
-
-.results{
-
-display:none;
-
-background:
-linear-gradient(
-145deg,
-#075b36,
-#087342
-);
-
-border:1px solid #28c76f;
-}
-
-.result{
-
-display:flex;
-
-justify-content:space-between;
-
-gap:10px;
-
-padding:8px 0;
-
-border-bottom:
-1px solid rgba(255,255,255,.16);
-}
-
-.result:last-child{
-
-border-bottom:0;
-}
-
-.value{
-
-font-weight:800;
-}
-
-.warn{
-
-border-color:#ef4444;
-
-background:
-rgba(127,29,29,.45);
+color:var(--gold2);
 }
 
 .info{
 
 border-color:var(--gold);
+}
+
+.warn{
+
+border-color:var(--red);
 
 background:
-rgba(94,72,20,.25);
-}
-
-.grid-links{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:9px;
-}
-
-.link-card{
-
-display:block;
-
-text-align:center;
-
-padding:12px;
-
-border:1px solid var(--border);
-
-border-radius:12px;
-
-background:var(--field);
-}
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-font-size:13px;
-}
-
-th,
-td{
-
-border:1px solid #3d6687;
-
-padding:8px;
-
-text-align:center;
-}
-
-th{
-
-color:var(--gold2);
-
-background:#0d2a47;
+rgba(127,29,29,.35);
 }
 
 footer{
@@ -492,9 +294,22 @@ color:var(--muted);
 font-size:12px;
 }
 
-ul{
+footer a{
 
-padding-right:22px;
+margin:0 5px;
+}
+
+/* منع الحركة الأفقية */
+
+body,
+.page,
+header,
+main,
+footer{
+
+max-width:100vw;
+
+overflow-x:hidden;
 }
 
 @media(max-width:420px){
@@ -506,11 +321,6 @@ width:calc(100% - 14px);
 margin:7px auto;
 }
 
-.grid-links{
-
-grid-template-columns:1fr;
-}
-
 .brand{
 
 font-size:18px;
@@ -519,9 +329,7 @@ font-size:18px;
 .logo{
 
 width:60px;
-
 height:60px;
-
 flex-basis:60px;
 }
 
@@ -537,41 +345,15 @@ font-size:20px;
 
 }
 
-/* منع أي سحب أفقي */
-
-body,
-.page,
-main,
-header,
-footer{
-
-max-width:100vw;
-
-overflow-x:hidden;
-}
-
-/* منع تحديد النص بالضغط الطويل */
-
-body{
-
--webkit-user-select:none;
-user-select:none;
-}
-
-input,
-select{
-
--webkit-user-select:text;
-user-select:text;
-}
-
 </style>
 
 </head>
 
+
 <body>
 
 <div class="page">
+
 
 <header class="header">
 
@@ -594,56 +376,54 @@ data-t="brand">
 
 <div
 class="subtitle"
-data-t="tagline">
+data-t="subtitle">
 
-حساب أدق .. لقرارات أفضل
-
-</div>
+دليل مبسط لفهم أذون الخزانة
 
 </div>
 
 </div>
 
+</div>
 
-<div
-class="langs"
-aria-label="اللغات">
+
+<div class="langs">
 
 <button
-onclick="setLang('ar')"
-data-lang="ar">
+data-lang="ar"
+onclick="setLang('ar')">
 
 🇪🇬 عربي
 
 </button>
 
 <button
-onclick="setLang('en')"
-data-lang="en">
+data-lang="en"
+onclick="setLang('en')">
 
 🇬🇧 English
 
 </button>
 
 <button
-onclick="setLang('fr')"
-data-lang="fr">
+data-lang="fr"
+onclick="setLang('fr')">
 
 🇫🇷 Français
 
 </button>
 
 <button
-onclick="setLang('it')"
-data-lang="it">
+data-lang="it"
+onclick="setLang('it')">
 
 🇮🇹 Italiano
 
 </button>
 
 <button
-onclick="setLang('de')"
-data-lang="de">
+data-lang="de"
+onclick="setLang('de')">
 
 🇩🇪 Deutsch
 
@@ -658,251 +438,107 @@ data-lang="de">
 
 <h1 data-t="title">
 
-حاسبة أذون الخزانة المصرية
+📘 دليل أذون الخزانة المصرية
 
 </h1>
-
-<p
-class="muted"
-data-t="intro">
-
-احسب قيمة الشراء والربح الصافي والعائد السنوي التقديري بسهولة.
-
-</p>
 
 
 <div class="card">
 
-<div class="market">
+<p data-t="intro">
 
-<button
-id="primaryBtn"
-class="active"
-onclick="setMarket('primary')"
-data-t="primary">
-
-السوق الأولي
-
-</button>
-
-<button
-id="secondaryBtn"
-onclick="setMarket('secondary')"
-data-t="secondary">
-
-السوق الثانوي
-
-</button>
-
-</div>
-
-
-<label data-t="nominal">
-
-القيمة الاسمية (جنيه)
-
-</label>
-
-<input
-id="nominal"
-inputmode="decimal"
-value="100000">
-
-
-<label data-t="rate">
-
-معدل العائد السنوي (%)
-
-</label>
-
-<input
-id="rate"
-inputmode="decimal"
-value="27.50">
-
-
-<label data-t="days">
-
-عدد الأيام
-
-</label>
-
-<select id="days"></select>
-
-
-<button
-class="primary"
-onclick="calc()"
-data-t="calc">
-
-احسب الآن
-
-</button>
-
-</div>
-
-
-<div
-id="results"
-class="card results">
-
-<h2 data-t="results">
-
-النتائج التقديرية
-
-</h2>
-
-
-<div class="result">
-
-<span data-t="purchase">
-
-قيمة الشراء
-
-</span>
-
-<span
-class="value"
-id="price">
-
-—
-
-</span>
-
-</div>
-
-
-<div class="result">
-
-<span data-t="gross">
-
-إجمالي العائد
-
-</span>
-
-<span
-class="value"
-id="profit">
-
-—
-
-</span>
-
-</div>
-
-
-<div class="result">
-
-<span data-t="tax">
-
-الضريبة التقديرية
-
-</span>
-
-<span
-class="value"
-id="tax">
-
-—
-
-</span>
-
-</div>
-
-
-<div class="result">
-
-<span data-t="net">
-
-الربح الصافي
-
-</span>
-
-<span
-class="value"
-id="net">
-
-—
-
-</span>
-
-</div>
-
-
-<div class="result">
-
-<span data-t="final">
-
-إجمالي المبلغ عند الاستحقاق
-
-</span>
-
-<span
-class="value"
-id="final">
-
-—
-
-</span>
-
-</div>
-
-
-<div class="result">
-
-<span data-t="yield">
-
-العائد السنوي التقديري
-
-</span>
-
-<span
-class="value"
-id="yield">
-
-—
-
-</span>
-
-</div>
-
-</div>
-
-
-<div class="card info">
-
-<b data-t="noteTitle">
-
-ملاحظة
-
-</b>
-
-<p data-t="note">
-
-النتائج حسابية تقديرية ولا تمثل سعرًا فعليًا أو عرضًا استثماريًا.
+دليل مبسط يساعدك على فهم أذون الخزانة
+وطريقة حساب العائد والضرائب والأسواق والآجال.
 
 </p>
 
 </div>
 
 
-<div class="grid-links">
+<h2 data-t="sections">
+
+أقسام الدليل
+
+</h2>
+
 
 <a
-class="link-card"
-href="about.html"
-data-t="guide">
+class="link"
+href="earnings.html"
+data-t="earnings">
 
-📘 دليل أذون الخزانة
+💰 حساب أرباح أذون الخزانة
 
 </a>
 
+
 <a
-class="link-card"
+class="link"
+href="markets.html"
+data-t="markets">
+
+🏦 السوق الأولي والسوق الثانوي
+
+</a>
+
+
+<a
+class="link"
+href="terms.html"
+data-t="terms">
+
+📅 آجال أذون الخزانة
+
+</a>
+
+
+<a
+class="link"
+href="tax.html"
+data-t="tax">
+
+🧾 الضرائب على العائد
+
+</a>
+
+
+<a
+class="link"
 href="faq.html"
 data-t="faq">
 
 ❓ الأسئلة الشائعة
+
+</a>
+
+
+<div class="card info">
+
+<h2 data-t="important">
+
+معلومة مهمة
+
+</h2>
+
+<p data-t="importantText">
+
+المعلومات الواردة في هذا الدليل للتوعية
+والشرح العام، ولا تمثل عرضًا استثماريًا
+أو توصية بالشراء أو البيع.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<a
+class="link"
+href="index.html"
+data-t="calculator">
+
+🧮 العودة إلى الحاسبة
 
 </a>
 
@@ -913,419 +549,195 @@ data-t="faq">
 
 <footer>
 
-<span data-t="footer">
+<div data-t="footer">
 
-حاسبة أذون الخزانة المصرية — أداة مستقلة للحساب والتوعية
+حاسبة أذون الخزانة المصرية
 
-</span>
+</div>
+
+<div style="margin-top:6px">
+
+<a
+href="privacy.html"
+data-t="privacy">
+
+سياسة الخصوصية
+
+</a>
+
+|
+
+<a
+href="index.html"
+data-t="home">
+
+الرئيسية
+
+</a>
+
+</div>
 
 </footer>
+
 
 </div>
 
 
 <script>
 
-const T={
+const translations={
 
 ar:{
 brand:"حاسبة أذون الخزانة المصرية",
-tagline:"حساب أدق .. لقرارات أفضل",
-footer:"حاسبة أذون الخزانة المصرية — أداة مستقلة للحساب والتوعية"
+subtitle:"دليل مبسط لفهم أذون الخزانة",
+title:"📘 دليل أذون الخزانة المصرية",
+intro:"دليل مبسط يساعدك على فهم أذون الخزانة وطريقة حساب العائد والضرائب والأسواق والآجال.",
+sections:"أقسام الدليل",
+earnings:"💰 حساب أرباح أذون الخزانة",
+markets:"🏦 السوق الأولي والسوق الثانوي",
+terms:"📅 آجال أذون الخزانة",
+tax:"🧾 الضرائب على العائد",
+faq:"❓ الأسئلة الشائعة",
+important:"معلومة مهمة",
+importantText:"المعلومات الواردة في هذا الدليل للتوعية والشرح العام، ولا تمثل عرضًا استثماريًا أو توصية بالشراء أو البيع.",
+calculator:"🧮 العودة إلى الحاسبة",
+footer:"حاسبة أذون الخزانة المصرية",
+privacy:"سياسة الخصوصية",
+home:"الرئيسية"
 },
 
 en:{
 brand:"Egyptian Treasury Bills Calculator",
-tagline:"Accurate calculations .. Better decisions",
-footer:"Egyptian Treasury Bills Calculator — Independent calculation and educational tool"
+subtitle:"A simple guide to Treasury Bills",
+title:"📘 Egyptian Treasury Bills Guide",
+intro:"A simple guide to understanding Treasury Bills, returns, taxes, markets and maturities.",
+sections:"Guide sections",
+earnings:"💰 Treasury Bills Profit Calculation",
+markets:"🏦 Primary and Secondary Markets",
+terms:"📅 Treasury Bills Maturities",
+tax:"🧾 Tax on Returns",
+faq:"❓ Frequently Asked Questions",
+important:"Important information",
+importantText:"This guide is for general information and education only. It is not an investment offer or recommendation.",
+calculator:"🧮 Back to Calculator",
+footer:"Egyptian Treasury Bills Calculator",
+privacy:"Privacy Policy",
+home:"Home"
 },
 
 fr:{
 brand:"Calculateur des bons du Trésor égyptiens",
-tagline:"Calcul précis .. De meilleures décisions",
-footer:"Calculateur des bons du Trésor égyptiens — Outil indépendant de calcul et d'information"
+subtitle:"Guide simple des bons du Trésor",
+title:"📘 Guide des bons du Trésor égyptiens",
+intro:"Un guide simple pour comprendre les bons du Trésor, les rendements, les impôts, les marchés et les échéances.",
+sections:"Sections du guide",
+earnings:"💰 Calcul du bénéfice",
+markets:"🏦 Marché primaire et secondaire",
+terms:"📅 Échéances",
+tax:"🧾 Impôt sur les rendements",
+faq:"❓ Questions fréquentes",
+important:"Information importante",
+importantText:"Ce guide est fourni à titre informatif et éducatif. Il ne constitue pas une offre ou une recommandation d’investissement.",
+calculator:"🧮 Retour au calculateur",
+footer:"Calculateur des bons du Trésor égyptiens",
+privacy:"Politique de confidentialité",
+home:"Accueil"
 },
 
 it:{
 brand:"Calcolatore dei Buoni del Tesoro egiziani",
-tagline:"Calcoli accurati .. Decisioni migliori",
-footer:"Calcolatore dei Buoni del Tesoro egiziani — Strumento indipendente di calcolo e informazione"
+subtitle:"Guida semplice ai Buoni del Tesoro",
+title:"📘 Guida ai Buoni del Tesoro egiziani",
+intro:"Una guida semplice per comprendere Buoni del Tesoro, rendimenti, imposte, mercati e scadenze.",
+sections:"Sezioni della guida",
+earnings:"💰 Calcolo del profitto",
+markets:"🏦 Mercato primario e secondario",
+terms:"📅 Scadenze",
+tax:"🧾 Imposta sui rendimenti",
+faq:"❓ Domande frequenti",
+important:"Informazione importante",
+importantText:"Questa guida ha finalità informative ed educative e non costituisce un’offerta o una raccomandazione d’investimento.",
+calculator:"🧮 Torna al calcolatore",
+footer:"Calcolatore dei Buoni del Tesoro egiziani",
+privacy:"Privacy Policy",
+home:"Home"
 },
 
 de:{
 brand:"Ägyptischer Schatzwechsel-Rechner",
-tagline:"Präzise Berechnung .. Bessere Entscheidungen",
-footer:"Ägyptischer Schatzwechsel-Rechner — Unabhängiges Rechen- und Informationswerkzeug"
+subtitle:"Einfacher Leitfaden zu Schatzwechseln",
+title:"📘 Leitfaden für ägyptische Schatzwechsel",
+intro:"Ein einfacher Leitfaden zu Schatzwechseln, Renditen, Steuern, Märkten und Laufzeiten.",
+sections:"Bereiche des Leitfadens",
+earnings:"💰 Berechnung des Gewinns",
+markets:"🏦 Primär- und Sekundärmarkt",
+terms:"📅 Laufzeiten",
+tax:"🧾 Steuer auf Erträge",
+faq:"❓ Häufige Fragen",
+important:"Wichtige Information",
+importantText:"Dieser Leitfaden dient ausschließlich allgemeinen Informations- und Bildungszwecken. Er stellt kein Anlageangebot und keine Anlageempfehlung dar.",
+calculator:"🧮 Zum Rechner",
+footer:"Ägyptischer Schatzwechsel-Rechner",
+privacy:"Datenschutz",
+home:"Startseite"
 }
 
 };
 
 
-const IT={
+function setLang(lang){
 
-ar:{
-title:"حاسبة أذون الخزانة المصرية",
-intro:"احسب قيمة الشراء والربح الصافي والعائد السنوي التقديري بسهولة.",
-primary:"السوق الأولي",
-secondary:"السوق الثانوي",
-nominal:"القيمة الاسمية (جنيه)",
-rate:"معدل العائد السنوي (%)",
-days:"عدد الأيام",
-calc:"احسب الآن",
-results:"النتائج التقديرية",
-purchase:"قيمة الشراء",
-gross:"إجمالي العائد",
-tax:"الضريبة التقديرية",
-net:"الربح الصافي",
-final:"إجمالي المبلغ عند الاستحقاق",
-yield:"العائد السنوي التقديري",
-noteTitle:"ملاحظة",
-note:"النتائج حسابية تقديرية ولا تمثل سعرًا فعليًا أو عرضًا استثماريًا.",
-guide:"📘 دليل أذون الخزانة",
-faq:"❓ الأسئلة الشائعة"
-},
+localStorage.setItem(
+"tb_lang",
+lang
+);
 
-en:{
-title:"Egyptian Treasury Bills Calculator",
-intro:"Estimate purchase value, net profit and annualized yield.",
-primary:"Primary Market",
-secondary:"Secondary Market",
-nominal:"Nominal value (EGP)",
-rate:"Annual yield (%)",
-days:"Days",
-calc:"Calculate now",
-results:"Estimated results",
-purchase:"Purchase value",
-gross:"Gross return",
-tax:"Estimated tax",
-net:"Net profit",
-final:"Total amount at maturity",
-yield:"Estimated annualized yield",
-noteTitle:"Note",
-note:"Results are estimates and are not an actual market quote or investment offer.",
-guide:"📘 Treasury Bills Guide",
-faq:"❓ FAQ"
-},
-
-fr:{
-title:"Calculateur des bons du Trésor égyptiens",
-intro:"Estimez la valeur d’achat, le bénéfice net et le rendement annualisé.",
-primary:"Marché primaire",
-secondary:"Marché secondaire",
-nominal:"Valeur nominale (EGP)",
-rate:"Rendement annuel (%)",
-days:"Jours",
-calc:"Calculer",
-results:"Résultats estimatifs",
-purchase:"Valeur d’achat",
-gross:"Rendement brut",
-tax:"Impôt estimé",
-net:"Bénéfice net",
-final:"Montant total à l’échéance",
-yield:"Rendement annualisé estimé",
-noteTitle:"Note",
-note:"Les résultats sont indicatifs et ne constituent ni un cours réel ni une offre d’investissement.",
-guide:"📘 Guide des bons du Trésor",
-faq:"❓ FAQ"
-},
-
-it:{
-title:"Calcolatore dei Buoni del Tesoro egiziani",
-intro:"Stima valore di acquisto, profitto netto e rendimento annualizzato.",
-primary:"Mercato primario",
-secondary:"Mercato secondario",
-nominal:"Valore nominale (EGP)",
-rate:"Rendimento annuo (%)",
-days:"Giorni",
-calc:"Calcola ora",
-results:"Risultati stimati",
-purchase:"Valore di acquisto",
-gross:"Rendimento lordo",
-tax:"Imposta stimata",
-net:"Profitto netto",
-final:"Importo totale a scadenza",
-yield:"Rendimento annualizzato stimato",
-noteTitle:"Nota",
-note:"I risultati sono indicativi e non rappresentano un prezzo reale o un’offerta di investimento.",
-guide:"📘 Guida ai Buoni del Tesoro",
-faq:"❓ FAQ"
-},
-
-de:{
-title:"Ägyptischer Schatzwechsel-Rechner",
-intro:"Kaufwert, Nettogewinn und annualisierte Rendite schätzen.",
-primary:"Primärmarkt",
-secondary:"Sekundärmarkt",
-nominal:"Nominalwert (EGP)",
-rate:"Jahresrendite (%)",
-days:"Tage",
-calc:"Jetzt berechnen",
-results:"Geschätzte Ergebnisse",
-purchase:"Kaufwert",
-gross:"Bruttorendite",
-tax:"Geschätzte Steuer",
-net:"Nettogewinn",
-final:"Gesamtbetrag bei Fälligkeit",
-yield:"Geschätzte annualisierte Rendite",
-noteTitle:"Hinweis",
-note:"Die Ergebnisse sind Schätzungen und kein tatsächlicher Marktpreis oder Anlageangebot.",
-guide:"📘 Leitfaden für Schatzwechsel",
-faq:"❓ FAQ"
-}
-
-};
-
-
-let lang =
-localStorage.getItem("tb_lang") || "ar";
-
-
-function setLang(l){
-
-lang=l;
-
-localStorage.setItem("tb_lang",l);
-
-document.documentElement.lang=l;
+document.documentElement.lang=lang;
 
 document.documentElement.dir=
-l==="ar" ? "rtl" : "ltr";
+lang==="ar" ? "rtl" : "ltr";
 
 
-document.querySelectorAll("[data-t]")
-.forEach(e=>{
+document.querySelectorAll(
+"[data-t]"
+).forEach(el=>{
 
-let k=e.dataset.t;
+const key=el.dataset.t;
 
-if(T[l] && T[l][k]){
+if(translations[lang][key]){
 
-e.textContent=T[l][k];
+el.textContent=
+translations[lang][key];
 
 }
 
 });
 
 
-document.querySelectorAll("[data-lang]")
-.forEach(b=>{
+document.querySelectorAll(
+"[data-lang]"
+).forEach(btn=>{
 
-b.classList.toggle(
+btn.classList.toggle(
 "active",
-b.dataset.lang===l
+btn.dataset.lang===lang
 );
 
 });
 
-
-applyLang(l);
-
 }
 
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>setLang(lang)
-);
+const savedLang=
+localStorage.getItem("tb_lang")
+||"ar";
+
+setLang(savedLang);
 
 
 document.addEventListener(
 "contextmenu",
 e=>e.preventDefault()
-);
-
-
-const currentType="primary";
-
-
-function setMarket(t){
-
-primaryBtn.classList.toggle(
-"active",
-t==="primary"
-);
-
-secondaryBtn.classList.toggle(
-"active",
-t==="secondary"
-);
-
-days.innerHTML="";
-
-
-let a=
-t==="primary"
-?
-[91,182,273,364]
-:
-Array.from(
-{length:364},
-(_,i)=>i+1
-);
-
-
-a.forEach(d=>{
-
-let o=
-document.createElement("option");
-
-o.value=d;
-
-o.textContent=d;
-
-days.appendChild(o);
-
-});
-
-
-if(t==="primary"){
-
-days.value="91";
-
-}
-
-}
-
-
-function n(v){
-
-return parseFloat(
-
-String(v)
-
-.replace(/[٬،]/g,"")
-
-.replace(/٫/g,".")
-
-.replace(/,/g,"")
-
-) || 0;
-
-}
-
-
-function calc(){
-
-let P=n(nominal.value);
-
-let R=n(rate.value)/100;
-
-let D=+days.value;
-
-
-if(P<=0 || R<0 || D<=0){
-
-return;
-
-}
-
-
-let price=
-P/(1+R*D/365);
-
-let profit=
-P-price;
-
-let tax=
-profit*.20;
-
-let net=
-profit-tax;
-
-let finalAmount=
-price+net;
-
-let annual=
-(net/price)*(365/D)*100;
-
-
-document.getElementById("price")
-.textContent=
-price.toLocaleString(
-undefined,
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-
-document.getElementById("profit")
-.textContent=
-profit.toLocaleString(
-undefined,
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-
-document.getElementById("tax")
-.textContent=
-tax.toLocaleString(
-undefined,
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-
-document.getElementById("net")
-.textContent=
-net.toLocaleString(
-undefined,
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-
-document.getElementById("final")
-.textContent=
-finalAmount.toLocaleString(
-undefined,
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-
-document.getElementById("yield")
-.textContent=
-annual.toFixed(2)+"%";
-
-
-results.style.display="block";
-
-}
-
-
-function applyLang(l){
-
-Object.keys(IT[l]).forEach(k=>{
-
-let e=
-document.querySelector(
-'[data-t="'+k+'"]'
-);
-
-if(e){
-
-e.textContent=IT[l][k];
-
-}
-
-});
-
-}
-
-
-window.addEventListener(
-"load",
-()=>setMarket("primary")
 );
 
 </script>
