@@ -2,81 +2,99 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>دليل أذون الخزانة المصرية</title>
 
     <style>
+        :root {
+            --bg-main: #0b0f19;
+            --box-bg: #131b2e;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #30363d;
+        }
+
         body {
-            font-family: Tahoma, sans-serif;
-            background: #0b0f19;
-            color: #f9fafb;
-            padding: 15px;
-            line-height: 1.8;
+            font-family: Arial, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            padding: 8px;
+            line-height: 1.6;
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
             user-select: none;
         }
 
         .container {
-            max-width: 450px;
-            margin: 30px auto;
-            background: #131b2e;
-            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            background: var(--box-bg);
+            padding: 12px;
             border-radius: 14px;
-            border: 2px solid #d4af37;
+            border: 2px solid var(--gold-primary);
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
         .top-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .lang-btn {
             background: transparent;
-            color: #d4af37;
+            color: var(--gold-primary);
             border: none;
             padding: 0;
             font-weight: bold;
             cursor: pointer;
             font-size: 13px;
+            outline: none;
         }
 
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
+        .brand-badge {
+            font-size: 14px;
+            color: var(--gold-primary);
+            font-weight: bold;
         }
 
         h1 {
-            color: #d4af37;
+            color: var(--gold-primary);
             text-align: center;
-            margin-top: 5px;
-            font-size: 16px;
+            margin: 5px 0 10px 0;
+            font-size: 15px;
         }
 
         .intro {
             text-align: center;
-            color: #94a3b8;
-            font-size: 12px;
-            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-bottom: 12px;
         }
 
         .menu {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
         }
 
         .menu a {
             display: block;
-            background: #0b0f19;
-            border: 1px solid #d4af37;
-            border-radius: 8px;
-            padding: 10px;
-            color: #f9fafb;
+            background: var(--bg-main);
+            border: 1px solid var(--gold-primary);
+            border-radius: 6px;
+            padding: 9px 10px;
+            color: var(--text-main);
             text-decoration: none;
             font-size: 12px;
             font-weight: bold;
@@ -89,23 +107,23 @@
 
         .menu small {
             display: block;
-            color: #94a3b8;
-            font-size: 10px;
+            color: var(--text-muted);
+            font-size: 9px;
             font-weight: normal;
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
         .footer {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 12px;
             font-size: 10px;
-            color: #d4af37;
-            border-top: 1px solid #30363d;
-            padding-top: 10px;
+            color: var(--gold-primary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
         }
 
         .footer a {
-            color: #d4af37;
+            color: var(--gold-primary);
             text-decoration: none;
         }
 
@@ -121,7 +139,7 @@
 
     <div class="top-row">
         <button class="lang-btn" id="langBtn" onclick="toggleLang()">English</button>
-        <img src="app-logo.png" alt="Logo" class="logo-img">
+        <div class="brand-badge">🏛️</div>
     </div>
 
     <h1 id="title">دليل أذون الخزانة المصرية</h1>
@@ -160,21 +178,13 @@
     </div>
 
     <div class="footer">
-
-        <a href="privacy.html" id="privacyLink">
-            سياسة الخصوصية
-        </a>
-
+        <a href="privacy.html" id="privacyLink">سياسة الخصوصية</a>
         <br>
-
-        <a href="index.html" id="backLink"
-           style="font-weight:bold; display:inline-block; margin-top:5px;">
+        <a href="index.html" id="backLink" style="font-weight:bold; display:inline-block; margin-top:4px;">
             ← العودة إلى الحاسبة الرئيسية
         </a>
-
-        <br><br>
-        Developed by Tarek Metwally
-
+        <br>
+        <span style="display:inline-block; margin-top:4px;">Developed by Tarek Metwally</span>
     </div>
 
 </div>
