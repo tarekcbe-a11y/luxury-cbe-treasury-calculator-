@@ -2,128 +2,100 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>دليل أذون الخزانة المصرية</title>
+    <title>دليل أذون الخزانة - جروب عملاء البنوك المصرية</title>
 
     <style>
-        :root {
-            --bg-main: #0b0f19;
-            --box-bg: #131b2e;
-            --gold-primary: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #30363d;
-        }
-
         body {
-            font-family: Arial, sans-serif;
-            background: var(--bg-main);
-            color: var(--text-main);
-            padding: 8px;
-            line-height: 1.6;
+            font-family: Tahoma, sans-serif;
+            background: #0f172a;
+            color: #f9fafb;
+            padding: 15px;
+            line-height: 1.8;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
             user-select: none;
         }
 
         .container {
-            width: 100%;
-            max-width: 400px;
-            background: var(--box-bg);
-            padding: 12px;
-            border-radius: 14px;
-            border: 2px solid var(--gold-primary);
+            max-width: 450px;
+            margin: 30px auto;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
         }
 
         .lang-btn {
-            background: transparent;
-            color: var(--gold-primary);
+            background: #ffd700;
+            color: #000;
             border: none;
-            padding: 0;
+            padding: 6px 10px;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
+            font-size: 12px;
+            display: block;
+            margin: 0 0 15px auto;
         }
 
         h1 {
-            color: var(--gold-primary);
+            color: #ffd700;
             text-align: center;
-            margin: 5px 0 10px 0;
-            font-size: 15px;
+            margin-top: 5px;
+            font-size: 18px;
         }
 
         .intro {
             text-align: center;
-            color: var(--text-muted);
-            font-size: 11px;
-            margin-bottom: 12px;
+            color: #e5e7eb;
+            font-size: 12px;
+            margin-bottom: 20px;
         }
 
         .menu {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 10px;
         }
 
         .menu a {
             display: block;
-            background: var(--bg-main);
-            border: 1px solid var(--gold-primary);
-            border-radius: 6px;
-            padding: 9px 10px;
-            color: var(--text-main);
+            background: #172033;
+            border: 1px solid #ffd700;
+            border-radius: 12px;
+            padding: 12px 10px;
+            color: #f9fafb;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             transition: 0.2s;
         }
 
         .menu a:hover {
-            background: #172033;
+            background: #26334a;
         }
 
         .menu small {
             display: block;
-            color: var(--text-muted);
-            font-size: 9px;
+            color: #cbd5e1;
+            font-size: 10px;
             font-weight: normal;
-            margin-top: 2px;
+            margin-top: 3px;
         }
 
         .footer {
             text-align: center;
-            margin-top: 12px;
-            font-size: 10px;
-            color: var(--gold-primary);
-            border-top: 1px solid var(--border-color);
-            padding-top: 8px;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #ffd700;
+            border-top: 1px solid #ffd700;
+            padding-top: 10px;
         }
 
         .footer a {
-            color: var(--gold-primary);
+            color: #ffd700;
             text-decoration: none;
         }
 
@@ -137,12 +109,9 @@
 
 <div class="container">
 
-    <div class="top-row">
-        <button class="lang-btn" id="langBtn" onclick="toggleLang()">English</button>
-        <img src="app-logo.png" alt="Logo" class="logo-img">
-    </div>
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">English</button>
 
-    <h1 id="title">دليل أذون الخزانة المصرية</h1>
+    <h1 id="title">📘 دليل أذون الخزانة</h1>
 
     <p class="intro" id="intro">
         دليل مبسط يساعدك على فهم أذون الخزانة وحساب العائد والتعرف على أهم المعلومات المتعلقة بها.
@@ -151,40 +120,53 @@
     <div class="menu">
 
         <a href="earnings.html">
-            <span id="item1">كيف تحسب أرباح أذون الخزانة؟</span>
+            🧮 <span id="item1">كيف تحسب أرباح أذون الخزانة؟</span>
             <small id="desc1">شرح مبسط لطريقة حساب العائد وصافي الربح.</small>
         </a>
 
         <a href="markets.html">
-            <span id="item2">السوق الأولي والسوق الثانوي</span>
+            🏦 <span id="item2">السوق الأولي والسوق الثانوي</span>
             <small id="desc2">تعرف على الفرق بين الإصدار والتداول.</small>
         </a>
 
         <a href="terms.html">
-            <span id="item3">مدد أذون الخزانة</span>
+            📅 <span id="item3">مدد أذون الخزانة</span>
             <small id="desc3">شرح آجال 91 و182 و273 و364 يومًا.</small>
         </a>
 
         <a href="tax.html">
-            <span id="item4">الضرائب على أذون الخزانة</span>
+            💰 <span id="item4">الضرائب على أذون الخزانة</span>
             <small id="desc4">شرح مبسط للمعاملة الضريبية والعائد.</small>
         </a>
 
         <a href="faq.html">
-            <span id="item5">الأسئلة الشائعة</span>
+            ❓ <span id="item5">الأسئلة الشائعة</span>
             <small id="desc5">إجابات مباشرة عن أهم الأسئلة.</small>
         </a>
 
     </div>
 
     <div class="footer">
-        <a href="privacy.html" id="privacyLink">سياسة الخصوصية</a>
+
+        🛡️ <span id="groupName">جروب عملاء البنوك المصرية</span>
+
         <br>
-        <a href="index.html" id="backLink" style="font-weight:bold; display:inline-block; margin-top:4px;">
+
+        <a href="privacy.html" id="privacyLink">
+            سياسة الخصوصية
+        </a>
+
+        <br>
+
+        <a href="index.html" id="backLink"
+           style="font-weight:bold; display:inline-block; margin-top:5px;">
             ← العودة إلى الحاسبة الرئيسية
         </a>
+
         <br>
-        <span style="display:inline-block; margin-top:4px;">Developed by Tarek Metwally</span>
+
+        Developed by Tarek Metwally
+
     </div>
 
 </div>
@@ -205,8 +187,8 @@ function toggleLang() {
 
     document.getElementById("title").innerText =
         isAr
-        ? "دليل أذون الخزانة المصرية"
-        : "Egyptian Treasury Bills Guide";
+        ? "📘 دليل أذون الخزانة"
+        : "📘 Treasury Bills Guide";
 
     document.getElementById("intro").innerText =
         isAr
