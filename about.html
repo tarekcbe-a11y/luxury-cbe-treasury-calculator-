@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>دليل أذون الخزانة - جروب عملاء البنوك المصرية</title>
+
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            background: #0f172a;
+            color: #f9fafb;
+            padding: 15px;
+            line-height: 1.8;
+            margin: 0;
+            user-select: none;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 30px auto;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            box-sizing: border-box;
+        }
+
+        .lang-btn {
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+            display: block;
+            margin: 0 0 15px auto;
+        }
+
+        h1 {
+            color: #ffd700;
+            text-align: center;
+            margin-top: 5px;
+            font-size: 18px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #e5e7eb;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu a {
+            display: block;
+            background: #172033;
+            border: 1px solid #ffd700;
+            border-radius: 12px;
+            padding: 12px 10px;
+            color: #f9fafb;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #26334a;
+        }
+
+        .menu small {
+            display: block;
+            color: #cbd5e1;
+            font-size: 10px;
+            font-weight: normal;
+            margin-top: 3px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #ffd700;
+            border-top: 1px solid #ffd700;
+            padding-top: 10px;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">English</button>
+
+    <h1 id="title">📘 دليل أذون الخزانة</h1>
+
+    <p class="intro" id="intro">
+        دليل مبسط يساعدك على فهم أذون الخزانة وحساب العائد والتعرف على أهم المعلومات المتعلقة بها.
+    </p>
+
+    <div class="menu">
+
+        <a href="earnings.html">
+            🧮 <span id="item1">كيف تحسب أرباح أذون الخزانة؟</span>
+            <small id="desc1">شرح مبسط لطريقة حساب العائد وصافي الربح.</small>
+        </a>
+
+        <a href="markets.html">
+            🏦 <span id="item2">السوق الأولي والسوق الثانوي</span>
+            <small id="desc2">تعرف على الفرق بين الإصدار والتداول.</small>
+        </a>
+
+        <a href="terms.html">
+            📅 <span id="item3">مدد أذون الخزانة</span>
+            <small id="desc3">شرح آجال 91 و182 و273 و364 يومًا.</small>
+        </a>
+
+        <a href="tax.html">
+            💰 <span id="item4">الضرائب على أذون الخزانة</span>
+            <small id="desc4">شرح مبسط للمعاملة الضريبية والعائد.</small>
+        </a>
+
+        <a href="faq.html">
+            ❓ <span id="item5">الأسئلة الشائعة</span>
+            <small id="desc5">إجابات مباشرة عن أهم الأسئلة.</small>
+        </a>
+
+    </div>
+
+    <div class="footer">
+
+        🛡️ <span id="groupName">جروب عملاء البنوك المصرية</span>
+
+        <br>
+
+        <a href="privacy.html" id="privacyLink">
+            سياسة الخصوصية
+        </a>
+
+        <br>
+
+        <a href="index.html" id="backLink"
+           style="font-weight:bold; display:inline-block; margin-top:5px;">
+            ← العودة إلى الحاسبة الرئيسية
+        </a>
+
+        <br>
+
+        Developed by Tarek Metwally
+
+    </div>
+
+</div>
+
+<script>
+
+let isAr = true;
+
+function toggleLang() {
+
+    isAr = !isAr;
+
+    document.documentElement.lang = isAr ? "ar" : "en";
+    document.documentElement.dir = isAr ? "rtl" : "ltr";
+
+    document.getElementById("langBtn").innerText =
+        isAr ? "English" : "العربية";
+
+    document.getElementById("title").innerText =
+        isAr
+        ? "📘 دليل أذون الخزانة"
+        : "📘 Treasury Bills Guide";
+
+    document.getElementById("intro").innerText =
+        isAr
+        ? "دليل مبسط يساعدك على فهم أذون الخزانة وحساب العائد والتعرف على أهم المعلومات المتعلقة بها."
+        : "A simple guide to understanding Treasury bills, calculating returns, and learning the key information related to them.";
+
+    document.getElementById("item1").innerText =
+        isAr
+        ? "كيف تحسب أرباح أذون الخزانة؟"
+        : "How Are Treasury Bill Returns Calculated?";
+
+    document.getElementById("desc1").innerText =
+        isAr
+        ? "شرح مبسط لطريقة حساب العائد وصافي الربح."
+        : "A simple explanation of return and net profit calculations.";
+
+    document.getElementById("item2").innerText =
+        isAr
+        ? "السوق الأولي والسوق الثانوي"
+        : "Primary and Secondary Markets";
+
+    document.getElementById("desc2").innerText =
+        isAr
+        ? "تعرف على الفرق بين الإصدار والتداول."
+        : "Learn the difference between issuance and trading.";
+
+    document.getElementById("item3").innerText =
+        isAr
+        ? "مدد أذون الخزانة"
+        : "Treasury Bill Maturities";
+
+    document.getElementById("desc3").innerText =
+        isAr
+        ? "شرح آجال 91 و182 و273 و364 يومًا."
+        : "An explanation of 91, 182, 273, and 364-day maturities.";
+
+    document.getElementById("item4").innerText =
+        isAr
+        ? "الضرائب على أذون الخزانة"
+        : "Taxes on Treasury Bills";
+
+    document.getElementById("desc4").innerText =
+        isAr
+        ? "شرح مبسط للمعاملة الضريبية والعائد."
+        : "A simple explanation of tax treatment and returns.";
+
+    document.getElementById("item5").innerText =
+        isAr
+        ? "الأسئلة الشائعة"
+        : "Frequently Asked Questions";
+
+    document.getElementById("desc5").innerText =
+        isAr
+        ? "إجابات مباشرة عن أهم الأسئلة."
+        : "Direct answers to the most common questions.";
+
+    document.getElementById("privacyLink").innerText =
+        isAr
+        ? "سياسة الخصوصية"
+        : "Privacy Policy";
+
+    document.getElementById("backLink").innerText =
+        isAr
+        ? "← العودة إلى الحاسبة الرئيسية"
+        : "← Back to Main Calculator";
+
+}
+
+</script>
+
+</body>
+</html>
