@@ -32,7 +32,7 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #30363d;
-            --accent-red: #ef4444;
+            --accent-symbol: #38bdf8;
         }
 
         body {
@@ -40,23 +40,23 @@
             color: var(--text-main);
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 10px;
+            padding: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            box-sizing: border-box;
             overflow: hidden;
             user-select: none;
-            box-sizing: border-box;
         }
 
         .container {
             width: 100%;
-            max-width: 420px;
-            height: 95vh;
+            max-width: 400px;
+            height: 96vh;
             background: var(--box-bg);
-            padding: 15px;
-            border-radius: 16px;
+            padding: 12px;
+            border-radius: 14px;
             border: 2px solid var(--gold-primary);
             box-sizing: border-box;
             display: flex;
@@ -67,7 +67,7 @@
         }
 
         .container::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
         .container::-webkit-scrollbar-thumb {
             background: var(--gold-primary);
@@ -78,51 +78,58 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .lang-select {
-            background: var(--bg-main);
+            background: transparent;
             color: var(--gold-primary);
-            border: 1px solid var(--gold-primary);
-            padding: 5px 8px;
-            border-radius: 6px;
+            border: none;
+            outline: none;
             font-weight: bold;
-            font-size: 11px;
+            font-size: 13px;
             cursor: pointer;
+            padding: 0;
         }
 
-        img { width: 45px; height: auto; }
+        .lang-select option {
+            background: var(--box-bg);
+            color: var(--text-main);
+        }
+
+        .logo-area {
+            font-size: 18px;
+        }
 
         .sub-title {
             text-align: center;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 12px;
             margin-bottom: 2px;
         }
 
         .title {
             text-align: center;
             color: var(--gold-primary);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
         }
         
         .market-btns {
             display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
+            gap: 6px;
+            margin-bottom: 10px;
         }
 
         .market-btn {
             flex: 1;
-            padding: 8px;
+            padding: 7px;
             border-radius: 6px;
             border: 1px solid var(--gold-primary);
             background: var(--bg-main);
             color: var(--text-main);
-            font-size: 12px;
+            font-size: 11px;
             cursor: pointer;
             transition: 0.2s;
         }
@@ -135,28 +142,29 @@
 
         input, select {
             width: 100%;
-            padding: 9px;
-            margin: 5px 0;
+            padding: 8px;
+            margin: 4px 0;
             border-radius: 6px;
             background: var(--bg-main);
             color: var(--text-main);
             border: 1px solid var(--gold-primary);
-            text-align: right;
+            text-align: inherit;
             box-sizing: border-box;
-            font-size: 13px;
+            font-size: 12px;
+            outline: none;
         }
 
         .calc-btn {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
+            padding: 9px;
+            margin: 6px 0;
             background: var(--gold-primary);
             color: #000;
             border: none;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .calc-btn:hover {
@@ -166,13 +174,13 @@
         .results {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            margin-top: 10px;
+            gap: 5px;
+            margin-top: 8px;
         }
 
         .card {
             background: var(--bg-main);
-            padding: 8px;
+            padding: 7px;
             border-radius: 6px;
             border: 1px solid var(--gold-primary);
             text-align: center;
@@ -180,33 +188,33 @@
 
         .card span {
             display: block;
-            font-size: 10px;
-            margin-bottom: 3px;
+            font-size: 9px;
+            margin-bottom: 2px;
             color: var(--text-muted);
         }
 
         .card h4 {
             margin: 0;
             color: var(--gold-primary);
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .total-box {
-            border: 2px solid var(--accent-red);
-            padding: 10px;
+            border: 2px solid var(--accent-symbol);
+            padding: 8px;
             border-radius: 6px;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 8px;
             background: var(--bg-main);
         }
 
         .footer {
             text-align: center;
-            margin-top: 12px;
-            font-size: 11px;
+            margin-top: 10px;
+            font-size: 10px;
             color: var(--gold-primary);
             border-top: 1px solid var(--border-color);
-            padding-top: 8px;
+            padding-top: 6px;
         }
     </style>
 </head>
@@ -215,13 +223,13 @@
 <div class="container">
     <div class="top-row">
         <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
-            <option value="ar">العربية</option>
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="it">Italiano</option>
+            <option value="ar">🌐 العربية</option>
+            <option value="en">🌐 English</option>
+            <option value="fr">🌐 Français</option>
+            <option value="de">🌐 Deutsch</option>
+            <option value="it">🌐 Italiano</option>
         </select>
-        <img src="logo.png" alt="Logo">
+        <div class="logo-area">⚜️</div>
     </div>
     
     <div class="sub-title" id="subTitle">حاسبة اذون الخزانة</div>
@@ -241,14 +249,14 @@
     <div class="results">
         <div class="card"><span id="lblPrice">سعر الشراء</span><h4 id="resPrice">0</h4></div>
         <div class="card"><span id="lblReturn">مبلغ راجع يوم الاصدار</span><h4 id="resReturn">0</h4></div>
-        <div class="card"><span id="lblTax">الضريبة (20%)</span><h4 id="resTax">0</h4></div>
         <div class="card"><span id="lblNet">الربح الصافي</span><h4 id="resNet">0</h4></div>
+        <div class="card"><span id="lblTax">الضريبة (20%)</span><h4 id="resTax">0</h4></div>
     </div>
     
     <div class="total-box">
-        <span id="lblTotal" style="font-size:12px">المبلغ المسترد نهاية المدة:</span>
-        <h4 id="resTotal" style="margin:4px 0 0 0; color:var(--text-main);">0</h4>
-        <span id="lblAnnualYield" style="font-size:11px; margin-top:6px; display:block; color:var(--gold-primary);">نسبة العائد السنوي: <b id="resAnnualYield">0</b>%</span>
+        <span id="lblTotal" style="font-size:11px">المبلغ المسترد نهاية المدة:</span>
+        <h4 id="resTotal" style="margin:3px 0 0 0; color:var(--text-main);">0</h4>
+        <span id="lblAnnualYield" style="font-size:10px; margin-top:4px; display:block; color:var(--gold-primary);">نسبة العائد السنوي: <b id="resAnnualYield">0</b>%</span>
     </div>
 
     <div class="footer">
@@ -341,7 +349,6 @@
     function changeLanguage(lang) {
         let t = translations[lang];
         document.documentElement.dir = t.dir;
-        document.getElementById('subTitleinnerText').innerText = t.subTitle; // handled via property below
         document.getElementById('subTitle').innerText = t.subTitle;
         document.getElementById('groupTitle').innerText = t.groupTitle;
         document.getElementById('btn1').innerText = t.btn1;
