@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+<title>الأسئلة الشائعة - حاسبة أذون الخزانة المصرية</title>
+
+<style>
+:root{
+  --bg:#061b2b;
+  --bg2:#0b2545;
+  --card:#102f4e;
+  --field:#1f3a5f;
+  --gold:#d4af37;
+  --gold2:#f0c94a;
+  --text:#f4f7fb;
+  --muted:#b8c6d6;
+  --green:#16a34a;
+  --red:#dc2626;
+  --border:#2c78a8;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  margin:0;
+  padding:12px;
+  width:100%;
+  max-width:100vw;
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at top,#0d3557 0%,var(--bg) 48%,#04131f 100%);
+  color:var(--text);
+  font-family:Arial,"Tahoma",sans-serif;
+  -webkit-text-size-adjust:100%;
+  touch-action:pan-y;
+  overscroll-behavior-x:none;
+}
+
+.page{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+  padding:18px;
+  background:rgba(8,30,49,.97);
+  border:1px solid rgba(212,175,55,.45);
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+
+.header{
+  text-align:center;
+}
+
+.header-top{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  direction:rtl;
+}
+
+.logo{
+  width:64px;
+  height:64px;
+  flex:0 0 64px;
+  display:block;
+}
+
+.brand{
+  margin:0;
+  color:var(--gold2);
+  font-size:23px;
+  font-weight:800;
+  line-height:1.35;
+}
+
+.subtitle{
+  margin:8px 0 16px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.languages{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.languages button{
+  border:1px solid var(--border);
+  background:var(--field);
+  color:var(--text);
+  border-radius:8px;
+  padding:7px 9px;
+  font-size:11px;
+  cursor:pointer;
+}
+
+.languages button.active{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#07131d;
+  font-weight:700;
+}
+
+.content{
+  text-align:right;
+}
+
+.page-title{
+  margin:4px 0 14px;
+  color:var(--gold2);
+  font-size:21px;
+  line-height:1.4;
+}
+
+.faq{
+  margin-bottom:11px;
+  padding:14px;
+  background:var(--card);
+  border:1px solid rgba(44,120,168,.65);
+  border-radius:14px;
+}
+
+.question{
+  margin:0 0 8px;
+  color:var(--gold2);
+  font-size:15px;
+  font-weight:800;
+  line-height:1.6;
+}
+
+.answer{
+  margin:0;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.9;
+}
+
+.warning{
+  margin-top:16px;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(220,38,38,.65);
+  background:rgba(127,29,29,.22);
+}
+
+.warning strong{
+  color:#ff8585;
+}
+
+.actions{
+  display:flex;
+  gap:9px;
+  margin-top:20px;
+}
+
+.btn{
+  flex:1;
+  display:block;
+  padding:12px 8px;
+  border-radius:11px;
+  text-align:center;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  border:1px solid var(--gold);
+}
+
+.btn-primary{
+  background:var(--gold);
+  color:#07131d;
+}
+
+.btn-secondary{
+  background:transparent;
+  color:var(--gold2);
+}
+
+.footer{
+  margin-top:18px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.12);
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+}
+
+@media(max-width:380px){
+
+  .page{
+    padding:14px;
+  }
+
+  .brand{
+    font-size:20px;
+  }
+
+  .logo{
+    width:56px;
+    height:56px;
+    flex-basis:56px;
+  }
+
+  .languages button{
+    padding:6px 7px;
+    font-size:10px;
+  }
+}
+
+input,
+select,
+textarea{
+  font-size:16px;
+}
+
+::selection{
+  background:rgba(212,175,55,.35);
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<header class="header">
+
+  <div class="header-top">
+
+    <img
+      class="logo"
+      src="logo.svg"
+      alt="حاسبة أذون الخزانة المصرية"
+    >
+
+    <h1
+      class="brand"
+      data-ar="حاسبة أذون الخزانة المصرية"
+      data-en="Egyptian Treasury Bills Calculator"
+      data-fr="Calculatrice des bons du Trésor égyptiens"
+      data-it="Calcolatore dei Buoni del Tesoro Egiziani"
+      data-de="Ägyptischer Schatzwechsel-Rechner">
+      حاسبة أذون الخزانة المصرية
+    </h1>
+
+  </div>
+
+  <div
+    class="subtitle"
+    data-ar="الأسئلة الشائعة"
+    data-en="Frequently Asked Questions"
+    data-fr="Questions fréquentes"
+    data-it="Domande frequenti"
+    data-de="Häufig gestellte Fragen">
+    الأسئلة الشائعة
+  </div>
+
+  <div class="languages">
+    <button class="active" onclick="setLanguage('ar')">العربية</button>
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('fr')">Français</button>
+    <button onclick="setLanguage('it')">Italiano</button>
+    <button onclick="setLanguage('de')">Deutsch</button>
+  </div>
+
+</header>
+
+<main class="content">
+
+<h1
+  class="page-title"
+  data-ar="الأسئلة الشائعة"
+  data-en="Frequently Asked Questions"
+  data-fr="Questions fréquentes"
+  data-it="Domande frequenti"
+  data-de="Häufig gestellte Fragen">
+  الأسئلة الشائعة
+</h1>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="1. ما هي أذون الخزانة؟"
+  data-en="1. What are Treasury Bills?"
+  data-fr="1. Que sont les bons du Trésor ?"
+  data-it="1. Cosa sono i Buoni del Tesoro?"
+  data-de="1. Was sind Schatzwechsel?">
+  1. ما هي أذون الخزانة؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="أذون الخزانة هي أدوات دين حكومية قصيرة الأجل تصدرها الدولة لتمويل احتياجاتها، ويستثمر فيها الأفراد والمؤسسات وفق القواعد المتاحة."
+  data-en="Treasury bills are short-term government debt instruments issued to finance government needs and may be purchased by individuals and institutions according to applicable rules."
+  data-fr="Les bons du Trésor sont des titres de dette publique à court terme émis pour financer les besoins de l'État et pouvant être acquis par des particuliers et des institutions selon les règles applicables."
+  data-it="I Buoni del Tesoro sono strumenti di debito pubblico a breve termine emessi per finanziare le esigenze dello Stato e possono essere acquistati da privati e istituzioni secondo le regole applicabili."
+  data-de="Schatzwechsel sind kurzfristige staatliche Schuldtitel, die zur Finanzierung staatlicher Bedürfnisse ausgegeben werden und nach den geltenden Regeln von Privatpersonen und Institutionen erworben werden können.">
+  أذون الخزانة هي أدوات دين حكومية قصيرة الأجل تصدرها الدولة لتمويل احتياجاتها، ويستثمر فيها الأفراد والمؤسسات وفق القواعد المتاحة.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="2. ما أشهر مدد أذون الخزانة؟"
+  data-en="2. What are the common Treasury bill maturities?"
+  data-fr="2. Quelles sont les échéances courantes ?"
+  data-it="2. Quali sono le scadenze comuni?"
+  data-de="2. Welche Laufzeiten sind üblich?">
+  2. ما أشهر مدد أذون الخزانة؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="من المدد الشائعة 91 و182 و273 و364 يومًا، وقد تختلف المدد المتاحة حسب الطروحات وظروف السوق."
+  data-en="Common maturities include 91, 182, 273, and 364 days. Available maturities may vary depending on auctions and market conditions."
+  data-fr="Les échéances courantes comprennent 91, 182, 273 et 364 jours. Les échéances disponibles peuvent varier selon les adjudications et les conditions du marché."
+  data-it="Le scadenze comuni includono 91, 182, 273 e 364 giorni. Le scadenze disponibili possono variare in base alle aste e alle condizioni di mercato."
+  data-de="Übliche Laufzeiten sind 91, 182, 273 und 364 Tage. Die verfügbaren Laufzeiten können je nach Auktionen und Marktbedingungen variieren.">
+  من المدد الشائعة 91 و182 و273 و364 يومًا، وقد تختلف المدد المتاحة حسب الطروحات وظروف السوق.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="3. ما الفرق بين أذون الخزانة وشهادات البنك؟"
+  data-en="3. What is the difference between Treasury bills and bank certificates?"
+  data-fr="3. Quelle est la différence entre les bons du Trésor et les certificats bancaires ?"
+  data-it="3. Qual è la differenza tra Buoni del Tesoro e certificati bancari?"
+  data-de="3. Was ist der Unterschied zwischen Schatzwechseln und Bankzertifikaten?">
+  3. ما الفرق بين أذون الخزانة وشهادات البنك؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="أذون الخزانة أدوات دين حكومية قصيرة الأجل، بينما شهادات البنك منتجات ادخارية أو استثمارية تصدرها البنوك بشروط وعوائد محددة وفق كل منتج."
+  data-en="Treasury bills are short-term government debt instruments, while bank certificates are savings or investment products issued by banks with terms and returns determined by each product."
+  data-fr="Les bons du Trésor sont des titres de dette publique à court terme, tandis que les certificats bancaires sont des produits d'épargne ou d'investissement émis par les banques avec des conditions et rendements propres à chaque produit."
+  data-it="I Buoni del Tesoro sono strumenti di debito pubblico a breve termine, mentre i certificati bancari sono prodotti di risparmio o investimento emessi dalle banche con condizioni e rendimenti specifici."
+  data-de="Schatzwechsel sind kurzfristige staatliche Schuldtitel, während Bankzertifikate Spar- oder Anlageprodukte sind, die von Banken mit produktspezifischen Bedingungen und Renditen ausgegeben werden.">
+  أذون الخزانة أدوات دين حكومية قصيرة الأجل، بينما شهادات البنك منتجات ادخارية أو استثمارية تصدرها البنوك بشروط وعوائد محددة وفق كل منتج.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="4. كيف يحقق المستثمر عائدًا من أذون الخزانة؟"
+  data-en="4. How does an investor earn a return?"
+  data-fr="4. Comment l'investisseur obtient-il un rendement ?"
+  data-it="4. Come ottiene un rendimento l'investitore?"
+  data-de="4. Wie erzielt ein Anleger eine Rendite?">
+  4. كيف يحقق المستثمر عائدًا من أذون الخزانة؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="يتم شراء الإذن عادةً بقيمة أقل من قيمته الاسمية، ويحصل المستثمر على القيمة الاسمية عند الاستحقاق، ويمثل الفرق بينهما العائد الإجمالي."
+  data-en="A bill is generally purchased below its nominal value, and the investor receives the nominal value at maturity. The difference represents the gross return."
+  data-fr="Un bon est généralement acheté en dessous de sa valeur nominale et l'investisseur reçoit la valeur nominale à l'échéance. La différence représente le rendement brut."
+  data-it="Un Buono viene generalmente acquistato al di sotto del valore nominale e l'investitore riceve il valore nominale alla scadenza. La differenza rappresenta il rendimento lordo."
+  data-de="Ein Schatzwechsel wird in der Regel unter seinem Nominalwert gekauft, und der Anleger erhält bei Fälligkeit den Nominalwert. Die Differenz stellt den Bruttoertrag dar.">
+  يتم شراء الإذن عادةً بقيمة أقل من قيمته الاسمية، ويحصل المستثمر على القيمة الاسمية عند الاستحقاق، ويمثل الفرق بينهما العائد الإجمالي.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="5. ما المقصود بالقيمة الاسمية؟"
+  data-en="5. What is nominal value?"
+  data-fr="5. Qu'est-ce que la valeur nominale ?"
+  data-it="5. Cos'è il valore nominale?"
+  data-de="5. Was ist der Nominalwert?">
+  5. ما المقصود بالقيمة الاسمية؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="هي القيمة التي يمثلها الإذن والتي يتم استحقاقها عند نهاية المدة وفق شروط الإصدار."
+  data-en="It is the value represented by the bill and payable at maturity according to the issuance terms."
+  data-fr="Il s'agit de la valeur représentée par le bon et payable à l'échéance selon les conditions d'émission."
+  data-it="È il valore rappresentato dal Buono e pagabile alla scadenza secondo le condizioni di emissione."
+  data-de="Dies ist der durch den Schatzwechsel repräsentierte Wert, der gemäß den Emissionsbedingungen bei Fälligkeit zahlbar ist.">
+  هي القيمة التي يمثلها الإذن والتي يتم استحقاقها عند نهاية المدة وفق شروط الإصدار.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="6. ما المقصود بقيمة الشراء؟"
+  data-en="6. What is purchase value?"
+  data-fr="6. Qu'est-ce que la valeur d'achat ?"
+  data-it="6. Cos'è il valore di acquisto?"
+  data-de="6. Was ist der Kaufwert?">
+  6. ما المقصود بقيمة الشراء؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="هي المبلغ الذي يدفعه المستثمر للحصول على الإذن. وغالبًا تكون أقل من القيمة الاسمية بسبب أسلوب الخصم."
+  data-en="It is the amount paid by the investor to acquire the bill. It is generally lower than the nominal value because of the discount mechanism."
+  data-fr="Il s'agit du montant payé par l'investisseur pour acquérir le bon. Il est généralement inférieur à la valeur nominale en raison du mécanisme d'escompte."
+  data-it="È l'importo pagato dall'investitore per acquistare il Buono. Generalmente è inferiore al valore nominale a causa del meccanismo di sconto."
+  data-de="Dies ist der vom Anleger für den Erwerb des Schatzwechsels gezahlte Betrag. Aufgrund des Diskontmechanismus liegt er normalerweise unter dem Nominalwert.">
+  هي المبلغ الذي يدفعه المستثمر للحصول على الإذن. وغالبًا تكون أقل من القيمة الاسمية بسبب أسلوب الخصم.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="7. هل يمكن بيع الإذن قبل تاريخ الاستحقاق؟"
+  data-en="7. Can a bill be sold before maturity?"
+  data-fr="7. Peut-on vendre le bon avant l'échéance ?"
+  data-it="7. È possibile vendere il Buono prima della scadenza?"
+  data-de="7. Kann ein Schatzwechsel vor Fälligkeit verkauft werden?">
+  7. هل يمكن بيع الإذن قبل تاريخ الاستحقاق؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="قد يكون ذلك ممكنًا من خلال السوق الثانوية وفق القواعد والإجراءات المتاحة. وقد يكون سعر البيع مختلفًا عن قيمة الشراء الأصلية."
+  data-en="This may be possible through the secondary market according to applicable rules and procedures. The selling price may differ from the original purchase value."
+  data-fr="Cela peut être possible via le marché secondaire selon les règles et procédures applicables. Le prix de vente peut différer de la valeur d'achat initiale."
+  data-it="Può essere possibile tramite il mercato secondario secondo le regole e procedure applicabili. Il prezzo di vendita può differire dal valore di acquisto iniziale."
+  data-de="Dies kann über den Sekundärmarkt gemäß den geltenden Regeln und Verfahren möglich sein. Der Verkaufspreis kann vom ursprünglichen Kaufwert abweichen.">
+  قد يكون ذلك ممكنًا من خلال السوق الثانوية وفق القواعد والإجراءات المتاحة. وقد يكون سعر البيع مختلفًا عن قيمة الشراء الأصلية.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="8. هل المدة الأطول تعني دائمًا عائدًا أعلى؟"
+  data-en="8. Does a longer maturity always mean a higher return?"
+  data-fr="8. Une échéance plus longue signifie-t-elle toujours un rendement plus élevé ?"
+  data-it="8. Una scadenza più lunga significa sempre un rendimento maggiore?"
+  data-de="8. Bedeutet eine längere Laufzeit immer eine höhere Rendite?">
+  8. هل المدة الأطول تعني دائمًا عائدًا أعلى؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="لا. العائد يعتمد على معدل العائد وسعر الشراء ومدة الإذن وظروف السوق، لذلك لا يمكن اعتبار المدة وحدها مؤشرًا على ارتفاع الربح."
+  data-en="No. Return depends on the rate, purchase value, maturity, and market conditions, so maturity alone does not determine a higher profit."
+  data-fr="Non. Le rendement dépend du taux, de la valeur d'achat, de l'échéance et des conditions du marché. L'échéance seule ne détermine donc pas un bénéfice plus élevé."
+  data-it="No. Il rendimento dipende dal tasso, dal valore di acquisto, dalla scadenza e dalle condizioni di mercato; quindi la sola durata non determina un profitto maggiore."
+  data-de="Nein. Die Rendite hängt von Zinssatz, Kaufwert, Laufzeit und Marktbedingungen ab. Die Laufzeit allein bestimmt daher keinen höheren Gewinn.">
+  لا. العائد يعتمد على معدل العائد وسعر الشراء ومدة الإذن وظروف السوق، لذلك لا يمكن اعتبار المدة وحدها مؤشرًا على ارتفاع الربح.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="9. لماذا تختلف أسعار السوق الثانوية؟"
+  data-en="9. Why do secondary-market prices differ?"
+  data-fr="9. Pourquoi les prix du marché secondaire diffèrent-ils ?"
+  data-it="9. Perché i prezzi del mercato secondario differiscono?"
+  data-de="9. Warum unterscheiden sich die Preise am Sekundärmarkt?">
+  9. لماذا تختلف أسعار السوق الثانوية؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="يمكن أن تتأثر الأسعار بمعدلات العائد السائدة، والمدة المتبقية، والطلب والعرض، وظروف السوق والسيولة."
+  data-en="Prices may be affected by prevailing rates, remaining maturity, supply and demand, market conditions, and liquidity."
+  data-fr="Les prix peuvent être influencés par les taux en vigueur, la durée restante, l'offre et la demande, les conditions du marché et la liquidité."
+  data-it="I prezzi possono essere influenzati dai tassi correnti, dalla durata residua, dalla domanda e dall'offerta, dalle condizioni di mercato e dalla liquidità."
+  data-de="Preise können durch aktuelle Zinssätze, Restlaufzeit, Angebot und Nachfrage, Marktbedingungen und Liquidität beeinflusst werden.">
+  يمكن أن تتأثر الأسعار بمعدلات العائد السائدة، والمدة المتبقية، والطلب والعرض، وظروف السوق والسيولة.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="10. هل العائد الذي تظهره الحاسبة مضمون؟"
+  data-en="10. Is the calculator's return guaranteed?"
+  data-fr="10. Le rendement affiché est-il garanti ?"
+  data-it="10. Il rendimento mostrato è garantito?"
+  data-de="10. Ist die angezeigte Rendite garantiert?">
+  10. هل العائد الذي تظهره الحاسبة مضمون؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="لا. الحاسبة تقدم نتيجة تقديرية بناءً على البيانات التي تدخلها، ولا تمثل ضمانًا للعائد أو للسعر الفعلي."
+  data-en="No. The calculator provides an estimate based on the data entered and does not guarantee the actual return or price."
+  data-fr="Non. La calculatrice fournit une estimation basée sur les données saisies et ne garantit ni le rendement ni le prix réel."
+  data-it="No. Il calcolatore fornisce una stima basata sui dati inseriti e non garantisce il rendimento o il prezzo effettivo."
+  data-de="Nein. Der Rechner liefert eine Schätzung auf Grundlage der eingegebenen Daten und garantiert weder die tatsächliche Rendite noch den Preis.">
+  لا. الحاسبة تقدم نتيجة تقديرية بناءً على البيانات التي تدخلها، ولا تمثل ضمانًا للعائد أو للسعر الفعلي.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="11. ماذا تحسب الحاسبة؟"
+  data-en="11. What does the calculator calculate?"
+  data-fr="11. Que calcule la calculatrice ?"
+  data-it="11. Cosa calcola il calcolatore?"
+  data-de="11. Was berechnet der Rechner?">
+  11. ماذا تحسب الحاسبة؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="تحسب قيمة الشراء والخصم والضريبة والربح الصافي والمبلغ المتوقع عند الاستحقاق والعائد السنوي التقديري."
+  data-en="It calculates purchase value, discount, tax, net profit, expected amount at maturity, and estimated annual yield."
+  data-fr="Elle calcule la valeur d'achat, l'escompte, l'impôt, le bénéfice net, le montant attendu à l'échéance et le rendement annuel estimé."
+  data-it="Calcola il valore di acquisto, lo sconto, l'imposta, il profitto netto, l'importo previsto alla scadenza e il rendimento annuo stimato."
+  data-de="Sie berechnet Kaufwert, Abschlag, Steuer, Nettogewinn, den erwarteten Betrag bei Fälligkeit und die geschätzte Jahresrendite.">
+  تحسب قيمة الشراء والخصم والضريبة والربح الصافي والمبلغ المتوقع عند الاستحقاق والعائد السنوي التقديري.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="12. هل الحاسبة تقدم نصيحة استثمارية؟"
+  data-en="12. Does the calculator provide investment advice?"
+  data-fr="12. La calculatrice fournit-elle des conseils en investissement ?"
+  data-it="12. Il calcolatore fornisce consulenza d'investimento?"
+  data-de="12. Bietet der Rechner Anlageberatung?">
+  12. هل الحاسبة تقدم نصيحة استثمارية؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="لا. الحاسبة أداة حسابية فقط، ولا تقدم توصية بالشراء أو البيع أو اختيار مدة معينة."
+  data-en="No. The calculator is only a calculation tool and does not recommend buying, selling, or choosing a specific maturity."
+  data-fr="Non. La calculatrice est uniquement un outil de calcul et ne recommande ni l'achat, ni la vente, ni une échéance particulière."
+  data-it="No. Il calcolatore è solo uno strumento di calcolo e non raccomanda acquisti, vendite o una specifica scadenza."
+  data-de="Nein. Der Rechner ist ausschließlich ein Berechnungstool und empfiehlt weder Kauf noch Verkauf noch eine bestimmte Laufzeit.">
+  لا. الحاسبة أداة حسابية فقط، ولا تقدم توصية بالشراء أو البيع أو اختيار مدة معينة.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="13. لماذا قد تختلف نتيجة الحاسبة عن السعر الفعلي في البنك؟"
+  data-en="13. Why may the calculator result differ from the bank's actual price?"
+  data-fr="13. Pourquoi le résultat peut-il différer du prix réel de la banque ?"
+  data-it="13. Perché il risultato può differire dal prezzo effettivo della banca?"
+  data-de="13. Warum kann das Ergebnis vom tatsächlichen Bankpreis abweichen?">
+  13. لماذا قد تختلف نتيجة الحاسبة عن السعر الفعلي في البنك؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="لأن السعر الفعلي قد يعتمد على عطاء أو تسعير حالي، وعمولات أو رسوم أو شروط خاصة بالعملية، بينما الحاسبة تعتمد على البيانات التي يدخلها المستخدم."
+  data-en="The actual price may depend on a current auction or quotation, fees, commissions, or transaction-specific terms, while the calculator relies on the data entered by the user."
+  data-fr="Le prix réel peut dépendre d'une adjudication ou cotation actuelle, de frais, de commissions ou de conditions spécifiques, tandis que la calculatrice utilise les données saisies par l'utilisateur."
+  data-it="Il prezzo effettivo può dipendere da un'asta o quotazione corrente, commissioni, costi o condizioni specifiche dell'operazione, mentre il calcolatore utilizza i dati inseriti dall'utente."
+  data-de="Der tatsächliche Preis kann von einer aktuellen Auktion oder Quotierung, Gebühren, Provisionen oder transaktionsspezifischen Bedingungen abhängen, während der Rechner auf den vom Nutzer eingegebenen Daten basiert.">
+  لأن السعر الفعلي قد يعتمد على عطاء أو تسعير حالي، وعمولات أو رسوم أو شروط خاصة بالعملية، بينما الحاسبة تعتمد على البيانات التي يدخلها المستخدم.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="14. ماذا عن الضرائب؟"
+  data-en="14. What about taxes?"
+  data-fr="14. Qu'en est-il des impôts ?"
+  data-it="14. E le imposte?"
+  data-de="14. Wie sieht es mit Steuern aus?">
+  14. ماذا عن الضرائب؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="قد تخضع العوائد لمعالجة ضريبية وفق القواعد السارية. أي قيمة ضريبية تظهر في الحاسبة هي تقدير حسابي وليست بديلاً عن القواعد الرسمية."
+  data-en="Returns may be subject to tax treatment under applicable rules. Any tax amount shown by the calculator is an estimate and is not a substitute for official rules."
+  data-fr="Les revenus peuvent être soumis à un traitement fiscal selon les règles applicables. Tout montant fiscal affiché est une estimation et ne remplace pas les règles officielles."
+  data-it="I rendimenti possono essere soggetti a trattamento fiscale secondo le norme applicabili. Qualsiasi importo fiscale mostrato dal calcolatore è una stima e non sostituisce le norme ufficiali."
+  data-de="Erträge können gemäß den geltenden Regeln steuerlich behandelt werden. Ein vom Rechner angezeigter Steuerbetrag ist eine Schätzung und ersetzt keine offiziellen Vorschriften.">
+  قد تخضع العوائد لمعالجة ضريبية وفق القواعد السارية. أي قيمة ضريبية تظهر في الحاسبة هي تقدير حسابي وليست بديلاً عن القواعد الرسمية.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="15. هل يمكن معرفة صافي الربح قبل شراء الإذن؟"
+  data-en="15. Can net profit be estimated before buying?"
+  data-fr="15. Peut-on estimer le bénéfice net avant l'achat ?"
+  data-it="15. È possibile stimare il profitto netto prima dell'acquisto?"
+  data-de="15. Kann der Nettogewinn vor dem Kauf geschätzt werden?">
+  15. هل يمكن معرفة صافي الربح قبل شراء الإذن؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="نعم، يمكن استخدام الحاسبة لإجراء تقدير مبدئي إذا كانت قيمة الإذن ومعدل العائد وعدد الأيام والبيانات الأخرى المطلوبة معروفة."
+  data-en="Yes. The calculator can provide an initial estimate when the nominal value, annual rate, number of days, and other required data are known."
+  data-fr="Oui. La calculatrice peut fournir une première estimation lorsque la valeur nominale, le taux annuel, le nombre de jours et les autres données nécessaires sont connus."
+  data-it="Sì. Il calcolatore può fornire una stima iniziale quando sono noti il valore nominale, il tasso annuo, il numero di giorni e gli altri dati richiesti."
+  data-de="Ja. Der Rechner kann eine erste Schätzung liefern, wenn Nominalwert, Jahreszins, Anzahl der Tage und andere erforderliche Daten bekannt sind.">
+  نعم، يمكن استخدام الحاسبة لإجراء تقدير مبدئي إذا كانت قيمة الإذن ومعدل العائد وعدد الأيام والبيانات الأخرى المطلوبة معروفة.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<h2
+  class="question"
+  data-ar="16. ما أهم شيء يجب معرفته قبل شراء أذون الخزانة؟"
+  data-en="16. What should be known before buying Treasury bills?"
+  data-fr="16. Que faut-il savoir avant d'acheter des bons du Trésor ?"
+  data-it="16. Cosa bisogna sapere prima di acquistare Buoni del Tesoro?"
+  data-de="16. Was sollte man vor dem Kauf von Schatzwechseln wissen?">
+  16. ما أهم شيء يجب معرفته قبل شراء أذون الخزانة؟
+</h2>
+
+<p
+  class="answer"
+  data-ar="يجب معرفة القيمة الاسمية، وقيمة الشراء، ومعدل العائد، ومدة الإذن، والضرائب والرسوم إن وجدت، وشروط البيع قبل الاستحقاق، والتأكد من البيانات الفعلية لدى الجهة المالية."
+  data-en="You should know the nominal value, purchase value, annual rate, maturity, applicable taxes and fees, conditions for selling before maturity, and verify the actual details with the financial institution."
+  data-fr="Il faut connaître la valeur nominale, la valeur d'achat, le taux annuel, l'échéance, les impôts et frais applicables, les conditions de vente avant échéance et vérifier les informations réelles auprès de l'institution financière."
+  data-it="È importante conoscere il valore nominale, il valore di acquisto, il tasso annuo, la scadenza, le imposte e commissioni applicabili, le condizioni di vendita prima della scadenza e verificare i dati effettivi presso l'istituto finanziario."
+  data-de="Sie sollten Nominalwert, Kaufwert, Jahreszins, Laufzeit, anwendbare Steuern und Gebühren sowie die Bedingungen für einen Verkauf vor Fälligkeit kennen und die tatsächlichen Angaben beim Finanzinstitut überprüfen.">
+  يجب معرفة القيمة الاسمية، وقيمة الشراء، ومعدل العائد، ومدة الإذن، والضرائب والرسوم إن وجدت، وشروط البيع قبل الاستحقاق، والتأكد من البيانات الفعلية لدى الجهة المالية.
+</p>
+
+</div>
+
+
+<div class="warning">
+
+<strong
+  data-ar="تنبيه مهم"
+  data-en="Important Notice"
+  data-fr="Avis important"
+  data-it="Avviso importante"
+  data-de="Wichtiger Hinweis">
+  تنبيه مهم
+</strong>
+
+<p
+  class="answer"
+  style="margin-top:6px"
+  data-ar="هذه المعلومات للتوعية والحساب فقط. لا تعتمد على نتائج الحاسبة وحدها لاتخاذ قرار استثماري، وتحقق دائمًا من البيانات والشروط الفعلية قبل تنفيذ أي عملية."
+  data-en="This information is provided for awareness and calculation purposes only. Do not rely solely on calculator results for an investment decision, and always verify actual data and terms before carrying out a transaction."
+  data-fr="Ces informations sont fournies uniquement à des fins d'information et de calcul. Ne vous fiez pas uniquement aux résultats de la calculatrice pour prendre une décision d'investissement et vérifiez toujours les données et conditions réelles avant toute transaction."
+  data-it="Queste informazioni sono fornite esclusivamente a fini informativi e di calcolo. Non basarsi solo sui risultati del calcolatore per una decisione d'investimento e verificare sempre dati e condizioni effettivi prima di un'operazione."
+  data-de="Diese Informationen dienen ausschließlich der Aufklärung und Berechnung. Verlassen Sie sich bei einer Anlageentscheidung nicht ausschließlich auf die Ergebnisse des Rechners und prüfen Sie vor jeder Transaktion stets die tatsächlichen Daten und Bedingungen.">
+  هذه المعلومات للتوعية والحساب فقط. لا تعتمد على نتائج الحاسبة وحدها لاتخاذ قرار استثماري، وتحقق دائمًا من البيانات والشروط الفعلية قبل تنفيذ أي عملية.
+</p>
+
+</div>
+
+
+<div class="actions">
+
+<a
+  class="btn btn-primary"
+  href="index.html"
+  data-ar="العودة للحاسبة"
+  data-en="Back to Calculator"
+  data-fr="Retour à la calculatrice"
+  data-it="Torna al calcolatore"
+  data-de="Zurück zum Rechner">
+  العودة للحاسبة
+</a>
+
+<a
+  class="btn btn-secondary"
+  href="about.html"
+  data-ar="دليل الحاسبة"
+  data-en="Calculator Guide"
+  data-fr="Guide de la calculatrice"
+  data-it="Guida al calcolatore"
+  data-de="Rechner-Handbuch">
+  دليل الحاسبة
+</a>
+
+</div>
+
+</main>
+
+
+<footer
+  class="footer"
+  data-ar="حاسبة أذون الخزانة المصرية"
+  data-en="Egyptian Treasury Bills Calculator"
+  data-fr="Calculatrice des bons du Trésor égyptiens"
+  data-it="Calcolatore dei Buoni del Tesoro Egiziani"
+  data-de="Ägyptischer Schatzwechsel-Rechner">
+  حاسبة أذون الخزانة المصرية
+</footer>
+
+</div>
+
+
+<script>
+function setLanguage(lang){
+
+  document.documentElement.lang = lang;
+
+  const rtl = lang === "ar";
+
+  document.documentElement.dir = rtl ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-ar]").forEach(function(el){
+
+    const text = el.getAttribute("data-" + lang);
+
+    if(text !== null){
+      el.textContent = text;
+    }
+
+  });
+
+  document.querySelectorAll(".languages button").forEach(function(btn){
+    btn.classList.remove("active");
+  });
+
+  const buttons = document.querySelectorAll(".languages button");
+
+  const index = {
+    ar:0,
+    en:1,
+    fr:2,
+    it:3,
+    de:4
+  }[lang];
+
+  if(buttons[index]){
+    buttons[index].classList.add("active");
+  }
+
+  localStorage.setItem("calculatorLanguage",lang);
+}
+
+
+document.addEventListener("DOMContentLoaded",function(){
+
+  const saved =
+    localStorage.getItem("calculatorLanguage") || "ar";
+
+  setLanguage(saved);
+
+});
+
+
+document.addEventListener("contextmenu",function(e){
+  e.preventDefault();
+});
+</script>
+
+</body>
+</html>
