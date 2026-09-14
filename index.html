@@ -142,6 +142,7 @@ select{
   transform:scale(.99);
 }
 
+/* ٤ مربعات فقط: ٢ فوق و٢ تحت */
 .results{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -194,6 +195,7 @@ select{
   background:#dff5ea;
 }
 
+/* المبلغ المسترد */
 .total{
   margin-top:9px;
   border:2px solid #e8bd45;
@@ -263,17 +265,18 @@ select{
   text-align:center;
   color:#6d7c8c;
   font-size:10px;
-  line-height:1.5;
-  margin:6px 0 2px;
+  line-height:1.4;
+  margin:2px 0 0;
 }
 
+/* تم تقليل المسافة فوق سياسة الخصوصية */
 .footer{
-  margin-top:auto;
-  padding-top:7px;
+  margin-top:0;
+  padding-top:3px;
   border-top:1px solid #dbe3eb;
   text-align:center;
   font-size:11px;
-  line-height:1.8;
+  line-height:1.6;
 }
 
 .footer a{
@@ -334,28 +337,38 @@ select{
 <div class="app">
 
   <header class="header">
-    <button class="language" id="languageBtn" type="button" onclick="toggleLanguage()">
+
+    <button
+      class="language"
+      id="languageBtn"
+      type="button"
+      onclick="toggleLanguage()">
       English
     </button>
 
     <div class="title" id="title">
       حاسبة أذون الخزانة المصرية
     </div>
+
   </header>
 
   <div class="market">
-    <button id="primaryBtn"
-            class="active"
-            type="button"
-            onclick="setMarket('primary')">
+
+    <button
+      id="primaryBtn"
+      class="active"
+      type="button"
+      onclick="setMarket('primary')">
       السوق الأولي
     </button>
 
-    <button id="secondaryBtn"
-            type="button"
-            onclick="setMarket('secondary')">
+    <button
+      id="secondaryBtn"
+      type="button"
+      onclick="setMarket('secondary')">
       السوق الثانوي
     </button>
+
   </div>
 
   <input
@@ -377,51 +390,101 @@ select{
     placeholder="سعر العائد (%)"
   >
 
-  <select class="field" id="days"></select>
+  <select
+    class="field"
+    id="days">
+  </select>
 
-  <button class="calculate" id="calculateBtn" type="button" onclick="calculate()">
+  <button
+    class="calculate"
+    id="calculateBtn"
+    type="button"
+    onclick="calculate()">
     احسب الآن
   </button>
 
-  <!-- ٤ مربعات فقط: مربعين فوق ومربعين تحت -->
+  <!-- ٤ مربعات فقط -->
+
   <div class="results">
 
     <div class="result-card purchase">
-      <span id="priceLabel">قيمة الشراء</span>
-      <strong id="priceResult">0.00</strong>
+
+      <span id="priceLabel">
+        قيمة الشراء
+      </span>
+
+      <strong id="priceResult">
+        0.00
+      </strong>
+
     </div>
 
     <div class="result-card discount">
-      <span id="discountLabel">خصم الشراء</span>
-      <strong id="discountResult">0.00</strong>
+
+      <span id="discountLabel">
+        خصم الشراء
+      </span>
+
+      <strong id="discountResult">
+        0.00
+      </strong>
+
     </div>
 
     <div class="result-card tax">
-      <span id="taxLabel">الضريبة</span>
-      <strong id="taxResult">0.00</strong>
+
+      <span id="taxLabel">
+        الضريبة
+      </span>
+
+      <strong id="taxResult">
+        0.00
+      </strong>
+
     </div>
 
     <div class="result-card profit">
-      <span id="profitLabel">صافي الربح بعد خصم الضريبة</span>
-      <strong id="profitResult">0.00</strong>
+
+      <span id="profitLabel">
+        صافي الربح بعد خصم الضريبة
+      </span>
+
+      <strong id="profitResult">
+        0.00
+      </strong>
+
     </div>
 
   </div>
 
-  <!-- المبلغ المسترد شريط مستقل وليس مربع نتيجة خامس -->
+  <!-- المبلغ المسترد ليس مربع نتيجة خامس -->
+
   <div class="total">
-    <div class="total-label" id="totalLabel">
+
+    <div
+      class="total-label"
+      id="totalLabel">
       المبلغ المسترد نهاية المدة
     </div>
 
-    <div class="total-value" id="totalResult">
+    <div
+      class="total-value"
+      id="totalResult">
       0.00
     </div>
 
     <div class="annual">
-      <span id="annualLabel">نسبة العائد السنوي:</span>
-      <strong id="annualResult">0.00%</strong>
+
+      <span id="annualLabel">
+        نسبة العائد السنوي:
+      </span>
+
+      <strong id="annualResult">
+        0.00%
+      </strong>
+
     </div>
+
   </div>
 
   <div class="actions">
@@ -430,8 +493,7 @@ select{
       class="action"
       href="saved.html"
       id="savedLink"
-      onclick="saveAndOpen(event)"
-    >
+      onclick="saveAndOpen(event)">
       حفظ العمليتين
     </a>
 
@@ -439,26 +501,33 @@ select{
       class="action primary"
       href="assistant.html"
       id="assistantLink"
-      onclick="saveBeforeLeave()"
-    >
+      onclick="saveBeforeLeave()">
       مساعدك الذكي
     </a>
 
   </div>
 
-  <div class="note" id="note">
+  <div
+    class="note"
+    id="note">
     يتم حفظ آخر عملية تلقائيًا على جهازك.
   </div>
 
   <footer class="footer">
 
-    <a href="privacy.html" id="privacyLink">
+    <a
+      href="privacy.html"
+      id="privacyLink"
+      onclick="saveBeforeLeave()">
       سياسة الخصوصية
     </a>
 
     <span> | </span>
 
-    <a href="about.html" id="guideLink">
+    <a
+      href="about.html"
+      id="guideLink"
+      onclick="saveBeforeLeave()">
       دليل أذون الخزانة
     </a>
 
@@ -478,7 +547,8 @@ let currentMarket = "primary";
 const $ = id => document.getElementById(id);
 
 
-/* تحويل الأرقام العربية إلى إنجليزية */
+/* تحويل الأرقام العربية */
+
 function normalize(value){
 
   if(!value) return 0;
@@ -497,25 +567,30 @@ function normalize(value){
   };
 
   let text = String(value)
-    .replace(/[٠-٩]/g, d => arabicDigits[d])
+    .replace(/[٠-٩]/g,d => arabicDigits[d])
     .replace(/,/g,"");
 
   text = text.replace(/[^0-9.]/g,"");
 
   return parseFloat(text) || 0;
+
 }
 
 
 /* علامة الآلاف */
+
 function formatNominal(input){
 
   const value = normalize(input.value);
 
   if(value > 0){
 
-    input.value = value.toLocaleString("en-US",{
-      maximumFractionDigits:2
-    });
+    input.value = value.toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits:2
+      }
+    );
 
   }else{
 
@@ -527,17 +602,22 @@ function formatNominal(input){
 
 
 /* تنسيق الأموال */
+
 function money(value){
 
-  return Number(value || 0).toLocaleString("en-US",{
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
-  });
+  return Number(value || 0).toLocaleString(
+    "en-US",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
 
 }
 
 
-/* إنشاء مدد الأذون */
+/* السوق والمدد */
+
 function setMarket(type){
 
   currentMarket = type;
@@ -575,7 +655,8 @@ function setMarket(type){
 
   list.forEach(day => {
 
-    const option = document.createElement("option");
+    const option =
+      document.createElement("option");
 
     option.value = day;
 
@@ -598,13 +679,17 @@ function setMarket(type){
 
 
 /* الحساب */
+
 function calculate(){
 
-  const P = normalize($("nominal").value);
+  const P =
+    normalize($("nominal").value);
 
-  const R = normalize($("rate").value) / 100;
+  const R =
+    normalize($("rate").value) / 100;
 
-  const D = parseInt($("days").value) || 0;
+  const D =
+    parseInt($("days").value) || 0;
 
   if(P <= 0 || R <= 0 || D <= 0){
 
@@ -617,12 +702,6 @@ function calculate(){
     return;
 
   }
-
-  /*
-    قيمة الشراء
-    = القيمة الاسمية ÷
-      (1 + سعر العائد × المدة ÷ 365)
-  */
 
   const purchaseValue =
     P / (1 + (R * D / 365));
@@ -702,6 +781,7 @@ function calculate(){
 
 
 /* حفظ حالة الحاسبة */
+
 function saveCalculatorState(){
 
   const state = {
@@ -736,13 +816,16 @@ function saveCalculatorState(){
 }
 
 
-/* استرجاع آخر حالة */
+/* استرجاع الحالة */
+
 function restoreCalculatorState(){
 
   try{
 
     const raw =
-      localStorage.getItem("calculatorState");
+      localStorage.getItem(
+        "calculatorState"
+      );
 
     if(!raw){
 
@@ -775,22 +858,28 @@ function restoreCalculatorState(){
       $("rate").value = state.rate;
 
     if(state.price)
-      $("priceResult").textContent = state.price;
+      $("priceResult").textContent =
+        state.price;
 
     if(state.discount)
-      $("discountResult").textContent = state.discount;
+      $("discountResult").textContent =
+        state.discount;
 
     if(state.tax)
-      $("taxResult").textContent = state.tax;
+      $("taxResult").textContent =
+        state.tax;
 
     if(state.profit)
-      $("profitResult").textContent = state.profit;
+      $("profitResult").textContent =
+        state.profit;
 
     if(state.total)
-      $("totalResult").textContent = state.total;
+      $("totalResult").textContent =
+        state.total;
 
     if(state.annual)
-      $("annualResult").textContent = state.annual;
+      $("annualResult").textContent =
+        state.annual;
 
   }catch(error){
 
@@ -801,7 +890,8 @@ function restoreCalculatorState(){
 }
 
 
-/* حفظ قبل الانتقال */
+/* قبل الانتقال */
+
 function saveBeforeLeave(){
 
   saveCalculatorState();
@@ -809,7 +899,8 @@ function saveBeforeLeave(){
 }
 
 
-/* حفظ آخر عمليتين */
+/* حفظ عمليتين فقط */
+
 function saveAndOpen(event){
 
   event.preventDefault();
@@ -817,7 +908,9 @@ function saveAndOpen(event){
   saveCalculatorState();
 
   const current =
-    localStorage.getItem("currentOperation");
+    localStorage.getItem(
+      "currentOperation"
+    );
 
   if(!current){
 
@@ -837,7 +930,9 @@ function saveAndOpen(event){
 
     operations =
       JSON.parse(
-        localStorage.getItem("savedOperations") || "[]"
+        localStorage.getItem(
+          "savedOperations"
+        ) || "[]"
       );
 
   }catch(error){
@@ -868,12 +963,14 @@ function saveAndOpen(event){
 
   }catch(error){}
 
-  window.location.href = "saved.html";
+  window.location.href =
+    "saved.html";
 
 }
 
 
-/* اللغات */
+/* تغيير اللغة */
+
 function toggleLanguage(){
 
   isArabic = !isArabic;
@@ -886,7 +983,9 @@ function toggleLanguage(){
 
 
   $("languageBtn").textContent =
-    isArabic ? "English" : "العربية";
+    isArabic
+    ? "English"
+    : "العربية";
 
 
   $("title").textContent =
@@ -996,7 +1095,8 @@ function toggleLanguage(){
 }
 
 
-/* بدء التشغيل */
+/* التشغيل */
+
 window.addEventListener(
   "load",
   restoreCalculatorState
