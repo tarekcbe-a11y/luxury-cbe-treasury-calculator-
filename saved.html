@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>حفظ العمليتين</title>
+<title>العمليات المحفوظة</title>
 
 <style>
 *{
@@ -28,7 +28,7 @@ body{
         sans-serif;
 
     background:
-        radial-gradient(circle at 50% 8%,#173c61 0%,#0b1f38 30%,#030d1c 72%,#010812 100%);
+        radial-gradient(circle at 50% 8%,#173c61 0%,#0b1f38 32%,#030d1c 72%,#010812 100%);
 
     color:#fff;
     overflow-x:hidden;
@@ -45,8 +45,19 @@ body{
     border-radius:22px;
 
     background:
-        radial-gradient(ellipse at 50% 0%,rgba(30,79,126,.48),transparent 42%),
-        linear-gradient(145deg,#020b17 0%,#07182c 25%,#0b2743 48%,#06182c 72%,#020a15 100%);
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(30,79,126,.48) 0%,
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #020b17 0%,
+            #07182c 25%,
+            #0b2743 48%,
+            #06182c 72%,
+            #020a15 100%
+        );
 
     box-shadow:
         inset 0 0 35px rgba(0,0,0,.65),
@@ -56,132 +67,158 @@ body{
 
 .header{
     position:relative;
-    min-height:58px;
+    height:55px;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
 }
 
 .title{
-    width:100%;
     margin:0;
+    width:100%;
+
     color:#fff;
-    font-size:21px;
-    font-weight:700;
     text-align:center;
     white-space:nowrap;
-    text-shadow:0 2px 4px rgba(0,0,0,.65);
+
+    font-size:21px;
+    font-weight:700;
+
+    text-shadow:0 2px 4px rgba(0,0,0,.7);
+}
+
+.language{
+    position:absolute;
+    left:2px;
+    top:5px;
+
+    width:78px;
+    height:29px;
+
+    border:1px solid #e8bd45;
+    border-radius:9px;
+
+    background:#10284a;
+    color:#fff;
+
+    font-family:inherit;
+    font-size:10px;
+    font-weight:600;
+
+    padding:0 5px;
 }
 
 .subtitle{
     text-align:center;
     color:#ffd21c;
+
     font-size:14px;
     font-weight:600;
-    margin:3px 0 10px;
+
+    margin:1px 0 9px;
 }
 
-.operations{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
-
-.operation{
-    border:2px solid #e8bd45;
-    border-radius:15px;
-
-    background:
-        linear-gradient(145deg,#092b49,#03182d 55%,#020e1d);
-
-    padding:9px;
-
-    box-shadow:
-        inset 0 1px 5px rgba(255,255,255,.06);
-}
-
-.operation-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:7px;
-    padding-bottom:6px;
-
-    border-bottom:1px solid #e8bd45;
-}
-
-.operation-number{
-    color:#ffd21c;
-    font-size:15px;
-    font-weight:700;
-}
-
-.market{
-    color:#fff;
-    font-size:13px;
-    font-weight:500;
-}
-
-.data-grid{
+.tabs{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:6px;
+    gap:8px;
+
+    margin-bottom:8px;
 }
 
-.data{
-    min-height:48px;
+.tab{
+    height:43px;
 
-    border:1px solid #e8bd45;
-    border-radius:10px;
+    border:2px solid #e8bd45;
+    border-radius:13px;
 
     background:
-        linear-gradient(145deg,#0b3152,#03192e);
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-    padding:4px;
-}
-
-.label{
-    color:#fff;
-    font-size:11px;
-    font-weight:500;
-    line-height:1.15;
-}
-
-.value{
-    color:#ffd21c;
-    font-size:16px;
-    font-weight:600;
-    margin-top:3px;
-}
-
-.delete-btn{
-    width:100%;
-    height:38px;
-
-    margin-top:7px;
-
-    border:1px solid #e8bd45;
-    border-radius:10px;
-
-    background:
-        linear-gradient(145deg,#172e46,#071a2e);
+        linear-gradient(
+            145deg,
+            #061a31,
+            #102b4a
+        );
 
     color:#fff;
 
     font-family:inherit;
-    font-size:13px;
-    font-weight:600;
+    font-size:14px;
+    font-weight:700;
 }
 
-.delete-btn:active{
-    transform:scale(.985);
+.tab.active{
+    background:
+        linear-gradient(
+            145deg,
+            #ffe91a,
+            #d7e900
+        );
+
+    color:#15213b;
+}
+
+.details{
+    border:2px solid #e8bd45;
+    border-radius:15px;
+
+    padding:5px 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8,37,65,.96),
+            rgba(2,15,30,.98)
+        );
+}
+
+.row{
+    min-height:41px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+
+    border-bottom:1px solid rgba(232,189,69,.25);
+}
+
+.row:last-child{
+    border-bottom:none;
+}
+
+.label{
+    text-align:right;
+
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+
+    padding-right:3px;
+}
+
+.value{
+    text-align:left;
+
+    color:#ffd21c;
+    font-size:15px;
+    font-weight:600;
+
+    direction:ltr;
+    padding-left:3px;
+}
+
+.total-row{
+    margin-top:2px;
+
+    border-top:1px solid #e8bd45;
+}
+
+.total-row .label{
+    font-size:12px;
+}
+
+.total-row .value{
+    font-size:18px;
 }
 
 .empty{
@@ -192,20 +229,25 @@ body{
     border:2px solid #e8bd45;
     border-radius:15px;
 
-    padding:25px 10px;
-
-    background:
-        linear-gradient(145deg,#092b49,#03182d 55%,#020e1d);
+    padding:25px 8px;
 
     color:#fff;
-
-    font-size:15px;
+    font-size:14px;
     font-weight:600;
+}
+
+.no-operation{
+    color:#ffd21c;
+    font-size:14px;
+    font-weight:600;
+    text-align:center;
+
+    padding:28px 5px;
 }
 
 .back-btn{
     width:100%;
-    height:47px;
+    height:46px;
 
     margin-top:9px;
 
@@ -213,12 +255,16 @@ body{
     border-radius:13px;
 
     background:
-        linear-gradient(145deg,#1670ae,#083b67 45%,#052544);
+        linear-gradient(
+            145deg,
+            #ffe91a,
+            #d7e900
+        );
 
-    color:#fff;
+    color:#26334b;
 
     font-family:inherit;
-    font-size:17px;
+    font-size:15px;
     font-weight:700;
 }
 
@@ -228,8 +274,7 @@ body{
 
 .footer{
     margin-top:8px;
-    padding-top:7px;
-    padding-bottom:3px;
+    padding-top:6px;
 
     border-top:1px solid #e8bd45;
 
@@ -239,14 +284,16 @@ body{
 .footer a{
     color:#fff;
     text-decoration:none;
-    font-size:12px;
+
+    font-size:11px;
     font-weight:500;
 }
 
 .developer{
-    margin-top:4px;
-    color:#ffd21c;
-    font-size:12px;
+    margin-top:3px;
+
+    color:#fff;
+    font-size:11px;
     font-weight:600;
 }
 
@@ -256,12 +303,27 @@ body{
         font-size:19px;
     }
 
-    .value{
-        font-size:15px;
+    .language{
+        width:74px;
+        height:27px;
+        font-size:9px;
+    }
+
+    .tab{
+        height:41px;
+        font-size:13px;
+    }
+
+    .row{
+        min-height:39px;
     }
 
     .label{
-        font-size:10px;
+        font-size:11px;
+    }
+
+    .value{
+        font-size:14px;
     }
 }
 </style>
@@ -272,42 +334,83 @@ body{
 <div class="app">
 
     <header class="header">
-        <h1 class="title" id="pageTitle">
-            حفظ العمليتين
+
+        <select
+            id="language"
+            class="language"
+            onchange="changeLanguage(this.value)">
+
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+            <option value="de">Deutsch</option>
+
+        </select>
+
+        <h1
+            class="title"
+            id="pageTitle">
+            العمليات المحفوظة
         </h1>
+
     </header>
 
-    <div class="subtitle" id="subtitle">
-        آخر عمليتين محفوظتين
+    <div
+        class="subtitle"
+        id="subtitle">
+        اختر العملية لعرض تفاصيلها
     </div>
 
-    <div id="operations" class="operations"></div>
+    <div class="tabs">
 
-    <div id="empty" class="empty">
-        لا توجد عمليات محفوظة حاليًا
+        <button
+            class="tab active"
+            id="tab1"
+            onclick="showOperation(0)">
+            العملية الأولى
+        </button>
+
+        <button
+            class="tab"
+            id="tab2"
+            onclick="showOperation(1)">
+            العملية الثانية
+        </button>
+
+    </div>
+
+    <div
+        class="details"
+        id="details">
     </div>
 
     <button
-        type="button"
         class="back-btn"
-        onclick="goBack()"
-        id="backBtn">
-        العودة إلى الحاسبة
+        id="backBtn"
+        onclick="goBack()">
+        ← العودة إلى الحاسبة
     </button>
 
     <footer class="footer">
 
-        <a href="privacy.html" id="privacy">
+        <a
+            href="privacy.html"
+            id="privacy">
             سياسة الخصوصية
         </a>
 
         <span style="color:#e8bd45;"> | </span>
 
-        <a href="about.html" id="guide">
+        <a
+            href="about.html"
+            id="guide">
             دليل أذون الخزانة
         </a>
 
-        <div class="developer">
+        <div
+            class="developer"
+            id="developer">
             أ/ طارق متولي
         </div>
 
@@ -315,14 +418,346 @@ body{
 
 </div>
 
+
 <script>
 
-const operationsBox =
-    document.getElementById("operations");
+let operations = [];
+let currentOperation = 0;
 
-const emptyBox =
-    document.getElementById("empty");
 
+/* =========================
+   الترجمات
+========================= */
+
+const translations = {
+
+    ar:{
+        title:"العمليات المحفوظة",
+        subtitle:"اختر العملية لعرض تفاصيلها",
+        first:"العملية الأولى",
+        second:"العملية الثانية",
+
+        nominal:"القيمة الاسمية",
+        rate:"سعر العائد",
+        days:"المدة",
+        market:"السوق",
+        purchase:"قيمة الشراء",
+        discount:"خصم الشراء",
+        tax:"الضريبة (20%)",
+        profit:"صافي الربح بعد الضريبة",
+        total:"المبلغ المسترد نهاية المدة",
+        annual:"نسبة العائد السنوي",
+
+        primary:"السوق الأولي",
+        secondary:"السوق الثانوي",
+
+        noOperation:"لا توجد عملية محفوظة",
+        back:"← العودة إلى الحاسبة",
+        privacy:"سياسة الخصوصية",
+        guide:"دليل أذون الخزانة",
+        developer:"أ/ طارق متولي",
+        day:"يوم"
+    },
+
+    en:{
+        title:"Saved Operations",
+        subtitle:"Select an operation to view its details",
+        first:"Operation 1",
+        second:"Operation 2",
+
+        nominal:"Nominal Value",
+        rate:"Yield Rate",
+        days:"Term",
+        market:"Market",
+        purchase:"Purchase Value",
+        discount:"Purchase Discount",
+        tax:"Tax (20%)",
+        profit:"Net Profit After Tax",
+        total:"Amount Returned at Maturity",
+        annual:"Annual Yield",
+
+        primary:"Primary Market",
+        secondary:"Secondary Market",
+
+        noOperation:"No saved operation",
+        back:"← Back to Calculator",
+        privacy:"Privacy Policy",
+        guide:"Treasury Bills Guide",
+        developer:"Tarek Metwally",
+        day:"days"
+    },
+
+    fr:{
+        title:"Opérations enregistrées",
+        subtitle:"Sélectionnez une opération",
+        first:"Opération 1",
+        second:"Opération 2",
+
+        nominal:"Valeur nominale",
+        rate:"Taux de rendement",
+        days:"Durée",
+        market:"Marché",
+        purchase:"Valeur d'achat",
+        discount:"Décote d'achat",
+        tax:"Impôt (20%)",
+        profit:"Bénéfice net après impôt",
+        total:"Montant à l'échéance",
+        annual:"Rendement annuel",
+
+        primary:"Marché primaire",
+        secondary:"Marché secondaire",
+
+        noOperation:"Aucune opération enregistrée",
+        back:"← Retour au calculateur",
+        privacy:"Politique de confidentialité",
+        guide:"Guide des bons du Trésor",
+        developer:"Tarek Metwally",
+        day:"jours"
+    },
+
+    it:{
+        title:"Operazioni salvate",
+        subtitle:"Seleziona un'operazione",
+        first:"Operazione 1",
+        second:"Operazione 2",
+
+        nominal:"Valore nominale",
+        rate:"Tasso di rendimento",
+        days:"Durata",
+        market:"Mercato",
+        purchase:"Valore di acquisto",
+        discount:"Sconto di acquisto",
+        tax:"Imposta (20%)",
+        profit:"Profitto netto dopo l'imposta",
+        total:"Importo a scadenza",
+        annual:"Rendimento annuo",
+
+        primary:"Mercato primario",
+        secondary:"Mercato secondario",
+
+        noOperation:"Nessuna operazione salvata",
+        back:"← Torna al calcolatore",
+        privacy:"Privacy Policy",
+        guide:"Guida ai Buoni del Tesoro",
+        developer:"Tarek Metwally",
+        day:"giorni"
+    },
+
+    de:{
+        title:"Gespeicherte Vorgänge",
+        subtitle:"Vorgang auswählen",
+        first:"Vorgang 1",
+        second:"Vorgang 2",
+
+        nominal:"Nennwert",
+        rate:"Renditesatz",
+        days:"Laufzeit",
+        market:"Markt",
+        purchase:"Kaufwert",
+        discount:"Kaufrabatt",
+        tax:"Steuer (20%)",
+        profit:"Nettogewinn nach Steuer",
+        total:"Betrag bei Fälligkeit",
+        annual:"Jahresrendite",
+
+        primary:"Primärmarkt",
+        secondary:"Sekundärmarkt",
+
+        noOperation:"Kein gespeicherter Vorgang",
+        back:"← Zum Rechner",
+        privacy:"Datenschutz",
+        guide:"Schatzwechsel-Leitfaden",
+        developer:"Tarek Metwally",
+        day:"Tage"
+    }
+
+};
+
+
+/* =========================
+   تحميل العمليات
+========================= */
+
+function loadOperations(){
+
+    try{
+
+        operations =
+            JSON.parse(
+                localStorage.getItem(
+                    "treasuryOperations"
+                )
+            ) || [];
+
+    }catch(e){
+
+        operations = [];
+
+    }
+
+    operations = operations.slice(0,2);
+
+    showOperation(0);
+}
+
+
+/* =========================
+   عرض العملية
+========================= */
+
+function showOperation(index){
+
+    currentOperation = index;
+
+    const tab1 =
+        document.getElementById("tab1");
+
+    const tab2 =
+        document.getElementById("tab2");
+
+    tab1.classList.toggle(
+        "active",
+        index === 0
+    );
+
+    tab2.classList.toggle(
+        "active",
+        index === 1
+    );
+
+
+    const details =
+        document.getElementById("details");
+
+
+    if(!operations[index]){
+
+        details.innerHTML =
+            `<div class="no-operation">
+                ${translations[
+                    getLanguage()
+                ].noOperation}
+            </div>`;
+
+        return;
+    }
+
+
+    renderOperation(
+        operations[index]
+    );
+}
+
+
+/* =========================
+   رسم التفاصيل
+========================= */
+
+function renderOperation(op){
+
+    const t =
+        translations[getLanguage()];
+
+    const market =
+        op.market === "primary"
+        ? t.primary
+        : t.secondary;
+
+
+    const nominal =
+        money(op.nominal);
+
+    const purchase =
+        money(op.purchase);
+
+    const discount =
+        money(op.discount);
+
+    const tax =
+        money(op.tax);
+
+    const netProfit =
+        money(op.netProfit);
+
+    const total =
+        money(op.total);
+
+
+    document.getElementById("details").innerHTML = `
+
+        <div class="row">
+            <div class="label">${t.nominal}</div>
+            <div class="value">${nominal}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">${t.rate}</div>
+            <div class="value">${Number(op.rate).toFixed(2)}%</div>
+        </div>
+
+        <div class="row">
+            <div class="label">${t.days}</div>
+            <div class="value">${op.days} ${t.day}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">${t.market}</div>
+            <div class="value"
+                 style="direction:rtl;">
+                 ${market}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">${t.purchase}</div>
+            <div class="value">${purchase}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">${t.discount}</div>
+            <div class="value">${discount}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">${t.tax}</div>
+            <div class="value">${tax}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">${t.profit}</div>
+            <div class="value">${netProfit}</div>
+        </div>
+
+        <div class="row total-row">
+
+            <div class="label">
+                ${t.total}
+            </div>
+
+            <div class="value">
+                ${total}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="label">
+                ${t.annual}
+            </div>
+
+            <div class="value">
+                ${Number(op.annualYield).toFixed(2)}%
+            </div>
+
+        </div>
+    `;
+}
+
+
+/* =========================
+   تنسيق الأرقام
+========================= */
 
 function money(value){
 
@@ -336,234 +771,150 @@ function money(value){
 }
 
 
-function loadOperations(){
+/* =========================
+   اللغة
+========================= */
 
-    let operations = [];
+function getLanguage(){
 
-    try{
-
-        operations =
-            JSON.parse(
-                localStorage.getItem(
-                    "treasuryOperations"
-                )
-            ) || [];
-
-    }catch(e){
-
-        operations = [];
-
-    }
-
-
-    operations =
-        operations.slice(0,2);
-
-
-    operationsBox.innerHTML = "";
-
-
-    if(operations.length === 0){
-
-        emptyBox.style.display = "block";
-
-        return;
-    }
-
-
-    emptyBox.style.display = "none";
-
-
-    operations.forEach(
-        function(op,index){
-
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "operation";
-
-
-            const market =
-                op.market === "primary"
-                ? "السوق الأولي"
-                : "السوق الثانوي";
-
-
-            card.innerHTML = `
-
-                <div class="operation-head">
-
-                    <div class="operation-number">
-                        العملية ${index + 1}
-                    </div>
-
-                    <div class="market">
-                        ${market}
-                    </div>
-
-                </div>
-
-
-                <div class="data-grid">
-
-                    <div class="data">
-                        <div class="label">
-                            القيمة الاسمية
-                        </div>
-                        <div class="value">
-                            ${money(op.nominal)}
-                        </div>
-                    </div>
-
-
-                    <div class="data">
-                        <div class="label">
-                            سعر العائد
-                        </div>
-                        <div class="value">
-                            ${Number(op.rate).toFixed(2)}%
-                        </div>
-                    </div>
-
-
-                    <div class="data">
-                        <div class="label">
-                            المدة
-                        </div>
-                        <div class="value">
-                            ${op.days} يوم
-                        </div>
-                    </div>
-
-
-                    <div class="data">
-                        <div class="label">
-                            قيمة الشراء
-                        </div>
-                        <div class="value">
-                            ${money(op.purchase)}
-                        </div>
-                    </div>
-
-
-                    <div class="data">
-                        <div class="label">
-                            خصم الشراء
-                        </div>
-                        <div class="value">
-                            ${money(op.discount)}
-                        </div>
-                    </div>
-
-
-                    <div class="data">
-                        <div class="label">
-                            الضريبة
-                        </div>
-                        <div class="value">
-                            ${money(op.tax)}
-                        </div>
-                    </div>
-
-
-                    <div class="data">
-                        <div class="label">
-                            صافي الربح
-                        </div>
-                        <div class="value">
-                            ${money(op.netProfit)}
-                        </div>
-                    </div>
-
-
-                    <div class="data">
-                        <div class="label">
-                            العائد السنوي
-                        </div>
-                        <div class="value">
-                            ${Number(op.annualYield).toFixed(2)}%
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="data"
-                    style="margin-top:6px;">
-
-                    <div class="label">
-                        المبلغ المسترد نهاية المدة
-                    </div>
-
-                    <div class="value">
-                        ${money(op.total)}
-                    </div>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="delete-btn"
-                    onclick="deleteOperation(${index})">
-
-                    حذف العملية
-
-                </button>
-
-            `;
-
-
-            operationsBox.appendChild(card);
-
-        }
-    );
-
+    return localStorage.getItem(
+        "calculatorLanguage"
+    ) || "ar";
 }
 
 
-function deleteOperation(index){
-
-    let operations = [];
-
-    try{
-
-        operations =
-            JSON.parse(
-                localStorage.getItem(
-                    "treasuryOperations"
-                )
-            ) || [];
-
-    }catch(e){
-
-        operations = [];
-
-    }
-
-
-    operations.splice(index,1);
-
+function changeLanguage(lang){
 
     localStorage.setItem(
-        "treasuryOperations",
-        JSON.stringify(operations)
+        "calculatorLanguage",
+        lang
     );
 
-
-    loadOperations();
+    applyLanguage(lang);
 }
 
+
+function applyLanguage(lang){
+
+    const t =
+        translations[lang];
+
+    document.documentElement.lang =
+        lang;
+
+    document.documentElement.dir =
+        lang === "ar"
+        ? "rtl"
+        : "ltr";
+
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        t.title;
+
+
+    document.getElementById(
+        "subtitle"
+    ).textContent =
+        t.subtitle;
+
+
+    document.getElementById(
+        "tab1"
+    ).textContent =
+        t.first;
+
+
+    document.getElementById(
+        "tab2"
+    ).textContent =
+        t.second;
+
+
+    document.getElementById(
+        "backBtn"
+    ).textContent =
+        t.back;
+
+
+    document.getElementById(
+        "privacy"
+    ).textContent =
+        t.privacy;
+
+
+    document.getElementById(
+        "guide"
+    ).textContent =
+        t.guide;
+
+
+    document.getElementById(
+        "developer"
+    ).textContent =
+        t.developer;
+
+
+    document.getElementById(
+        "language"
+    ).value =
+        lang;
+
+
+    if(lang === "ar"){
+
+        document.querySelector(".title").style.fontSize =
+            window.innerWidth <= 380 ? "19px" : "21px";
+
+    }else if(lang === "en"){
+
+        document.querySelector(".title").style.fontSize =
+            "18px";
+
+    }else if(lang === "fr" || lang === "it"){
+
+        document.querySelector(".title").style.fontSize =
+            "16px";
+
+    }else{
+
+        document.querySelector(".title").style.fontSize =
+            "15px";
+
+    }
+
+
+    showOperation(currentOperation);
+}
+
+
+/* =========================
+   العودة
+========================= */
 
 function goBack(){
 
     window.location.href =
         "index.html";
-
 }
 
+
+/* =========================
+   بدء الصفحة
+========================= */
+
+const savedLanguage =
+    getLanguage();
+
+document.getElementById(
+    "language"
+).value =
+    savedLanguage;
+
+applyLanguage(
+    savedLanguage
+);
 
 loadOperations();
 
