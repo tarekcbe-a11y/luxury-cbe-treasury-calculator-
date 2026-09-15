@@ -2,17 +2,29 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no,
+      viewport-fit=cover">
 
 <title>حاسبة أذون الخزانة المصرية</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
     margin:0;
     padding:0;
     width:100%;
@@ -20,133 +32,190 @@ html,body{
 }
 
 body{
+
     font-family:
+        "Geeza Pro",
+        "Avenir Next",
         -apple-system,
         BlinkMacSystemFont,
-        "Segoe UI",
-        Tahoma,
-        Arial,
         sans-serif;
 
     background:
-        radial-gradient(circle at 50% 10%,#123e68 0%,transparent 38%),
-        linear-gradient(145deg,#020c1b 0%,#06203a 35%,#0a3155 55%,#041a31 78%,#020b18 100%);
+        radial-gradient(
+            circle at 50% 8%,
+            #173c61 0%,
+            #0b1f38 30%,
+            #030d1c 72%,
+            #010812 100%
+        );
 
-    color:#fff;
+    color:#ffffff;
+
     overflow-x:hidden;
     overflow-y:auto;
 
     touch-action:manipulation;
 }
 
-/* =========================
-   APP
-========================= */
+
+/* =====================================================
+   MAIN APP
+===================================================== */
 
 .app{
-    width:calc(100% - 10px);
+
+    width:calc(100% - 12px);
     max-width:460px;
 
-    margin:5px auto;
+    margin:6px auto;
 
-    padding:7px;
+    padding:9px;
 
     border:2px solid #e8bd45;
-    border-radius:18px;
+
+    border-radius:22px;
 
     background:
         radial-gradient(
-            circle at 50% 0%,
-            rgba(35,103,160,.55),
-            transparent 38%
+            ellipse at 50% 0%,
+            rgba(30,79,126,.48) 0%,
+            transparent 42%
         ),
         linear-gradient(
             145deg,
-            #06182d 0%,
-            #0b2d4c 32%,
-            #12446e 50%,
-            #092b49 68%,
-            #04172b 100%
+            #020b17 0%,
+            #07182c 25%,
+            #0b2743 48%,
+            #06182c 72%,
+            #020a15 100%
         );
 
     box-shadow:
-        inset 0 0 30px rgba(0,0,0,.35),
-        inset 0 1px 1px rgba(255,255,255,.15),
-        0 8px 25px rgba(0,0,0,.4);
+        inset 0 0 35px rgba(0,0,0,.65),
+        inset 0 1px 2px rgba(255,255,255,.12),
+        0 10px 30px rgba(0,0,0,.5);
 
-    overflow:visible;
 }
 
-/* =========================
+
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 .header{
+
     position:relative;
 
-    height:57px;
+    height:65px;
 
     padding-top:3px;
 
     display:flex;
+
     justify-content:center;
+
     align-items:flex-end;
+
 }
 
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
 .language-box{
+
     position:absolute;
 
     top:0;
     left:0;
 
-    z-index:20;
+    z-index:50;
+
 }
 
 #languageSelect{
-    height:32px;
-    min-width:82px;
 
-    padding:0 7px;
+    width:86px;
+    height:31px;
+
+    padding:0 5px;
+
+    border:2px solid #e8bd45;
 
     border-radius:10px;
-    border:2px solid #e8bd45;
 
     background:
         linear-gradient(
             145deg,
-            #0c3961,
-            #06213d
+            #0c3154,
+            #03172c
         );
 
-    color:#fff;
+    color:#ffffff;
+
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
     font-size:12px;
+
     font-weight:800;
+
+    text-align:center;
 
     outline:none;
 
-    text-align:center;
+    appearance:auto;
+    -webkit-appearance:auto;
+
 }
+
+
+/* =====================================================
+   TITLE
+   عنوان واحد فقط
+===================================================== */
 
 .title{
+
     width:100%;
+
     margin:0;
 
-    color:#fff;
+    padding:0;
 
-    font-size:20px;
-    font-weight:900;
+    color:#ffffff;
 
-    line-height:1;
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+
+    font-size:21px;
+
+    font-weight:800;
+
+    line-height:1.05;
 
     white-space:nowrap;
+
     text-align:center;
 
+    letter-spacing:0;
+
     text-shadow:
-        0 2px 4px rgba(0,0,0,.5);
+        0 2px 4px rgba(0,0,0,.65);
+
 }
 
-/* أحجام العنوان للغات */
+
+/* اللغات */
 html[lang="en"] .title{
     font-size:18px;
 }
@@ -163,241 +232,295 @@ html[lang="de"] .title{
     font-size:15px;
 }
 
-/* =========================
-   MARKET
-========================= */
+
+/* =====================================================
+   MARKETS
+===================================================== */
 
 .market-switch{
+
     display:grid;
+
     grid-template-columns:1fr 1fr;
 
-    gap:7px;
+    gap:8px;
 
-    margin-top:7px;
-    margin-bottom:7px;
+    margin-top:8px;
+    margin-bottom:8px;
+
 }
 
 .market-btn{
-    height:46px;
 
-    border-radius:13px;
+    height:48px;
 
     border:2px solid #e8bd45;
 
+    border-radius:14px;
+
     background:
         linear-gradient(
             145deg,
-            #0b3154,
-            #051d37
+            #0b2e4d,
+            #03182d
         );
 
-    color:#fff;
+    color:#ffffff;
 
-    font-size:17px;
-    font-weight:900;
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+
+    font-size:18px;
+
+    font-weight:800;
 
     box-shadow:
         inset 0 1px 5px rgba(255,255,255,.08),
-        0 2px 7px rgba(0,0,0,.25);
+        0 3px 7px rgba(0,0,0,.35);
+
 }
 
 .market-btn.active{
+
     background:
         linear-gradient(
             145deg,
-            #ffe27a,
-            #e7b92e
+            #ffe36f,
+            #ffcc19
         );
 
-    color:#071d35;
+    color:#07182d;
 
     box-shadow:
-        inset 0 1px 3px rgba(255,255,255,.45),
-        0 2px 7px rgba(0,0,0,.25);
+        inset 0 1px 3px rgba(255,255,255,.55),
+        0 3px 8px rgba(0,0,0,.35);
+
 }
 
-/* =========================
+
+/* =====================================================
    INPUTS
-========================= */
+===================================================== */
 
 .fields{
+
     display:flex;
+
     flex-direction:column;
 
-    gap:7px;
+    gap:8px;
 
-    margin-bottom:7px;
+    margin-bottom:8px;
+
 }
 
 .input-wrap{
+
     position:relative;
+
     width:100%;
+
 }
 
 .input-wrap input,
 .input-wrap select{
-    width:100%;
-    height:46px;
 
-    border-radius:13px;
+    width:100%;
+
+    height:48px;
 
     border:2px solid #e8bd45;
+
+    border-radius:14px;
 
     background:
         linear-gradient(
             145deg,
-            #0e3b61,
-            #082846 48%,
-            #051d36
+            #092945,
+            #03182d 55%,
+            #020f20
         );
 
-    color:#fff;
+    color:#ffffff;
+
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
     font-size:17px;
-    font-weight:700;
+
+    font-weight:600;
 
     outline:none;
 
     box-shadow:
-        inset 0 1px 5px rgba(0,0,0,.4),
-        inset 0 1px 1px rgba(255,255,255,.08);
+        inset 0 1px 6px rgba(0,0,0,.55);
+
 }
 
+
+/* الأرقام تبدأ من اليمين */
 .input-wrap input{
+
     direction:rtl;
+
     text-align:right;
 
-    padding:0 15px;
+    padding:0 16px;
+
 }
 
 .input-wrap input::placeholder{
-    color:#fff;
-    opacity:.9;
+
+    color:#ffffff;
+
+    opacity:.88;
+
 }
 
-/* =========================
+
+/* =====================================================
    DAYS
-========================= */
+===================================================== */
 
 .days-wrap{
+
     position:relative;
+
 }
 
 #days{
+
     direction:rtl;
+
     text-align:right;
 
-    padding:0 15px 0 40px;
+    padding:0 16px 0 42px;
 
     appearance:none;
+
     -webkit-appearance:none;
 
     cursor:pointer;
+
 }
 
-/* مؤشر الأيام */
+
+/* سهم الأيام */
 .days-arrow{
+
     position:absolute;
 
-    left:14px;
+    left:15px;
+
     top:50%;
 
-    width:11px;
-    height:11px;
+    width:12px;
+
+    height:12px;
 
     border-left:4px solid #e8bd45;
+
     border-bottom:4px solid #e8bd45;
 
     transform:
-        translateY(-70%)
+        translateY(-72%)
         rotate(-45deg);
 
     pointer-events:none;
+
     z-index:5;
+
 }
 
-html[dir="ltr"] #days{
-    direction:ltr;
-    text-align:left;
 
-    padding-left:15px;
-    padding-right:40px;
-}
-
-html[dir="ltr"] .days-arrow{
-    left:auto;
-    right:14px;
-
-    transform:
-        translateY(-70%)
-        rotate(135deg);
-}
-
-/* =========================
+/* =====================================================
    CALCULATE
-========================= */
+===================================================== */
 
 .calculate-btn{
+
     width:100%;
-    height:49px;
+
+    height:51px;
+
+    margin-bottom:9px;
+
+    border:2px solid #e8bd45;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1670ae,
+            #083b67 45%,
+            #052544
+        );
+
+    color:#ffffff;
+
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    box-shadow:
+        inset 0 1px 5px rgba(255,255,255,.15),
+        0 4px 9px rgba(0,0,0,.4);
+
+}
+
+.calculate-btn:active{
+
+    transform:scale(.985);
+
+}
+
+
+/* =====================================================
+   RESULTS 2 x 2
+===================================================== */
+
+.results-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
 
     margin-bottom:8px;
 
-    border-radius:14px;
-
-    border:2px solid #e8bd45;
-
-    background:
-        linear-gradient(
-            145deg,
-            #17609a,
-            #0a3156 45%,
-            #062542
-        );
-
-    color:#fff;
-
-    font-size:20px;
-    font-weight:900;
-
-    box-shadow:
-        inset 0 1px 5px rgba(255,255,255,.14),
-        0 4px 9px rgba(0,0,0,.3);
-}
-
-.calculate-btn:active,
-.action-btn:active,
-.market-btn:active{
-    transform:scale(.985);
-}
-
-/* =========================
-   RESULTS
-========================= */
-
-.results-grid{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:7px;
-
-    margin-bottom:7px;
 }
 
 .result-card{
-    height:80px;
 
-    border-radius:14px;
+    height:84px;
 
     border:2px solid #e8bd45;
+
+    border-radius:14px;
 
     background:
         linear-gradient(
             145deg,
-            #0b365b,
-            #062440 50%,
-            #041a31
+            #092b49,
+            #03182d 55%,
+            #020e1d
         );
 
     display:flex;
@@ -405,6 +528,7 @@ html[dir="ltr"] .days-arrow{
     flex-direction:column;
 
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
@@ -412,50 +536,73 @@ html[dir="ltr"] .days-arrow{
     padding:5px;
 
     box-shadow:
-        inset 0 1px 5px rgba(255,255,255,.07);
+        inset 0 1px 5px rgba(255,255,255,.06);
+
 }
 
 .result-label{
-    color:#fff;
+
+    color:#ffffff;
+
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
     font-size:14px;
-    font-weight:700;
+
+    font-weight:600;
 
     line-height:1.15;
 
-    margin-bottom:5px;
+    margin-bottom:6px;
+
 }
 
 .result-value{
-    color:#ffd447;
+
+    color:#ffd21c;
+
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
     font-size:22px;
+
     font-weight:900;
 
     line-height:1;
+
 }
 
-/* =========================
+
+/* =====================================================
    TOTAL
-========================= */
+===================================================== */
 
 .total{
+
     width:100%;
 
-    min-height:88px;
+    min-height:96px;
 
-    margin-bottom:7px;
+    margin-bottom:8px;
+
+    border:2px solid #ff4747;
 
     border-radius:15px;
-
-    border:2px solid #e8bd45;
 
     background:
         linear-gradient(
             145deg,
-            #0d4a78,
-            #082d4e 48%,
-            #041c33
+            #0b2844,
+            #04182d 55%,
+            #020e1c
         );
 
     display:flex;
@@ -463,154 +610,221 @@ html[dir="ltr"] .days-arrow{
     flex-direction:column;
 
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
 
-    padding:5px;
+    padding:6px;
+
+    box-shadow:
+        inset 0 1px 6px rgba(0,0,0,.4);
+
 }
 
 .total-label{
-    color:#fff;
+
+    color:#ffffff;
 
     font-size:15px;
-    font-weight:800;
 
-    margin-bottom:2px;
+    font-weight:600;
+
+    margin-bottom:3px;
+
 }
 
 .total-value{
-    color:#ffd447;
 
-    font-size:26px;
+    color:#ffffff;
+
+    font-size:28px;
+
     font-weight:900;
 
     line-height:1;
 
-    margin-bottom:3px;
+    margin-bottom:5px;
+
 }
 
 .annual{
-    color:#fff;
 
-    font-size:13px;
+    color:#ffd21c;
+
+    font-size:14px;
+
     font-weight:700;
+
 }
 
 .annual span{
-    color:#ffd447;
+
+    color:#ffd21c;
+
 }
 
-/* =========================
+
+/* =====================================================
    ACTIONS
-========================= */
+===================================================== */
 
 .actions{
+
     display:grid;
 
     grid-template-columns:1fr 1fr;
 
-    gap:7px;
+    gap:8px;
 
-    margin-bottom:7px;
+    margin-bottom:8px;
+
 }
 
 .action-btn{
-    height:44px;
 
-    border-radius:13px;
+    height:45px;
 
     border:2px solid #e8bd45;
 
+    border-radius:13px;
+
     background:
         linear-gradient(
             145deg,
-            #0e3d63,
-            #062440
+            #0b3152,
+            #03192e
         );
 
-    color:#fff;
+    color:#ffffff;
+
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
     font-size:15px;
-    font-weight:900;
+
+    font-weight:800;
 
     box-shadow:
-        inset 0 1px 4px rgba(255,255,255,.08);
+        inset 0 1px 4px rgba(255,255,255,.07);
+
 }
 
 .action-btn.primary{
+
     background:
         linear-gradient(
             145deg,
-            #17609a,
-            #082e50
+            #1669a2,
+            #062b4c
         );
+
 }
 
-/* =========================
+.action-btn:active{
+
+    transform:scale(.985);
+
+}
+
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 .footer{
+
     margin-top:7px;
 
-    padding-top:6px;
-    padding-bottom:3px;
+    padding-top:7px;
+
+    padding-bottom:4px;
 
     border-top:1px solid #e8bd45;
 
     text-align:center;
+
 }
 
 .footer-links{
+
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
     gap:9px;
 
     flex-wrap:wrap;
+
 }
 
 .footer a{
-    color:#fff;
+
+    color:#ffffff;
 
     text-decoration:none;
 
-    font-size:12px;
-    font-weight:700;
-}
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
-.footer a:hover{
-    color:#ffd447;
+    font-size:12px;
+
+    font-weight:600;
+
 }
 
 .separator{
+
     color:#e8bd45;
+
 }
 
 .developer{
-    margin-top:3px;
 
-    color:#fff;
+    margin-top:4px;
+
+    color:#ffd21c;
+
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
     font-size:12px;
+
     font-weight:700;
+
 }
 
-/* =========================
+
+/* =====================================================
    SMALL PHONES
-========================= */
+===================================================== */
 
 @media(max-height:700px){
 
+    .app{
+        padding:7px;
+    }
+
     .header{
-        height:50px;
+        height:55px;
     }
 
     .title{
-        font-size:18px;
+        font-size:19px;
     }
 
     html[lang="en"] .title{
@@ -627,28 +841,28 @@ html[dir="ltr"] .days-arrow{
     }
 
     #languageSelect{
-        height:30px;
-        min-width:78px;
+        width:78px;
+        height:29px;
         font-size:11px;
     }
 
     .market-btn{
-        height:42px;
+        height:44px;
         font-size:16px;
     }
 
     .input-wrap input,
     .input-wrap select{
-        height:42px;
+        height:44px;
     }
 
     .calculate-btn{
-        height:45px;
-        font-size:18px;
+        height:47px;
+        font-size:19px;
     }
 
     .result-card{
-        height:70px;
+        height:74px;
     }
 
     .result-label{
@@ -656,11 +870,11 @@ html[dir="ltr"] .days-arrow{
     }
 
     .result-value{
-        font-size:19px;
+        font-size:20px;
     }
 
     .total{
-        min-height:78px;
+        min-height:84px;
     }
 
     .total-label{
@@ -668,11 +882,15 @@ html[dir="ltr"] .days-arrow{
     }
 
     .total-value{
-        font-size:23px;
+        font-size:24px;
+    }
+
+    .annual{
+        font-size:12px;
     }
 
     .action-btn{
-        height:40px;
+        height:41px;
         font-size:13px;
     }
 
@@ -681,35 +899,94 @@ html[dir="ltr"] .days-arrow{
         font-size:11px;
     }
 }
+
+
+/* =====================================================
+   LTR LANGUAGES
+===================================================== */
+
+html[dir="ltr"] .input-wrap input{
+
+    direction:rtl;
+
+    text-align:right;
+
+}
+
+html[dir="ltr"] #days{
+
+    direction:ltr;
+
+    text-align:left;
+
+    padding-left:16px;
+
+    padding-right:42px;
+
+}
+
+html[dir="ltr"] .days-arrow{
+
+    left:auto;
+
+    right:15px;
+
+    transform:
+        translateY(-72%)
+        rotate(135deg);
+
+}
+
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
+
+
+<!-- =================================================
+     HEADER
+================================================= -->
 
 <header class="header">
 
     <div class="language-box">
 
         <select id="languageSelect">
+
             <option value="ar">العربية</option>
+
             <option value="en">English</option>
+
             <option value="fr">Français</option>
+
             <option value="it">Italiano</option>
+
             <option value="de">Deutsch</option>
+
         </select>
 
     </div>
 
-    <h1 class="title" id="title">
+
+    <!-- العنوان مرة واحدة فقط -->
+
+    <h1
+        class="title"
+        id="title">
+
         حاسبة أذون الخزانة المصرية
+
     </h1>
 
 </header>
 
 
-<!-- الأسواق -->
+<!-- =================================================
+     MARKET
+================================================= -->
 
 <div class="market-switch">
 
@@ -722,6 +999,7 @@ html[dir="ltr"] .days-arrow{
         السوق الأولي
 
     </button>
+
 
     <button
         type="button"
@@ -736,9 +1014,12 @@ html[dir="ltr"] .days-arrow{
 </div>
 
 
-<!-- البيانات -->
+<!-- =================================================
+     INPUTS
+================================================= -->
 
 <div class="fields">
+
 
     <div class="input-wrap">
 
@@ -775,7 +1056,9 @@ html[dir="ltr"] .days-arrow{
 </div>
 
 
-<!-- احسب -->
+<!-- =================================================
+     CALCULATE
+================================================= -->
 
 <button
     type="button"
@@ -788,9 +1071,12 @@ html[dir="ltr"] .days-arrow{
 </button>
 
 
-<!-- النتائج -->
+<!-- =================================================
+     RESULTS
+================================================= -->
 
 <div class="results-grid">
+
 
     <div class="result-card">
 
@@ -878,7 +1164,9 @@ html[dir="ltr"] .days-arrow{
 </div>
 
 
-<!-- المبلغ المسترد -->
+<!-- =================================================
+     MATURITY
+================================================= -->
 
 <div class="total">
 
@@ -890,6 +1178,7 @@ html[dir="ltr"] .days-arrow{
 
     </div>
 
+
     <div
         class="total-value"
         id="totalValue">
@@ -897,6 +1186,7 @@ html[dir="ltr"] .days-arrow{
         0.00
 
     </div>
+
 
     <div class="annual">
 
@@ -913,9 +1203,12 @@ html[dir="ltr"] .days-arrow{
 </div>
 
 
-<!-- الأزرار -->
+<!-- =================================================
+     ACTIONS
+================================================= -->
 
 <div class="actions">
+
 
     <button
         type="button"
@@ -941,7 +1234,9 @@ html[dir="ltr"] .days-arrow{
 </div>
 
 
-<!-- الفوتر -->
+<!-- =================================================
+     FOOTER
+================================================= -->
 
 <footer class="footer">
 
@@ -955,7 +1250,11 @@ html[dir="ltr"] .days-arrow{
 
         </a>
 
-        <span class="separator">|</span>
+
+        <span class="separator">
+            |
+        </span>
+
 
         <a
             href="about.html"
@@ -978,14 +1277,15 @@ html[dir="ltr"] .days-arrow{
 
 </footer>
 
+
 </div>
 
 
 <script>
 
-/* =========================
-   اللغات
-========================= */
+/* =====================================================
+   TRANSLATIONS
+===================================================== */
 
 const translations = {
 
@@ -1009,6 +1309,7 @@ const translations = {
         days:"يوم"
     },
 
+
     en:{
         title:"Egyptian Treasury Bills Calculator",
         primary:"Primary Market",
@@ -1028,6 +1329,7 @@ const translations = {
         guide:"Treasury Bills Guide",
         days:"days"
     },
+
 
     fr:{
         title:"Calculateur de bons du Trésor égyptiens",
@@ -1049,6 +1351,7 @@ const translations = {
         days:"jours"
     },
 
+
     it:{
         title:"Calcolatore dei Buoni del Tesoro egiziani",
         primary:"Mercato primario",
@@ -1068,6 +1371,7 @@ const translations = {
         guide:"Guida ai Buoni del Tesoro",
         days:"giorni"
     },
+
 
     de:{
         title:"Ägyptischer Schatzwechsel-Rechner",
@@ -1092,9 +1396,9 @@ const translations = {
 };
 
 
-/* =========================
-   الحالة
-========================= */
+/* =====================================================
+   STATE
+===================================================== */
 
 let currentLanguage =
     localStorage.getItem("calculatorLanguage") || "ar";
@@ -1116,9 +1420,9 @@ const daysSelect =
     document.getElementById("days");
 
 
-/* =========================
-   تنسيق الأرقام
-========================= */
+/* =====================================================
+   NUMBER FORMAT
+===================================================== */
 
 function formatNumber(value){
 
@@ -1127,36 +1431,51 @@ function formatNumber(value){
         value === null ||
         value === undefined
     ){
+
         return "";
+
     }
+
 
     let cleaned =
         String(value)
         .replace(/,/g,"")
         .replace(/[^\d.]/g,"");
 
+
     if(!cleaned){
+
         return "";
+
     }
+
 
     let parts =
         cleaned.split(".");
 
+
     let integerPart =
         parts[0] || "0";
+
 
     let decimalPart =
         parts.length > 1
         ? "." + parts[1].slice(0,3)
         : "";
 
+
     integerPart =
         Number(integerPart)
         .toLocaleString("en-US");
 
+
     return integerPart + decimalPart;
 }
 
+
+/* =====================================================
+   NOMINAL INPUT
+===================================================== */
 
 nominalInput.addEventListener(
     "input",
@@ -1168,44 +1487,57 @@ nominalInput.addEventListener(
         let oldLength =
             this.value.length;
 
+
         this.value =
             formatNumber(this.value);
+
 
         let newLength =
             this.value.length;
 
+
         cursor +=
             newLength - oldLength;
 
+
         try{
+
             this.setSelectionRange(
                 cursor,
                 cursor
             );
+
         }catch(e){}
 
     }
 );
 
 
-/* =========================
-   الأيام
-========================= */
+/* =====================================================
+   DAYS
+===================================================== */
 
 function updateDays(){
 
     let previous =
         parseInt(daysSelect.value);
 
+
     if(isNaN(previous)){
+
         previous = 91;
+
     }
 
+
     daysSelect.innerHTML = "";
+
 
     const t =
         translations[currentLanguage];
 
+
+    /* السوق الأولي */
 
     if(currentMarket === "primary"){
 
@@ -1215,13 +1547,18 @@ function updateDays(){
                 const option =
                     document.createElement("option");
 
+
                 option.value =
                     day;
+
 
                 option.textContent =
                     day + " " + t.days;
 
-                daysSelect.appendChild(option);
+
+                daysSelect.appendChild(
+                    option
+                );
 
             }
         );
@@ -1239,9 +1576,15 @@ function updateDays(){
 
             daysSelect.value =
                 91;
+
         }
 
-    }else{
+    }
+
+
+    /* السوق الثانوي */
+
+    else{
 
         for(
             let day = 1;
@@ -1252,13 +1595,18 @@ function updateDays(){
             const option =
                 document.createElement("option");
 
+
             option.value =
                 day;
+
 
             option.textContent =
                 day + " " + t.days;
 
-            daysSelect.appendChild(option);
+
+            daysSelect.appendChild(
+                option
+            );
 
         }
 
@@ -1275,19 +1623,23 @@ function updateDays(){
 
             daysSelect.value =
                 1;
+
         }
+
     }
+
 }
 
 
-/* =========================
-   السوق
-========================= */
+/* =====================================================
+   MARKET
+===================================================== */
 
 function setMarket(market){
 
     currentMarket =
         market;
+
 
     localStorage.setItem(
         "calculatorMarket",
@@ -1312,12 +1664,13 @@ function setMarket(market){
 
 
     updateDays();
+
 }
 
 
-/* =========================
-   تغيير اللغة
-========================= */
+/* =====================================================
+   TRANSLATION
+===================================================== */
 
 function translatePage(){
 
@@ -1339,15 +1692,21 @@ function translatePage(){
         t.title;
 
 
-    document.getElementById("title").textContent =
+    document.getElementById(
+        "title"
+    ).textContent =
         t.title;
 
 
-    document.getElementById("primaryBtn").textContent =
+    document.getElementById(
+        "primaryBtn"
+    ).textContent =
         t.primary;
 
 
-    document.getElementById("secondaryBtn").textContent =
+    document.getElementById(
+        "secondaryBtn"
+    ).textContent =
         t.secondary;
 
 
@@ -1359,51 +1718,74 @@ function translatePage(){
         t.rate;
 
 
-    document.getElementById("calculateBtn").textContent =
+    document.getElementById(
+        "calculateBtn"
+    ).textContent =
         t.calculate;
 
 
-    document.getElementById("purchaseLabel").textContent =
+    document.getElementById(
+        "purchaseLabel"
+    ).textContent =
         t.purchase;
 
 
-    document.getElementById("discountLabel").textContent =
+    document.getElementById(
+        "discountLabel"
+    ).textContent =
         t.discount;
 
 
-    document.getElementById("taxLabel").textContent =
+    document.getElementById(
+        "taxLabel"
+    ).textContent =
         t.tax;
 
 
-    document.getElementById("profitLabel").textContent =
+    document.getElementById(
+        "profitLabel"
+    ).textContent =
         t.profit;
 
 
-    document.getElementById("totalLabel").textContent =
+    document.getElementById(
+        "totalLabel"
+    ).textContent =
         t.total;
 
 
-    document.getElementById("annualLabel").textContent =
+    document.getElementById(
+        "annualLabel"
+    ).textContent =
         t.annual;
 
 
-    document.getElementById("saveBtn").textContent =
+    document.getElementById(
+        "saveBtn"
+    ).textContent =
         t.save;
 
 
-    document.getElementById("assistantBtn").textContent =
+    document.getElementById(
+        "assistantBtn"
+    ).textContent =
         t.assistant;
 
 
-    document.getElementById("privacyLink").textContent =
+    document.getElementById(
+        "privacyLink"
+    ).textContent =
         t.privacy;
 
 
-    document.getElementById("guideLink").textContent =
+    document.getElementById(
+        "guideLink"
+    ).textContent =
         t.guide;
 
 
     updateDays();
+
 }
 
 
@@ -1418,10 +1800,12 @@ languageSelect.addEventListener(
         currentLanguage =
             this.value;
 
+
         localStorage.setItem(
             "calculatorLanguage",
             currentLanguage
         );
+
 
         translatePage();
 
@@ -1429,9 +1813,9 @@ languageSelect.addEventListener(
 );
 
 
-/* =========================
-   الحساب
-========================= */
+/* =====================================================
+   CALCULATE
+===================================================== */
 
 function calculate(){
 
@@ -1440,11 +1824,17 @@ function calculate(){
             nominalInput.value.replace(/,/g,"")
         );
 
+
     let rate =
-        parseFloat(rateInput.value);
+        parseFloat(
+            rateInput.value
+        );
+
 
     let days =
-        parseInt(daysSelect.value);
+        parseInt(
+            daysSelect.value
+        );
 
 
     if(
@@ -1463,6 +1853,7 @@ function calculate(){
         );
 
         return;
+
     }
 
 
@@ -1536,23 +1927,33 @@ function calculate(){
     saveLastOperation({
 
         market:currentMarket,
+
         nominal:nominal,
+
         rate:rate,
+
         days:days,
+
         purchase:purchase,
+
         discount:discount,
+
         tax:tax,
+
         netProfit:netProfit,
+
         total:total,
+
         annualYield:annualYield
 
     });
+
 }
 
 
-/* =========================
-   تنسيق الأموال
-========================= */
+/* =====================================================
+   MONEY
+===================================================== */
 
 function formatMoney(value){
 
@@ -1564,12 +1965,13 @@ function formatMoney(value){
                 maximumFractionDigits:2
             }
         );
+
 }
 
 
-/* =========================
-   آخر عملية
-========================= */
+/* =====================================================
+   LAST OPERATION
+===================================================== */
 
 function saveLastOperation(operation){
 
@@ -1577,12 +1979,13 @@ function saveLastOperation(operation){
         "lastTreasuryOperation",
         JSON.stringify(operation)
     );
+
 }
 
 
-/* =========================
-   حفظ عمليتين
-========================= */
+/* =====================================================
+   SAVE TWO OPERATIONS
+===================================================== */
 
 function saveOperations(){
 
@@ -1591,11 +1994,17 @@ function saveOperations(){
             nominalInput.value.replace(/,/g,"")
         );
 
+
     let rate =
-        parseFloat(rateInput.value);
+        parseFloat(
+            rateInput.value
+        );
+
 
     let days =
-        parseInt(daysSelect.value);
+        parseInt(
+            daysSelect.value
+        );
 
 
     if(
@@ -1612,6 +2021,7 @@ function saveOperations(){
         );
 
         return;
+
     }
 
 
@@ -1649,21 +2059,32 @@ function saveOperations(){
     let operation = {
 
         market:currentMarket,
+
         nominal:nominal,
+
         rate:rate,
+
         days:days,
+
         purchase:purchase,
+
         discount:discount,
+
         tax:tax,
+
         netProfit:netProfit,
+
         total:total,
+
         annualYield:annualYield,
+
         date:new Date().toLocaleString()
 
     };
 
 
     let saved = [];
+
 
     try{
 
@@ -1677,6 +2098,7 @@ function saveOperations(){
     }catch(e){
 
         saved = [];
+
     }
 
 
@@ -1687,6 +2109,7 @@ function saveOperations(){
 
         saved =
             saved.slice(0,2);
+
     }
 
 
@@ -1698,12 +2121,13 @@ function saveOperations(){
 
     window.location.href =
         "saved.html";
+
 }
 
 
-/* =========================
-   المساعد الذكي
-========================= */
+/* =====================================================
+   SMART ASSISTANT
+===================================================== */
 
 function openAssistant(){
 
@@ -1712,11 +2136,17 @@ function openAssistant(){
             nominalInput.value.replace(/,/g,"")
         );
 
+
     let rate =
-        parseFloat(rateInput.value);
+        parseFloat(
+            rateInput.value
+        );
+
 
     let days =
-        parseInt(daysSelect.value);
+        parseInt(
+            daysSelect.value
+        );
 
 
     if(
@@ -1733,23 +2163,27 @@ function openAssistant(){
         );
 
         return;
+
     }
 
 
     calculate();
 
+
     window.location.href =
         "assistant.html";
+
 }
 
 
-/* =========================
-   استعادة آخر عملية
-========================= */
+/* =====================================================
+   RESTORE
+===================================================== */
 
 function restoreValues(){
 
     let saved;
+
 
     try{
 
@@ -1763,16 +2197,21 @@ function restoreValues(){
     }catch(e){
 
         saved = null;
+
     }
 
 
     if(!saved){
+
         return;
+
     }
 
 
     nominalInput.value =
-        formatNumber(saved.nominal);
+        formatNumber(
+            saved.nominal
+        );
 
 
     rateInput.value =
@@ -1807,31 +2246,41 @@ function restoreValues(){
         document.getElementById(
             "purchaseValue"
         ).textContent =
-            formatMoney(saved.purchase);
+            formatMoney(
+                saved.purchase
+            );
 
 
         document.getElementById(
             "discountValue"
         ).textContent =
-            formatMoney(saved.discount);
+            formatMoney(
+                saved.discount
+            );
 
 
         document.getElementById(
             "taxValue"
         ).textContent =
-            formatMoney(saved.tax);
+            formatMoney(
+                saved.tax
+            );
 
 
         document.getElementById(
             "profitValue"
         ).textContent =
-            formatMoney(saved.netProfit);
+            formatMoney(
+                saved.netProfit
+            );
 
 
         document.getElementById(
             "totalValue"
         ).textContent =
-            formatMoney(saved.total);
+            formatMoney(
+                saved.total
+            );
 
 
         document.getElementById(
@@ -1840,13 +2289,15 @@ function restoreValues(){
             Number(
                 saved.annualYield
             ).toFixed(2) + "%";
+
     }
+
 }
 
 
-/* =========================
-   تشغيل
-========================= */
+/* =====================================================
+   START
+===================================================== */
 
 translatePage();
 
