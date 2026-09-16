@@ -7,9 +7,7 @@
 <title>حاسبة أذون الخزانة المصرية</title>
 
 <style>
-*{
- box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html,body{
  margin:0;
@@ -42,6 +40,7 @@ body{
 }
 
 /* HEADER */
+
 .header{
  position:relative;
  min-height:88px;
@@ -94,16 +93,15 @@ body{
  margin:0;
  white-space:nowrap;
  overflow:hidden;
- text-overflow:clip;
 }
 
-/* اللغات ذات العناوين الطويلة */
 .main-title.long-title{
  font-size:15px;
- letter-spacing:-0.2px;
+ letter-spacing:-.2px;
 }
 
 /* MARKET */
+
 .market{
  display:flex;
  gap:8px;
@@ -128,6 +126,7 @@ body{
 }
 
 /* INPUTS */
+
 input,
 .days-select{
  width:100%;
@@ -159,6 +158,7 @@ input::placeholder{
 }
 
 /* CALCULATE */
+
 .calc{
  width:100%;
  height:48px;
@@ -173,6 +173,7 @@ input::placeholder{
 }
 
 /* RESULTS */
+
 .results{
  display:grid;
  grid-template-columns:repeat(2,1fr);
@@ -209,6 +210,7 @@ input::placeholder{
 }
 
 /* TOTAL */
+
 .total{
  margin-top:9px;
  padding:11px 8px;
@@ -244,6 +246,7 @@ input::placeholder{
 }
 
 /* ACTIONS */
+
 .actions{
  display:grid;
  grid-template-columns:1fr 1fr;
@@ -269,6 +272,7 @@ input::placeholder{
 }
 
 /* FOOTER */
+
 .footer{
  margin-top:11px;
  padding-top:9px;
@@ -339,35 +343,23 @@ input::placeholder{
 <header class="header">
 
 <div class="language">
-
-<select
- id="languageSelect"
- onchange="changeLanguage(this.value)">
-
+<select id="languageSelect" onchange="changeLanguage(this.value)">
 <option value="ar">🇪🇬 العربية</option>
 <option value="en">🇬🇧 English</option>
 <option value="fr">🇫🇷 Français</option>
 <option value="it">🇮🇹 Italiano</option>
 <option value="de">🇩🇪 Deutsch</option>
-
 </select>
-
 </div>
 
 <div class="title-space">
-
-<div
- class="main-title"
- id="mainTitle">
+<div class="main-title" id="mainTitle">
 حاسبة أذون الخزانة المصرية
 </div>
-
 </div>
 
 </header>
 
-
-<!-- MARKET -->
 
 <div class="market">
 
@@ -386,8 +378,6 @@ input::placeholder{
 
 </div>
 
-
-<!-- INPUTS -->
 
 <input
  id="nominal"
@@ -410,8 +400,6 @@ input::placeholder{
 </select>
 
 
-<!-- CALCULATE -->
-
 <button
  class="calc"
  id="calcBtn"
@@ -420,65 +408,30 @@ input::placeholder{
 </button>
 
 
-<!-- RESULTS -->
-
 <div class="results">
 
 <div class="card">
-
-<span id="priceLabel">
-قيمة الشراء
-</span>
-
-<strong id="priceResult">
-0.00
-</strong>
-
+<span id="priceLabel">قيمة الشراء</span>
+<strong id="priceResult">0.00</strong>
 </div>
-
 
 <div class="card">
-
-<span id="discountLabel">
-خصم الشراء
-</span>
-
-<strong id="discountResult">
-0.00
-</strong>
-
+<span id="discountLabel">خصم الشراء</span>
+<strong id="discountResult">0.00</strong>
 </div>
-
 
 <div class="card">
-
-<span id="taxLabel">
-الضريبة (20%)
-</span>
-
-<strong id="taxResult">
-0.00
-</strong>
-
+<span id="taxLabel">الضريبة (20%)</span>
+<strong id="taxResult">0.00</strong>
 </div>
-
 
 <div class="card">
-
-<span id="profitLabel">
-صافي الربح بعد خصم الضريبة
-</span>
-
-<strong id="profitResult">
-0.00
-</strong>
-
+<span id="profitLabel">صافي الربح بعد خصم الضريبة</span>
+<strong id="profitResult">0.00</strong>
 </div>
 
 </div>
 
-
-<!-- TOTAL -->
 
 <div class="total">
 
@@ -509,8 +462,6 @@ input::placeholder{
 </div>
 
 
-<!-- ACTIONS -->
-
 <div class="actions">
 
 <a
@@ -531,8 +482,6 @@ input::placeholder{
 
 </div>
 
-
-<!-- FOOTER -->
 
 <div class="footer">
 
@@ -568,6 +517,7 @@ input::placeholder{
 
 <script>
 
+/* اللغة الحالية */
 let currentLanguage =
  localStorage.getItem("calculatorLanguage") || "ar";
 
@@ -576,7 +526,9 @@ let currentMarket="primary";
 const $=id=>document.getElementById(id);
 
 
-/* TRANSLATIONS */
+/* =========================
+   TRANSLATIONS
+========================= */
 
 const translations={
 
@@ -688,13 +640,15 @@ const translations={
 };
 
 
-/* NORMALIZE */
+/* =========================
+   NORMALIZE
+========================= */
 
 function normalize(value){
 
  if(!value)return 0;
 
- const a={
+ const arabicNumbers={
   "٠":"0",
   "١":"1",
   "٢":"2",
@@ -708,7 +662,7 @@ function normalize(value){
  };
 
  let text=String(value)
-  .replace(/[٠-٩]/g,d=>a[d])
+  .replace(/[٠-٩]/g,d=>arabicNumbers[d])
   .replace(/,/g,"");
 
  return parseFloat(
@@ -717,7 +671,9 @@ function normalize(value){
 }
 
 
-/* FORMAT NOMINAL */
+/* =========================
+   FORMAT NOMINAL
+========================= */
 
 function formatNominal(input){
 
@@ -734,7 +690,9 @@ function formatNominal(input){
 }
 
 
-/* MONEY */
+/* =========================
+   MONEY
+========================= */
 
 function money(value){
 
@@ -748,7 +706,9 @@ function money(value){
 }
 
 
-/* MARKET */
+/* =========================
+   MARKET
+========================= */
 
 function setMarket(type,manual=false){
 
@@ -765,11 +725,13 @@ function setMarket(type,manual=false){
  );
 
  const select=$("days");
- const old=select.value;
+
+ const oldValue=select.value;
 
  select.innerHTML="";
 
- const list=type==="primary"
+ const list=
+  type==="primary"
   ?[91,182,273,364]
   :Array.from(
     {length:364},
@@ -778,20 +740,22 @@ function setMarket(type,manual=false){
 
  const t=translations[currentLanguage];
 
- list.forEach(d=>{
+ list.forEach(function(d){
 
-  const o=document.createElement("option");
+  const option=
+   document.createElement("option");
 
-  o.value=d;
+  option.value=d;
 
-  o.textContent=d+" "+t.day;
+  option.textContent=
+   d+" "+t.day;
 
-  select.appendChild(o);
+  select.appendChild(option);
 
  });
 
- if(list.includes(Number(old))){
-  select.value=old;
+ if(list.includes(Number(oldValue))){
+  select.value=oldValue;
  }
 
  if(manual){
@@ -800,23 +764,21 @@ function setMarket(type,manual=false){
 }
 
 
-/* CALCULATE
-   الحسبة الأصلية بدون تغيير
-*/
+/* =========================
+   CALCULATE
+   ORIGINAL FORMULA
+========================= */
 
 function calculate(){
 
- const P=normalize(
-  $("nominal").value
- );
+ const P=
+  normalize($("nominal").value);
 
- const R=normalize(
-  $("rate").value
- )/100;
+ const R=
+  normalize($("rate").value)/100;
 
- const D=parseInt(
-  $("days").value
- )||0;
+ const D=
+  parseInt($("days").value)||0;
 
  if(P<=0||R<=0||D<=0){
   return;
@@ -861,7 +823,6 @@ function calculate(){
 
 
  const operation={
-
   nominal:P,
   rate:R*100,
   days:D,
@@ -873,9 +834,7 @@ function calculate(){
   annualYield:annualYield,
   market:currentMarket,
   date:new Date().toISOString()
-
  };
-
 
  localStorage.setItem(
   "currentOperation",
@@ -886,24 +845,23 @@ function calculate(){
 }
 
 
-/* SAVE STATE */
+/* =========================
+   SAVE STATE
+========================= */
 
 function saveCalculatorState(){
 
  const state={
-
   nominal:$("nominal").value,
   rate:$("rate").value,
   days:$("days").value,
   market:currentMarket,
-
   price:$("priceResult").textContent,
   discount:$("discountResult").textContent,
   tax:$("taxResult").textContent,
   profit:$("profitResult").textContent,
   total:$("totalResult").textContent,
   annual:$("annualResult").textContent
-
  };
 
  localStorage.setItem(
@@ -913,7 +871,9 @@ function saveCalculatorState(){
 }
 
 
-/* RESTORE */
+/* =========================
+   RESTORE
+========================= */
 
 function restoreCalculatorState(){
 
@@ -931,49 +891,50 @@ function restoreCalculatorState(){
    return;
   }
 
-  const s=JSON.parse(raw);
+  const state=
+   JSON.parse(raw);
 
-  if(s.market){
-   setMarket(s.market);
+  if(state.market){
+   setMarket(state.market);
   }
 
-  if(s.days){
-   $("days").value=s.days;
+  if(state.days){
+   $("days").value=state.days;
   }
 
-  if(s.nominal){
-   $("nominal").value=s.nominal;
+  if(state.nominal){
+   $("nominal").value=state.nominal;
   }
 
-  if(s.rate){
-   $("rate").value=s.rate;
+  if(state.rate){
+   $("rate").value=state.rate;
   }
 
-  if(s.price){
-   $("priceResult").textContent=s.price;
+  if(state.price){
+   $("priceResult").textContent=state.price;
   }
 
-  if(s.discount){
-   $("discountResult").textContent=s.discount;
+  if(state.discount){
+   $("discountResult").textContent=state.discount;
   }
 
-  if(s.tax){
-   $("taxResult").textContent=s.tax;
+  if(state.tax){
+   $("taxResult").textContent=state.tax;
   }
 
-  if(s.profit){
-   $("profitResult").textContent=s.profit;
+  if(state.profit){
+   $("profitResult").textContent=state.profit;
   }
 
-  if(s.total){
-   $("totalResult").textContent=s.total;
+  if(state.total){
+   $("totalResult").textContent=state.total;
   }
 
-  if(s.annual){
-   $("annualResult").textContent=s.annual;
+  if(state.annual){
+   $("annualResult").textContent=state.annual;
   }
 
- }catch(e){
+ }catch(error){
 
   setMarket("primary");
 
@@ -981,7 +942,9 @@ function restoreCalculatorState(){
 }
 
 
-/* SAVE BEFORE LEAVING */
+/* =========================
+   SAVE BEFORE LEAVE
+========================= */
 
 function saveBeforeLeave(){
 
@@ -990,7 +953,9 @@ function saveBeforeLeave(){
 }
 
 
-/* SAVE TWO OPERATIONS */
+/* =========================
+   SAVE TWO OPERATIONS
+========================= */
 
 function saveAndOpen(event){
 
@@ -1006,17 +971,11 @@ function saveAndOpen(event){
  if(!current){
 
   const messages={
-
    ar:"من فضلك احسب العملية أولًا.",
-
    en:"Please calculate an operation first.",
-
    fr:"Veuillez d'abord calculer une opération.",
-
    it:"Calcola prima un'operazione.",
-
    de:"Bitte berechnen Sie zuerst einen Vorgang."
-
   };
 
   alert(
@@ -1026,24 +985,26 @@ function saveAndOpen(event){
   return;
  }
 
-
  let operations=[];
 
  try{
 
-  operations=JSON.parse(
-   localStorage.getItem(
-    "savedOperations"
-   )||"[]"
-  );
+  operations=
+   JSON.parse(
+    localStorage.getItem(
+     "savedOperations"
+    )||"[]"
+   );
 
- }catch(e){}
+ }catch(error){
 
+  operations=[];
+
+ }
 
  if(!Array.isArray(operations)){
   operations=[];
  }
-
 
  try{
 
@@ -1059,15 +1020,16 @@ function saveAndOpen(event){
    JSON.stringify(operations)
   );
 
- }catch(e){}
-
+ }catch(error){}
 
  window.location.href=
   "saved.html";
 }
 
 
-/* LANGUAGE */
+/* =========================
+   CHANGE LANGUAGE
+========================= */
 
 function changeLanguage(lang){
 
@@ -1087,9 +1049,10 @@ function changeLanguage(lang){
   lang
  );
 
-
  const t=translations[lang];
 
+
+ /* الصفحة */
 
  document.documentElement.lang=
   lang;
@@ -1098,15 +1061,16 @@ function changeLanguage(lang){
   lang==="ar"?"rtl":"ltr";
 
 
+ /* القائمة */
+
  $("languageSelect").value=
   lang;
 
 
+ /* العنوان */
+
  $("mainTitle").textContent=
   t.title;
-
-
- /* تصغير العناوين الطويلة فقط */
 
  $("mainTitle").classList.toggle(
   "long-title",
@@ -1116,12 +1080,123 @@ function changeLanguage(lang){
  );
 
 
+ /* الأسواق */
+
  $("primaryBtn").textContent=
   t.primary;
-
 
  $("secondaryBtn").textContent=
   t.secondary;
 
 
- $("
+ /* الحقول */
+
+ $("nominal").placeholder=
+  t.nominal;
+
+ $("rate").placeholder=
+  t.rate;
+
+
+ /* زر الحساب */
+
+ $("calcBtn").textContent=
+  t.calculate;
+
+
+ /* النتائج */
+
+ $("priceLabel").textContent=
+  t.price;
+
+ $("discountLabel").textContent=
+  t.discount;
+
+ $("taxLabel").textContent=
+  t.tax;
+
+ $("profitLabel").textContent=
+  t.profit;
+
+ $("totalLabel").textContent=
+  t.total;
+
+ $("annualLabel").textContent=
+  t.annual;
+
+
+ /* الأزرار */
+
+ $("savedLink").textContent=
+  t.saved;
+
+ $("assistantLink").textContent=
+  t.assistant;
+
+
+ /* الفوتر */
+
+ $("privacyLink").textContent=
+  t.privacy;
+
+ $("aboutLink").textContent=
+  t.guide;
+
+ $("developer").textContent=
+  t.developer;
+
+
+ /* إعادة بناء قائمة الأيام باللغة الجديدة */
+
+ const selectedDay=
+  $("days").value;
+
+ setMarket(currentMarket);
+
+ if(selectedDay){
+  $("days").value=selectedDay;
+ }
+
+}
+
+
+/* =========================
+   LOAD
+========================= */
+
+window.addEventListener(
+ "load",
+ function(){
+
+  const savedLanguage=
+   localStorage.getItem(
+    "calculatorLanguage"
+   )||"ar";
+
+  changeLanguage(
+   savedLanguage
+  );
+
+  restoreCalculatorState();
+
+ }
+);
+
+
+/* =========================
+   PAGE SHOW
+========================= */
+
+window.addEventListener(
+ "pageshow",
+ function(){
+
+  restoreCalculatorState();
+
+ }
+);
+
+</script>
+
+</body>
+</html>
