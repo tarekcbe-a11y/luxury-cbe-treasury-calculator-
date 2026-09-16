@@ -29,8 +29,7 @@ body{
  width:calc(100% - 24px);
  max-width:450px;
  margin:12px auto;
- background:
- linear-gradient(145deg,#151515 0%,#050505 45%,#111 100%);
+ background:linear-gradient(145deg,#151515 0%,#050505 45%,#111 100%);
  border:1px solid #d4af37;
  border-radius:18px;
  box-shadow:
@@ -45,7 +44,7 @@ body{
 /* HEADER */
 .header{
  position:relative;
- min-height:86px;
+ min-height:88px;
  display:flex;
  flex-direction:column;
  align-items:center;
@@ -54,17 +53,26 @@ body{
  padding-bottom:10px;
 }
 
-.lang-btn{
+.language{
  position:absolute;
  top:0;
  left:0;
- background:#090909;
- color:#d4af37;
+}
+
+.language select{
+ width:112px;
+ height:30px;
+ margin:0;
+ padding:2px 7px;
  border:1px solid #d4af37;
  border-radius:7px;
- padding:5px 9px;
+ background:#090909;
+ color:#d4af37;
+ font-family:inherit;
  font-size:11px;
- font-weight:600;
+ font-weight:500;
+ outline:none;
+ direction:ltr;
 }
 
 .title-space{
@@ -107,7 +115,7 @@ body{
 
 /* INPUTS */
 input,
-select{
+.days-select{
  width:100%;
  height:47px;
  padding:7px 12px;
@@ -131,7 +139,7 @@ input::placeholder{
  opacity:1;
 }
 
-select{
+.days-select{
  direction:rtl;
  text-align:right;
 }
@@ -276,12 +284,17 @@ select{
   font-size:19px;
  }
 
+ .language select{
+  width:105px;
+  font-size:10px;
+ }
+
  .market button{
   font-size:13px;
  }
 
  input,
- select{
+ .days-select{
   font-size:15px;
  }
 
@@ -303,22 +316,22 @@ select{
 <body>
 
 <div class="screen">
-
 <div class="app">
 
 <header class="header">
 
-<button
- class="lang-btn"
- id="langBtn"
- onclick="toggleLang()">
-English
-</button>
+<div class="language">
+<select id="languageSelect" onchange="changeLanguage(this.value)">
+<option value="ar">🇪🇬 العربية</option>
+<option value="en">🇬🇧 English</option>
+<option value="fr">🇫🇷 Français</option>
+<option value="it">🇮🇹 Italiano</option>
+<option value="de">🇩🇪 Deutsch</option>
+</select>
+</div>
 
 <div class="title-space">
-<div
- class="main-title"
- id="mainTitle">
+<div class="main-title" id="mainTitle">
 حاسبة أذون الخزانة المصرية
 </div>
 </div>
@@ -364,6 +377,7 @@ English
 
 <select
  id="days"
+ class="days-select"
  onchange="saveCalculatorState()">
 </select>
 
@@ -383,54 +397,23 @@ English
 <div class="results">
 
 <div class="card">
-
-<span id="priceLabel">
-قيمة الشراء
-</span>
-
-<strong id="priceResult">
-0.00
-</strong>
-
+<span id="priceLabel">قيمة الشراء</span>
+<strong id="priceResult">0.00</strong>
 </div>
 
-
 <div class="card">
-
-<span id="discountLabel">
-خصم الشراء
-</span>
-
-<strong id="discountResult">
-0.00
-</strong>
-
+<span id="discountLabel">خصم الشراء</span>
+<strong id="discountResult">0.00</strong>
 </div>
 
-
 <div class="card">
-
-<span id="taxLabel">
-الضريبة (20%)
-</span>
-
-<strong id="taxResult">
-0.00
-</strong>
-
+<span id="taxLabel">الضريبة (20%)</span>
+<strong id="taxResult">0.00</strong>
 </div>
 
-
 <div class="card">
-
-<span id="profitLabel">
-صافي الربح بعد خصم الضريبة
-</span>
-
-<strong id="profitResult">
-0.00
-</strong>
-
+<span id="profitLabel">صافي الربح بعد خصم الضريبة</span>
+<strong id="profitResult">0.00</strong>
 </div>
 
 </div>
@@ -467,7 +450,7 @@ English
 </div>
 
 
-<!-- ACTION BUTTONS -->
+<!-- ACTIONS -->
 
 <div class="actions">
 
@@ -526,10 +509,124 @@ English
 
 <script>
 
-let isArabic=true;
+let currentLanguage =
+ localStorage.getItem("calculatorLanguage") || "ar";
+
 let currentMarket="primary";
 
 const $=id=>document.getElementById(id);
+
+
+/* TRANSLATIONS */
+
+const translations={
+
+ ar:{
+  title:"حاسبة أذون الخزانة المصرية",
+  primary:"السوق الأولي",
+  secondary:"السوق الثانوي",
+  nominal:"القيمة الاسمية",
+  rate:"سعر العائد (%)",
+  calculate:"احسب الآن",
+  price:"قيمة الشراء",
+  discount:"خصم الشراء",
+  tax:"الضريبة (20%)",
+  profit:"صافي الربح بعد خصم الضريبة",
+  total:"المبلغ المسترد نهاية المدة",
+  annual:"نسبة العائد السنوي:",
+  saved:"حفظ العمليتين",
+  assistant:"مساعدك الذكي",
+  privacy:"سياسة الخصوصية",
+  guide:"دليل أذون الخزانة",
+  developer:"أ/ طارق متولي",
+  day:"يوم"
+ },
+
+ en:{
+  title:"Egyptian Treasury Bills Calculator",
+  primary:"Primary Market",
+  secondary:"Secondary Market",
+  nominal:"Nominal Value",
+  rate:"Yield Rate (%)",
+  calculate:"Calculate Now",
+  price:"Purchase Value",
+  discount:"Purchase Discount",
+  tax:"Tax (20%)",
+  profit:"Net Profit After Tax",
+  total:"Amount Returned at Maturity",
+  annual:"Annual Yield:",
+  saved:"Save Two Operations",
+  assistant:"Smart Assistant",
+  privacy:"Privacy Policy",
+  guide:"Treasury Bills Guide",
+  developer:"Tarek Metwally",
+  day:"Days"
+ },
+
+ fr:{
+  title:"Calculateur des bons du Trésor égyptiens",
+  primary:"Marché primaire",
+  secondary:"Marché secondaire",
+  nominal:"Valeur nominale",
+  rate:"Taux de rendement (%)",
+  calculate:"Calculer",
+  price:"Valeur d'achat",
+  discount:"Escompte d'achat",
+  tax:"Impôt (20%)",
+  profit:"Bénéfice net après impôt",
+  total:"Montant remboursé à l'échéance",
+  annual:"Rendement annuel :",
+  saved:"Enregistrer deux opérations",
+  assistant:"Assistant intelligent",
+  privacy:"Politique de confidentialité",
+  guide:"Guide des bons du Trésor",
+  developer:"Tarek Metwally",
+  day:"jours"
+ },
+
+ it:{
+  title:"Calcolatore dei Buoni del Tesoro egiziani",
+  primary:"Mercato primario",
+  secondary:"Mercato secondario",
+  nominal:"Valore nominale",
+  rate:"Tasso di rendimento (%)",
+  calculate:"Calcola",
+  price:"Valore di acquisto",
+  discount:"Sconto di acquisto",
+  tax:"Imposta (20%)",
+  profit:"Utile netto dopo le imposte",
+  total:"Importo rimborsato alla scadenza",
+  annual:"Rendimento annuo:",
+  saved:"Salva due operazioni",
+  assistant:"Assistente intelligente",
+  privacy:"Informativa sulla privacy",
+  guide:"Guida ai Buoni del Tesoro",
+  developer:"Tarek Metwally",
+  day:"giorni"
+ },
+
+ de:{
+  title:"Ägyptischer Schatzwechsel-Rechner",
+  primary:"Primärmarkt",
+  secondary:"Sekundärmarkt",
+  nominal:"Nominalwert",
+  rate:"Rendite (%)",
+  calculate:"Berechnen",
+  price:"Kaufwert",
+  discount:"Kaufrabatt",
+  tax:"Steuer (20%)",
+  profit:"Nettogewinn nach Steuern",
+  total:"Rückzahlungsbetrag bei Fälligkeit",
+  annual:"Jährliche Rendite:",
+  saved:"Zwei Vorgänge speichern",
+  assistant:"Intelligenter Assistent",
+  privacy:"Datenschutzerklärung",
+  guide:"Schatzwechsel-Leitfaden",
+  developer:"Tarek Metwally",
+  day:"Tage"
+ }
+
+};
 
 
 /* NORMALIZE */
@@ -620,15 +717,18 @@ function setMarket(type,manual=false){
     (_,i)=>i+1
    );
 
+ const t=translations[currentLanguage];
+
  list.forEach(d=>{
 
   const o=document.createElement("option");
 
   o.value=d;
 
-  o.textContent=isArabic
-   ?d+" يوم"
-   :d+" Days";
+  o.textContent=
+   currentLanguage==="ar"
+   ?d+" "+t.day
+   :d+" "+t.day;
 
   select.appendChild(o);
 
@@ -645,7 +745,7 @@ function setMarket(type,manual=false){
 
 
 /* CALCULATE
-   الحسبة الأصلية كما هي
+   الحسبة الأصلية بدون تغيير
 */
 
 function calculate(){
@@ -707,25 +807,15 @@ function calculate(){
  const operation={
 
   nominal:P,
-
   rate:R*100,
-
   days:D,
-
   purchaseValue:price,
-
   discount:discount,
-
   tax:tax,
-
   netProfit:netProfit,
-
   finalAmount:finalAmount,
-
   annualYield:annualYield,
-
   market:currentMarket,
-
   date:new Date().toISOString()
 
  };
@@ -740,30 +830,22 @@ function calculate(){
 }
 
 
-/* SAVE CALCULATOR STATE */
+/* SAVE STATE */
 
 function saveCalculatorState(){
 
  const state={
 
   nominal:$("nominal").value,
-
   rate:$("rate").value,
-
   days:$("days").value,
-
   market:currentMarket,
 
   price:$("priceResult").textContent,
-
   discount:$("discountResult").textContent,
-
   tax:$("taxResult").textContent,
-
   profit:$("profitResult").textContent,
-
   total:$("totalResult").textContent,
-
   annual:$("annualResult").textContent
 
  };
@@ -795,80 +877,44 @@ function restoreCalculatorState(){
 
   const s=JSON.parse(raw);
 
-
   if(s.market){
-
    setMarket(s.market);
-
   }
-
 
   if(s.days){
-
    $("days").value=s.days;
-
   }
-
 
   if(s.nominal){
-
    $("nominal").value=s.nominal;
-
   }
-
 
   if(s.rate){
-
    $("rate").value=s.rate;
-
   }
-
 
   if(s.price){
-
-   $("priceResult").textContent=
-    s.price;
-
+   $("priceResult").textContent=s.price;
   }
-
 
   if(s.discount){
-
-   $("discountResult").textContent=
-    s.discount;
-
+   $("discountResult").textContent=s.discount;
   }
-
 
   if(s.tax){
-
-   $("taxResult").textContent=
-    s.tax;
-
+   $("taxResult").textContent=s.tax;
   }
-
 
   if(s.profit){
-
-   $("profitResult").textContent=
-    s.profit;
-
+   $("profitResult").textContent=s.profit;
   }
-
 
   if(s.total){
-
-   $("totalResult").textContent=
-    s.total;
-
+   $("totalResult").textContent=s.total;
   }
 
-
   if(s.annual){
-
-   $("annualResult").textContent=
-    s.annual;
-
+   $("annualResult").textContent=s.annual;
   }
 
  }catch(e){
@@ -876,7 +922,6 @@ function restoreCalculatorState(){
   setMarket("primary");
 
  }
-
 }
 
 
@@ -902,18 +947,20 @@ function saveAndOpen(event){
    "currentOperation"
   );
 
-
  if(!current){
 
-  alert(
-   isArabic
-   ?"من فضلك احسب العملية أولًا."
-   :"Please calculate an operation first."
-  );
+  const messages={
+   ar:"من فضلك احسب العملية أولًا.",
+   en:"Please calculate an operation first.",
+   fr:"Veuillez d'abord calculer une opération.",
+   it:"Calcola prima un'operazione.",
+   de:"Bitte berechnen Sie zuerst einen Vorgang."
+  };
+
+  alert(messages[currentLanguage]);
 
   return;
  }
-
 
  let operations=[];
 
@@ -927,13 +974,9 @@ function saveAndOpen(event){
 
  }catch(e){}
 
-
  if(!Array.isArray(operations)){
-
   operations=[];
-
  }
-
 
  try{
 
@@ -951,7 +994,6 @@ function saveAndOpen(event){
 
  }catch(e){}
 
-
  window.location.href=
   "saved.html";
 }
@@ -959,126 +1001,96 @@ function saveAndOpen(event){
 
 /* LANGUAGE */
 
-function toggleLang(){
+function changeLanguage(lang){
 
- isArabic=!isArabic;
+ if(!translations[lang]){
+  lang="ar";
+ }
 
- document.documentElement.lang=
-  isArabic?"ar":"en";
+ currentLanguage=lang;
+
+ localStorage.setItem(
+  "calculatorLanguage",
+  lang
+ );
+
+ localStorage.setItem(
+  "tb_lang",
+  lang
+ );
+
+ const t=translations[lang];
+
+ document.documentElement.lang=lang;
 
  document.documentElement.dir=
-  isArabic?"rtl":"ltr";
+  lang==="ar"?"rtl":"ltr";
 
 
- $("langBtn").textContent=
-  isArabic?"English":"العربية";
+ $("languageSelect").value=lang;
 
 
  $("mainTitle").textContent=
-  isArabic
-  ?"حاسبة أذون الخزانة المصرية"
-  :"Egyptian Treasury Bills Calculator";
-
+  t.title;
 
  $("primaryBtn").textContent=
-  isArabic
-  ?"السوق الأولي"
-  :"Primary Market";
-
+  t.primary;
 
  $("secondaryBtn").textContent=
-  isArabic
-  ?"السوق الثانوي"
-  :"Secondary Market";
-
+  t.secondary;
 
  $("calcBtn").textContent=
-  isArabic
-  ?"احسب الآن"
-  :"Calculate Now";
-
+  t.calculate;
 
  $("nominal").placeholder=
-  isArabic
-  ?"القيمة الاسمية"
-  :"Nominal Value";
-
+  t.nominal;
 
  $("rate").placeholder=
-  isArabic
-  ?"سعر العائد (%)"
-  :"Yield Rate (%)";
-
+  t.rate;
 
  $("priceLabel").textContent=
-  isArabic
-  ?"قيمة الشراء"
-  :"Purchase Value";
-
+  t.price;
 
  $("discountLabel").textContent=
-  isArabic
-  ?"خصم الشراء"
-  :"Purchase Discount";
-
+  t.discount;
 
  $("taxLabel").textContent=
-  isArabic
-  ?"الضريبة (20%)"
-  :"Tax (20%)";
-
+  t.tax;
 
  $("profitLabel").textContent=
-  isArabic
-  ?"صافي الربح بعد خصم الضريبة"
-  :"Net Profit After Tax";
-
+  t.profit;
 
  $("totalLabel").textContent=
-  isArabic
-  ?"المبلغ المسترد نهاية المدة"
-  :"Amount Returned at Maturity";
-
+  t.total;
 
  $("annualLabel").textContent=
-  isArabic
-  ?"نسبة العائد السنوي:"
-  :"Annual Yield:";
-
+  t.annual;
 
  $("savedLink").textContent=
-  isArabic
-  ?"حفظ العمليتين"
-  :"Save Two Operations";
-
+  t.saved;
 
  $("assistantLink").textContent=
-  isArabic
-  ?"مساعدك الذكي"
-  :"Smart Assistant";
-
+  t.assistant;
 
  $("privacyLink").textContent=
-  isArabic
-  ?"سياسة الخصوصية"
-  :"Privacy Policy";
-
+  t.privacy;
 
  $("aboutLink").textContent=
-  isArabic
-  ?"دليل أذون الخزانة"
-  :"Treasury Bills Guide";
-
+  t.guide;
 
  $("developer").textContent=
-  isArabic
-  ?"أ/ طارق متولي"
-  :"Tarek Metwally";
+  t.developer;
 
+
+ const selectedDays=
+  $("days").value;
 
  setMarket(currentMarket);
 
- saveCalculatorState();
+ if(selectedDays){
+  $("days").value=selectedDays;
+ }
+
 }
 
 
@@ -1086,7 +1098,18 @@ function toggleLang(){
 
 window.addEventListener(
  "load",
- restoreCalculatorState
+ function(){
+
+  const savedLanguage=
+   localStorage.getItem(
+    "calculatorLanguage"
+   )||"ar";
+
+  changeLanguage(savedLanguage);
+
+  restoreCalculatorState();
+
+ }
 );
 
 
