@@ -17,382 +17,348 @@ viewport-fit=cover">
 <style>
 
 :root{
---bg:#061b2b;
---bg2:#0b2545;
---card:#102f4e;
---field:#1f3a5f;
-
---gold:#d4af37;
---gold2:#f0c94a;
-
---text:#f4f7fb;
---muted:#b8c6d6;
-
---green:#16a34a;
---red:#dc2626;
-
---border:#2c78a8;
+    --gold:#e8bd45;
+    --gold2:#ffd21c;
+    --white:#ffffff;
+    --navy:#020b17;
+    --navy2:#07182c;
+    --navy3:#0b2743;
+    --danger:#dc2626;
 }
 
 *{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 html{
-margin:0;
-padding:0;
-width:100%;
-overflow-x:hidden;
+    margin:0;
+    padding:0;
+    width:100%;
+    overflow-x:hidden;
 }
 
 body{
-margin:0;
-padding:0;
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100vh;
 
-width:100%;
-min-height:100vh;
+    background:
+        radial-gradient(
+            circle at 50% 8%,
+            #173c61 0%,
+            #0b1f38 30%,
+            #030d1c 72%,
+            #010812 100%
+        );
 
-overflow-x:hidden;
-overflow-y:auto;
+    color:var(--white);
 
-background:
-linear-gradient(
-145deg,
-var(--bg),
-#09263c 55%,
-#061827
-);
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
 
-color:var(--text);
+    line-height:1.75;
 
-font-family:
-Tahoma,
-Arial,
-sans-serif;
+    overflow-x:hidden;
+    overflow-y:auto;
 
-line-height:1.85;
-
--webkit-text-size-adjust:100%;
+    -webkit-text-size-adjust:100%;
+    touch-action:manipulation;
 }
 
 a{
-color:var(--gold2);
-text-decoration:none;
+    color:var(--gold2);
+    text-decoration:none;
 }
 
 .page{
+    width:calc(100% - 12px);
+    max-width:460px;
 
-width:calc(100% - 24px);
-max-width:520px;
+    margin:6px auto;
 
-margin:12px auto;
+    border:2px solid var(--gold);
+    border-radius:22px;
 
-background:rgba(9,35,57,.96);
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(30,79,126,.48) 0%,
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #020b17 0%,
+            #07182c 25%,
+            #0b2743 48%,
+            #06182c 72%,
+            #020a15 100%
+        );
 
-border:1px solid var(--border);
+    box-shadow:
+        inset 0 0 35px rgba(0,0,0,.65),
+        inset 0 1px 2px rgba(255,255,255,.12),
+        0 10px 30px rgba(0,0,0,.5);
 
-border-radius:20px;
-
-box-shadow:
-0 18px 45px rgba(0,0,0,.35);
-
-overflow:hidden;
+    overflow:hidden;
 }
 
 .header{
+    position:relative;
+    padding:9px 9px 8px;
 
-padding:14px;
-
-border-bottom:
-1px solid rgba(212,175,55,.35);
+    border-bottom:
+        1px solid rgba(232,189,69,.45);
 }
 
-.header-top{
+.header-title{
+    text-align:center;
 
-display:flex;
+    color:var(--gold2);
 
-align-items:center;
+    font-size:21px;
+    font-weight:700;
 
-gap:12px;
+    line-height:1.2;
 
-direction:rtl;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+    padding:2px 82px 4px;
 }
 
-.logo{
+.lang-select{
+    position:absolute;
 
-width:68px;
-height:68px;
+    top:8px;
+    left:8px;
 
-flex:0 0 68px;
-}
+    width:82px;
+    height:30px;
 
-.brand-wrap{
+    padding:0 5px;
 
-flex:1;
+    border:1px solid var(--gold);
+    border-radius:9px;
 
-min-width:0;
+    background:#061321;
+    color:var(--white);
 
-text-align:right;
-}
+    font-family:inherit;
+    font-size:11px;
 
-.brand{
-
-font-size:21px;
-
-font-weight:800;
-
-color:var(--gold2);
-
-line-height:1.35;
-}
-
-.subtitle{
-
-font-size:12px;
-
-color:var(--muted);
-}
-
-.langs{
-
-display:flex;
-
-gap:7px;
-
-justify-content:center;
-
-overflow-x:auto;
-
-padding-top:10px;
-
-scrollbar-width:none;
-}
-
-.langs::-webkit-scrollbar{
-display:none;
-}
-
-.langs button{
-
-flex:0 0 auto;
-
-padding:6px 9px;
-
-border-radius:12px;
-
-border:1px solid var(--border);
-
-background:var(--field);
-
-color:var(--text);
-
-font-size:12px;
-}
-
-.langs button.active{
-
-color:var(--gold2);
-
-border-color:var(--gold2);
+    outline:none;
 }
 
 main{
-
-padding:16px;
+    padding:11px;
 }
 
 h1{
+    margin:4px 0 12px;
 
-text-align:center;
+    text-align:center;
 
-font-size:23px;
+    color:var(--gold2);
 
-color:var(--gold2);
+    font-size:21px;
+    font-weight:700;
 
-margin:8px 0 15px;
+    line-height:1.3;
 }
 
 h2{
+    margin:0 0 6px;
 
-font-size:18px;
+    color:var(--gold2);
 
-color:var(--gold2);
+    font-size:17px;
+    font-weight:700;
 
-margin:20px 0 8px;
-}
-
-h3{
-
-font-size:16px;
-
-color:var(--gold2);
-
-margin:16px 0 6px;
+    line-height:1.4;
 }
 
 p{
+    margin:5px 0;
+    color:var(--white);
 
-margin:8px 0;
-
-color:var(--text);
+    font-size:14px;
 }
 
 .card{
+    margin:9px 0;
+    padding:11px;
 
-background:
-linear-gradient(
-145deg,
-rgba(16,47,78,.98),
-rgba(11,37,69,.98)
-);
+    border:1px solid rgba(232,189,69,.7);
+    border-radius:14px;
 
-border:1px solid var(--border);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8,24,43,.96),
+            rgba(3,12,25,.98)
+        );
 
-border-radius:15px;
-
-padding:14px;
-
-margin:11px 0;
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.35);
 }
 
 .example{
+    border-color:var(--gold2);
 
-border-color:var(--gold);
-
-background:
-rgba(94,72,20,.25);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(70,53,13,.45),
+            rgba(15,22,25,.95)
+        );
 }
 
 .warning{
+    border-color:var(--danger);
 
-border-color:var(--red);
-
-background:
-rgba(127,29,29,.38);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(91,20,20,.55),
+            rgba(20,8,12,.95)
+        );
 }
 
 .formula{
+    direction:ltr;
+    text-align:center;
 
-direction:ltr;
+    margin:8px 0 2px;
+    padding:9px;
 
-text-align:center;
+    border:1px solid rgba(232,189,69,.65);
+    border-radius:10px;
 
-font-family:
-Arial,
-sans-serif;
+    background:#010a15;
 
-font-size:17px;
+    color:var(--gold2);
 
-font-weight:700;
+    font-family:
+        Arial,
+        sans-serif;
 
-padding:12px;
+    font-size:15px;
+    font-weight:600;
 
-margin:10px 0;
-
-border-radius:11px;
-
-background:#071d31;
-
-border:1px solid #3b6685;
+    line-height:1.4;
 }
 
 .number{
-
-color:var(--gold2);
-
-font-weight:800;
+    color:var(--gold2);
+    font-weight:600;
 }
 
-footer{
-
-padding:15px;
-
-text-align:center;
-
-border-top:
-1px solid rgba(212,175,55,.3);
-
-color:var(--muted);
-
-font-size:12px;
+ul{
+    margin:5px 0 0;
+    padding-right:21px;
 }
 
-footer a{
-
-margin:0 5px;
+li{
+    margin:2px 0;
+    font-size:14px;
 }
 
 .back{
+    display:block;
 
-display:block;
+    margin-top:12px;
+    padding:10px;
 
-text-align:center;
+    text-align:center;
 
-padding:12px;
+    border-radius:11px;
 
-margin-top:15px;
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold2)
+        );
 
-background:
-linear-gradient(
-135deg,
-var(--gold),
-var(--gold2)
-);
+    color:#061321;
 
-color:#071521;
-
-font-weight:800;
-
-border-radius:12px;
+    font-size:14px;
+    font-weight:700;
 }
 
-body,
-.page,
-header,
-main,
 footer{
+    padding:10px;
 
-max-width:100vw;
+    text-align:center;
 
-overflow-x:hidden;
+    border-top:
+        1px solid rgba(232,189,69,.35);
+
+    color:#ffffff;
+
+    font-size:11px;
+}
+
+footer div + div{
+    margin-top:4px;
+}
+
+footer a{
+    margin:0 4px;
+    color:var(--gold2);
 }
 
 @media(max-width:420px){
 
-.page{
+    .page{
+        width:calc(100% - 10px);
+        margin:5px auto;
+    }
 
-width:calc(100% - 14px);
+    .header-title{
+        font-size:19px;
+        padding-left:76px;
+        padding-right:8px;
+    }
 
-margin:7px auto;
-}
+    .lang-select{
+        width:76px;
+        height:28px;
+        font-size:10px;
+        top:7px;
+        left:7px;
+    }
 
-.logo{
+    main{
+        padding:10px;
+    }
 
-width:60px;
-height:60px;
-flex-basis:60px;
-}
+    h1{
+        font-size:20px;
+    }
 
-.brand{
+    h2{
+        font-size:16px;
+    }
 
-font-size:18px;
-}
+    p,
+    li{
+        font-size:13.5px;
+    }
 
-main{
-
-padding:13px;
-}
-
-h1{
-
-font-size:20px;
-}
-
+    .formula{
+        font-size:14px;
+    }
 }
 
 </style>
-
 </head>
 
 
@@ -400,80 +366,27 @@ font-size:20px;
 
 <div class="page">
 
-
 <header class="header">
 
-<div class="header-top">
+<select
+    id="language"
+    class="lang-select"
+    onchange="setLang(this.value)"
+    aria-label="Language">
 
-<img
-class="logo"
-src="logo.svg"
-alt="حاسبة أذون الخزانة المصرية">
+    <option value="ar">🇪🇬 عربي</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="it">🇮🇹 Italiano</option>
+    <option value="de">🇩🇪 Deutsch</option>
 
-<div class="brand-wrap">
-
-<div
-class="brand"
-data-t="brand">
-
-حاسبة أذون الخزانة المصرية
-
-</div>
+</select>
 
 <div
-class="subtitle"
-data-t="subtitle">
+    class="header-title"
+    data-t="brand">
 
-دليل حساب أرباح أذون الخزانة
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="langs">
-
-<button
-data-lang="ar"
-onclick="setLang('ar')">
-
-🇪🇬 عربي
-
-</button>
-
-<button
-data-lang="en"
-onclick="setLang('en')">
-
-🇬🇧 English
-
-</button>
-
-<button
-data-lang="fr"
-onclick="setLang('fr')">
-
-🇫🇷 Français
-
-</button>
-
-<button
-data-lang="it"
-onclick="setLang('it')">
-
-🇮🇹 Italiano
-
-</button>
-
-<button
-data-lang="de"
-onclick="setLang('de')">
-
-🇩🇪 Deutsch
-
-</button>
+    حاسبة أذون الخزانة المصرية
 
 </div>
 
@@ -483,24 +396,18 @@ onclick="setLang('de')">
 <main>
 
 <h1 data-t="title">
-
 💰 حساب أرباح أذون الخزانة المصرية
-
 </h1>
 
 
 <div class="card">
 
 <h2 data-t="idea">
-
 فكرة أذون الخزانة
-
 </h2>
 
 <p data-t="ideaText">
-
 تصدر أذون الخزانة عادةً بنظام الخصم، أي أن المستثمر يدفع قيمة شراء أقل من القيمة الاسمية، ثم يحصل على القيمة الاسمية عند تاريخ الاستحقاق وفقًا لشروط الإصدار.
-
 </p>
 
 </div>
@@ -509,19 +416,15 @@ onclick="setLang('de')">
 <div class="card example">
 
 <h2 data-t="exampleTitle">
-
 مثال مبسط
-
 </h2>
 
 <p data-t="exampleText">
-
 إذا كانت القيمة الاسمية لأذن الخزانة
 <span class="number">100,000 جنيه</span>
 وكانت قيمة الشراء
 <span class="number">95,000 جنيه</span>،
 فإن الفرق بين القيمتين يمثل العائد الإجمالي قبل أي ضرائب أو تكاليف أو خصومات أخرى.
-
 </p>
 
 </div>
@@ -530,21 +433,15 @@ onclick="setLang('de')">
 <div class="card">
 
 <h2 data-t="grossTitle">
-
 العائد الإجمالي
-
 </h2>
 
 <p data-t="grossText">
-
 العائد الإجمالي هو الفرق بين القيمة الاسمية وقيمة الشراء.
-
 </p>
 
 <div class="formula">
-
 العائد الإجمالي = القيمة الاسمية − قيمة الشراء
-
 </div>
 
 </div>
@@ -553,15 +450,11 @@ onclick="setLang('de')">
 <div class="card">
 
 <h2 data-t="taxTitle">
-
 الضرائب والخصومات
-
 </h2>
 
 <p data-t="taxText">
-
 قد يخضع العائد للضرائب أو الخصومات وفقًا للقواعد السارية وطبيعة المستثمر والإصدار. لذلك يجب التفرقة بين العائد الإجمالي والربح الصافي.
-
 </p>
 
 </div>
@@ -570,21 +463,15 @@ onclick="setLang('de')">
 <div class="card">
 
 <h2 data-t="netTitle">
-
 الربح الصافي
-
 </h2>
 
 <p data-t="netText">
-
 الربح الصافي هو المبلغ المتبقي من العائد بعد تطبيق الضرائب أو الخصومات التي تدخل في طريقة الحساب المستخدمة.
-
 </p>
 
 <div class="formula">
-
 الربح الصافي = العائد الإجمالي − الضرائب والخصومات
-
 </div>
 
 </div>
@@ -593,32 +480,20 @@ onclick="setLang('de')">
 <div class="card">
 
 <h2 data-t="factorsTitle">
-
 ما الذي يؤثر في الربح؟
-
 </h2>
 
 <ul>
 
-<li data-t="factor1">
-القيمة الاسمية.
-</li>
+<li data-t="factor1">القيمة الاسمية.</li>
 
-<li data-t="factor2">
-معدل العائد.
-</li>
+<li data-t="factor2">معدل العائد.</li>
 
-<li data-t="factor3">
-مدة الأذن بالأيام.
-</li>
+<li data-t="factor3">مدة الأذن بالأيام.</li>
 
-<li data-t="factor4">
-سعر الشراء في السوق.
-</li>
+<li data-t="factor4">سعر الشراء في السوق.</li>
 
-<li data-t="factor5">
-الضرائب والخصومات المطبقة.
-</li>
+<li data-t="factor5">الضرائب والخصومات المطبقة.</li>
 
 </ul>
 
@@ -628,15 +503,11 @@ onclick="setLang('de')">
 <div class="card">
 
 <h2 data-t="calculatorTitle">
-
 دور الحاسبة
-
 </h2>
 
 <p data-t="calculatorText">
-
 تستخدم الحاسبة البيانات التي تدخلها لحساب قيمة الشراء والعائد والضريبة والربح الصافي وإجمالي المبلغ عند الاستحقاق والعائد السنوي التقديري.
-
 </p>
 
 </div>
@@ -645,26 +516,22 @@ onclick="setLang('de')">
 <div class="card warning">
 
 <h2 data-t="warningTitle">
-
 ⚠️ تنبيه مهم
-
 </h2>
 
 <p data-t="warningText">
-
 نتائج الحاسبة تقديرية وحسابية فقط، ولا تمثل سعرًا فعليًا لأذن خزانة في بنك أو سوق، ولا تعد توصية استثمارية بالشراء أو البيع.
-
 </p>
 
 </div>
 
 
 <a
-class="back"
-href="index.html"
-data-t="back">
+    class="back"
+    href="index.html"
+    data-t="back">
 
-🧮 العودة إلى الحاسبة
+    🧮 العودة إلى الحاسبة
 
 </a>
 
@@ -674,236 +541,314 @@ data-t="back">
 <footer>
 
 <div data-t="footer">
-
 حاسبة أذون الخزانة المصرية
-
 </div>
 
-<div style="margin-top:6px">
+<div>
 
 <a
-href="privacy.html"
-data-t="privacy">
-
+    href="privacy.html"
+    data-t="privacy">
 سياسة الخصوصية
-
 </a>
 
 |
 
 <a
-href="about.html"
-data-t="guide">
-
+    href="about.html"
+    data-t="guide">
 الدليل
-
 </a>
 
 </div>
 
 </footer>
 
-
 </div>
 
 
 <script>
 
-const translations={
+const translations = {
 
 ar:{
+
 brand:"حاسبة أذون الخزانة المصرية",
-subtitle:"دليل حساب أرباح أذون الخزانة",
+
 title:"💰 حساب أرباح أذون الخزانة المصرية",
 
 idea:"فكرة أذون الخزانة",
+
 ideaText:"تصدر أذون الخزانة عادةً بنظام الخصم، أي أن المستثمر يدفع قيمة شراء أقل من القيمة الاسمية، ثم يحصل على القيمة الاسمية عند تاريخ الاستحقاق وفقًا لشروط الإصدار.",
 
 exampleTitle:"مثال مبسط",
+
 exampleText:"إذا كانت القيمة الاسمية لأذن الخزانة 100,000 جنيه وكانت قيمة الشراء 95,000 جنيه، فإن الفرق بين القيمتين يمثل العائد الإجمالي قبل أي ضرائب أو تكاليف أو خصومات أخرى.",
 
 grossTitle:"العائد الإجمالي",
+
 grossText:"العائد الإجمالي هو الفرق بين القيمة الاسمية وقيمة الشراء.",
 
 taxTitle:"الضرائب والخصومات",
+
 taxText:"قد يخضع العائد للضرائب أو الخصومات وفقًا للقواعد السارية وطبيعة المستثمر والإصدار. لذلك يجب التفرقة بين العائد الإجمالي والربح الصافي.",
 
 netTitle:"الربح الصافي",
+
 netText:"الربح الصافي هو المبلغ المتبقي من العائد بعد تطبيق الضرائب أو الخصومات التي تدخل في طريقة الحساب المستخدمة.",
 
 factorsTitle:"ما الذي يؤثر في الربح؟",
+
 factor1:"القيمة الاسمية.",
+
 factor2:"معدل العائد.",
+
 factor3:"مدة الأذن بالأيام.",
+
 factor4:"سعر الشراء في السوق.",
+
 factor5:"الضرائب والخصومات المطبقة.",
 
 calculatorTitle:"دور الحاسبة",
+
 calculatorText:"تستخدم الحاسبة البيانات التي تدخلها لحساب قيمة الشراء والعائد والضريبة والربح الصافي وإجمالي المبلغ عند الاستحقاق والعائد السنوي التقديري.",
 
 warningTitle:"⚠️ تنبيه مهم",
+
 warningText:"نتائج الحاسبة تقديرية وحسابية فقط، ولا تمثل سعرًا فعليًا لأذن خزانة في بنك أو سوق، ولا تعد توصية استثمارية بالشراء أو البيع.",
 
 back:"🧮 العودة إلى الحاسبة",
+
 footer:"حاسبة أذون الخزانة المصرية",
+
 privacy:"سياسة الخصوصية",
+
 guide:"الدليل"
+
 },
 
 en:{
+
 brand:"Egyptian Treasury Bills Calculator",
-subtitle:"Treasury Bills Profit Guide",
+
 title:"💰 Egyptian Treasury Bills Profit Calculation",
 
 idea:"Treasury Bills Concept",
+
 ideaText:"Treasury Bills are generally issued at a discount. The investor pays a purchase value below the nominal value and receives the nominal value at maturity according to the issue terms.",
 
 exampleTitle:"Simple Example",
+
 exampleText:"If the nominal value is 100,000 EGP and the purchase value is 95,000 EGP, the difference represents the gross return before any taxes, costs or other deductions.",
 
 grossTitle:"Gross Return",
+
 grossText:"Gross return is the difference between the nominal value and purchase value.",
 
 taxTitle:"Taxes and Deductions",
+
 taxText:"Returns may be subject to taxes or deductions depending on applicable rules, investor status and issue terms. Gross return should therefore be distinguished from net profit.",
 
 netTitle:"Net Profit",
+
 netText:"Net profit is the amount remaining after applying taxes or deductions included in the calculation method.",
 
 factorsTitle:"What Affects Profit?",
+
 factor1:"Nominal value.",
+
 factor2:"Yield rate.",
+
 factor3:"Maturity period in days.",
+
 factor4:"Market purchase price.",
+
 factor5:"Applicable taxes and deductions.",
 
 calculatorTitle:"What the Calculator Does",
+
 calculatorText:"The calculator uses your inputs to estimate purchase value, return, tax, net profit, total maturity amount and annualized yield.",
 
 warningTitle:"⚠️ Important Notice",
+
 warningText:"Calculator results are estimates only. They do not represent an actual Treasury Bill price at a bank or market and are not investment advice.",
 
 back:"🧮 Back to Calculator",
+
 footer:"Egyptian Treasury Bills Calculator",
+
 privacy:"Privacy Policy",
+
 guide:"Guide"
+
 },
 
 fr:{
+
 brand:"Calculateur des bons du Trésor égyptiens",
-subtitle:"Guide du calcul des bénéfices",
+
 title:"💰 Calcul du bénéfice des bons du Trésor",
 
 idea:"Principe des bons du Trésor",
+
 ideaText:"Les bons du Trésor sont généralement émis avec une décote. L’investisseur paie une valeur d’achat inférieure à la valeur nominale et reçoit la valeur nominale à l’échéance selon les conditions de l’émission.",
 
 exampleTitle:"Exemple simple",
+
 exampleText:"Si la valeur nominale est de 100 000 EGP et la valeur d’achat de 95 000 EGP, la différence représente le rendement brut avant impôts, coûts ou autres déductions.",
 
 grossTitle:"Rendement brut",
+
 grossText:"Le rendement brut correspond à la différence entre la valeur nominale et la valeur d’achat.",
 
 taxTitle:"Impôts et déductions",
+
 taxText:"Les rendements peuvent être soumis à des impôts ou déductions selon les règles applicables, le statut de l’investisseur et les conditions de l’émission.",
 
 netTitle:"Bénéfice net",
+
 netText:"Le bénéfice net correspond au montant restant après application des impôts ou déductions inclus dans la méthode de calcul.",
 
 factorsTitle:"Facteurs influençant le bénéfice",
+
 factor1:"Valeur nominale.",
+
 factor2:"Taux de rendement.",
+
 factor3:"Durée en jours.",
+
 factor4:"Prix d’achat sur le marché.",
+
 factor5:"Impôts et déductions applicables.",
 
 calculatorTitle:"Rôle du calculateur",
+
 calculatorText:"Le calculateur utilise vos données pour estimer la valeur d’achat, le rendement, l’impôt, le bénéfice net, le montant à l’échéance et le rendement annualisé.",
 
 warningTitle:"⚠️ Avis important",
+
 warningText:"Les résultats sont indicatifs uniquement. Ils ne représentent pas un prix réel et ne constituent pas un conseil en investissement.",
 
 back:"🧮 Retour au calculateur",
+
 footer:"Calculateur des bons du Trésor égyptiens",
+
 privacy:"Politique de confidentialité",
+
 guide:"Guide"
+
 },
 
 it:{
+
 brand:"Calcolatore dei Buoni del Tesoro egiziani",
-subtitle:"Guida al calcolo del profitto",
+
 title:"💰 Calcolo del profitto dei Buoni del Tesoro",
 
 idea:"Concetto dei Buoni del Tesoro",
+
 ideaText:"I Buoni del Tesoro sono generalmente emessi con uno sconto. L’investitore paga un valore di acquisto inferiore al valore nominale e riceve il valore nominale alla scadenza secondo le condizioni dell’emissione.",
 
 exampleTitle:"Esempio semplice",
+
 exampleText:"Se il valore nominale è di 100.000 EGP e il valore di acquisto è di 95.000 EGP, la differenza rappresenta il rendimento lordo prima di imposte, costi o altre detrazioni.",
 
 grossTitle:"Rendimento lordo",
+
 grossText:"Il rendimento lordo è la differenza tra valore nominale e valore di acquisto.",
 
 taxTitle:"Imposte e detrazioni",
+
 taxText:"I rendimenti possono essere soggetti a imposte o detrazioni secondo le regole applicabili, lo status dell’investitore e le condizioni dell’emissione.",
 
 netTitle:"Profitto netto",
+
 netText:"Il profitto netto è l’importo rimanente dopo l’applicazione delle imposte o detrazioni incluse nel metodo di calcolo.",
 
 factorsTitle:"Cosa influenza il profitto?",
+
 factor1:"Valore nominale.",
+
 factor2:"Tasso di rendimento.",
+
 factor3:"Durata in giorni.",
+
 factor4:"Prezzo di acquisto sul mercato.",
+
 factor5:"Imposte e detrazioni applicabili.",
 
 calculatorTitle:"Funzione del calcolatore",
+
 calculatorText:"Il calcolatore utilizza i dati inseriti per stimare valore di acquisto, rendimento, imposta, profitto netto, importo a scadenza e rendimento annualizzato.",
 
 warningTitle:"⚠️ Avviso importante",
+
 warningText:"I risultati sono solo stime. Non rappresentano un prezzo reale e non costituiscono consulenza d’investimento.",
 
 back:"🧮 Torna al calcolatore",
+
 footer:"Calcolatore dei Buoni del Tesoro egiziani",
+
 privacy:"Privacy Policy",
+
 guide:"Guida"
+
 },
 
 de:{
+
 brand:"Ägyptischer Schatzwechsel-Rechner",
-subtitle:"Leitfaden zur Gewinnberechnung",
+
 title:"💰 Gewinnberechnung ägyptischer Schatzwechsel",
 
 idea:"Grundprinzip",
+
 ideaText:"Schatzwechsel werden in der Regel mit einem Abschlag ausgegeben. Der Anleger zahlt einen Kaufwert unter dem Nominalwert und erhält den Nominalwert bei Fälligkeit gemäß den Emissionsbedingungen.",
 
 exampleTitle:"Einfaches Beispiel",
+
 exampleText:"Bei einem Nominalwert von 100.000 EGP und einem Kaufwert von 95.000 EGP stellt die Differenz den Bruttoertrag vor Steuern, Kosten oder anderen Abzügen dar.",
 
 grossTitle:"Bruttoertrag",
+
 grossText:"Der Bruttoertrag ist die Differenz zwischen Nominalwert und Kaufwert.",
 
 taxTitle:"Steuern und Abzüge",
+
 taxText:"Erträge können abhängig von den geltenden Regeln, dem Anlegerstatus und den Emissionsbedingungen Steuern oder Abzügen unterliegen.",
 
 netTitle:"Nettogewinn",
+
 netText:"Der Nettogewinn ist der verbleibende Betrag nach Anwendung der in der Berechnung berücksichtigten Steuern oder Abzüge.",
 
 factorsTitle:"Was beeinflusst den Gewinn?",
+
 factor1:"Nominalwert.",
+
 factor2:"Renditesatz.",
+
 factor3:"Laufzeit in Tagen.",
+
 factor4:"Kaufpreis am Markt.",
+
 factor5:"Anwendbare Steuern und Abzüge.",
 
 calculatorTitle:"Funktion des Rechners",
+
 calculatorText:"Der Rechner verwendet Ihre Eingaben, um Kaufwert, Ertrag, Steuer, Nettogewinn, Fälligkeitsbetrag und annualisierte Rendite zu schätzen.",
 
 warningTitle:"⚠️ Wichtiger Hinweis",
+
 warningText:"Die Ergebnisse sind Schätzungen. Sie stellen keinen tatsächlichen Preis dar und sind keine Anlageberatung.",
 
 back:"🧮 Zum Rechner",
+
 footer:"Ägyptischer Schatzwechsel-Rechner",
+
 privacy:"Datenschutz",
+
 guide:"Leitfaden"
+
 }
 
 };
@@ -911,41 +856,22 @@ guide:"Leitfaden"
 
 function setLang(lang){
 
-localStorage.setItem(
-"tb_lang",
-lang
-);
+localStorage.setItem("tb_lang",lang);
 
 document.documentElement.lang=lang;
 
 document.documentElement.dir=
-lang==="ar" ? "rtl" : "ltr";
+    lang==="ar" ? "rtl" : "ltr";
 
+document.getElementById("language").value=lang;
 
-document.querySelectorAll(
-"[data-t]"
-).forEach(el=>{
+document.querySelectorAll("[data-t]").forEach(el=>{
 
-const key=el.dataset.t;
+    const key=el.dataset.t;
 
-if(translations[lang][key]){
-
-el.textContent=
-translations[lang][key];
-
-}
-
-});
-
-
-document.querySelectorAll(
-"[data-lang]"
-).forEach(btn=>{
-
-btn.classList.toggle(
-"active",
-btn.dataset.lang===lang
-);
+    if(translations[lang][key]){
+        el.textContent=translations[lang][key];
+    }
 
 });
 
@@ -953,18 +879,16 @@ btn.dataset.lang===lang
 
 
 setLang(
-localStorage.getItem("tb_lang")
-||"ar"
+    localStorage.getItem("tb_lang") || "ar"
 );
 
 
 document.addEventListener(
-"contextmenu",
-e=>e.preventDefault()
+    "contextmenu",
+    e=>e.preventDefault()
 );
 
 </script>
 
 </body>
-
 </html>
