@@ -57,6 +57,7 @@ body{
  position:absolute;
  top:0;
  left:0;
+ z-index:5;
 }
 
 .language select{
@@ -78,15 +79,28 @@ body{
 .title-space{
  margin-top:43px;
  width:100%;
+ display:flex;
+ justify-content:center;
+ align-items:center;
 }
 
 .main-title{
+ width:100%;
  text-align:center;
  color:#d4af37;
  font-size:21px;
- line-height:1.35;
+ line-height:1.25;
  font-weight:600;
  margin:0;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:clip;
+}
+
+/* اللغات ذات العناوين الطويلة */
+.main-title.long-title{
+ font-size:15px;
+ letter-spacing:-0.2px;
 }
 
 /* MARKET */
@@ -284,6 +298,10 @@ input::placeholder{
   font-size:19px;
  }
 
+ .main-title.long-title{
+  font-size:13px;
+ }
+
  .language select{
   width:105px;
   font-size:10px;
@@ -321,19 +339,29 @@ input::placeholder{
 <header class="header">
 
 <div class="language">
-<select id="languageSelect" onchange="changeLanguage(this.value)">
+
+<select
+ id="languageSelect"
+ onchange="changeLanguage(this.value)">
+
 <option value="ar">🇪🇬 العربية</option>
 <option value="en">🇬🇧 English</option>
 <option value="fr">🇫🇷 Français</option>
 <option value="it">🇮🇹 Italiano</option>
 <option value="de">🇩🇪 Deutsch</option>
+
 </select>
+
 </div>
 
 <div class="title-space">
-<div class="main-title" id="mainTitle">
+
+<div
+ class="main-title"
+ id="mainTitle">
 حاسبة أذون الخزانة المصرية
 </div>
+
 </div>
 
 </header>
@@ -397,23 +425,54 @@ input::placeholder{
 <div class="results">
 
 <div class="card">
-<span id="priceLabel">قيمة الشراء</span>
-<strong id="priceResult">0.00</strong>
+
+<span id="priceLabel">
+قيمة الشراء
+</span>
+
+<strong id="priceResult">
+0.00
+</strong>
+
 </div>
 
-<div class="card">
-<span id="discountLabel">خصم الشراء</span>
-<strong id="discountResult">0.00</strong>
-</div>
 
 <div class="card">
-<span id="taxLabel">الضريبة (20%)</span>
-<strong id="taxResult">0.00</strong>
+
+<span id="discountLabel">
+خصم الشراء
+</span>
+
+<strong id="discountResult">
+0.00
+</strong>
+
 </div>
 
+
 <div class="card">
-<span id="profitLabel">صافي الربح بعد خصم الضريبة</span>
-<strong id="profitResult">0.00</strong>
+
+<span id="taxLabel">
+الضريبة (20%)
+</span>
+
+<strong id="taxResult">
+0.00
+</strong>
+
+</div>
+
+
+<div class="card">
+
+<span id="profitLabel">
+صافي الربح بعد خصم الضريبة
+</span>
+
+<strong id="profitResult">
+0.00
+</strong>
+
 </div>
 
 </div>
@@ -725,10 +784,7 @@ function setMarket(type,manual=false){
 
   o.value=d;
 
-  o.textContent=
-   currentLanguage==="ar"
-   ?d+" "+t.day
-   :d+" "+t.day;
+  o.textContent=d+" "+t.day;
 
   select.appendChild(o);
 
@@ -950,17 +1006,26 @@ function saveAndOpen(event){
  if(!current){
 
   const messages={
+
    ar:"من فضلك احسب العملية أولًا.",
+
    en:"Please calculate an operation first.",
+
    fr:"Veuillez d'abord calculer une opération.",
+
    it:"Calcola prima un'operazione.",
+
    de:"Bitte berechnen Sie zuerst einen Vorgang."
+
   };
 
-  alert(messages[currentLanguage]);
+  alert(
+   messages[currentLanguage]
+  );
 
   return;
  }
+
 
  let operations=[];
 
@@ -974,9 +1039,11 @@ function saveAndOpen(event){
 
  }catch(e){}
 
+
  if(!Array.isArray(operations)){
   operations=[];
  }
+
 
  try{
 
@@ -993,6 +1060,7 @@ function saveAndOpen(event){
   );
 
  }catch(e){}
+
 
  window.location.href=
   "saved.html";
@@ -1019,108 +1087,41 @@ function changeLanguage(lang){
   lang
  );
 
+
  const t=translations[lang];
 
- document.documentElement.lang=lang;
+
+ document.documentElement.lang=
+  lang;
 
  document.documentElement.dir=
   lang==="ar"?"rtl":"ltr";
 
 
- $("languageSelect").value=lang;
+ $("languageSelect").value=
+  lang;
 
 
  $("mainTitle").textContent=
   t.title;
 
+
+ /* تصغير العناوين الطويلة فقط */
+
+ $("mainTitle").classList.toggle(
+  "long-title",
+  lang==="fr" ||
+  lang==="it" ||
+  lang==="de"
+ );
+
+
  $("primaryBtn").textContent=
   t.primary;
+
 
  $("secondaryBtn").textContent=
   t.secondary;
 
- $("calcBtn").textContent=
-  t.calculate;
 
- $("nominal").placeholder=
-  t.nominal;
-
- $("rate").placeholder=
-  t.rate;
-
- $("priceLabel").textContent=
-  t.price;
-
- $("discountLabel").textContent=
-  t.discount;
-
- $("taxLabel").textContent=
-  t.tax;
-
- $("profitLabel").textContent=
-  t.profit;
-
- $("totalLabel").textContent=
-  t.total;
-
- $("annualLabel").textContent=
-  t.annual;
-
- $("savedLink").textContent=
-  t.saved;
-
- $("assistantLink").textContent=
-  t.assistant;
-
- $("privacyLink").textContent=
-  t.privacy;
-
- $("aboutLink").textContent=
-  t.guide;
-
- $("developer").textContent=
-  t.developer;
-
-
- const selectedDays=
-  $("days").value;
-
- setMarket(currentMarket);
-
- if(selectedDays){
-  $("days").value=selectedDays;
- }
-
-}
-
-
-/* LOAD */
-
-window.addEventListener(
- "load",
- function(){
-
-  const savedLanguage=
-   localStorage.getItem(
-    "calculatorLanguage"
-   )||"ar";
-
-  changeLanguage(savedLanguage);
-
-  restoreCalculatorState();
-
- }
-);
-
-
-/* RETURN TO PAGE */
-
-window.addEventListener(
- "pageshow",
- restoreCalculatorState
-);
-
-</script>
-
-</body>
-</html>
+ $("
