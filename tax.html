@@ -8,17 +8,16 @@
 
 <style>
 :root{
-  --bg:#061b2b;
-  --bg2:#0b2545;
-  --card:#102f4e;
-  --field:#1f3a5f;
+  --bg:#050505;
+  --bg2:#0b0b0b;
+  --card:#101010;
+  --field:#151515;
   --gold:#d4af37;
   --gold2:#f0c94a;
-  --text:#f4f7fb;
-  --muted:#b8c6d6;
-  --green:#16a34a;
+  --text:#ffffff;
+  --muted:#c9c9c9;
   --red:#dc2626;
-  --border:#2c78a8;
+  --border:#2a2a2a;
 }
 
 *{
@@ -40,10 +39,12 @@ body{
   min-height:100vh;
   overflow-x:hidden;
   background:
-    radial-gradient(circle at top,#0d3557 0%,var(--bg) 48%,#04131f 100%);
+    radial-gradient(circle at top,#181818 0%,#090909 42%,#000 100%);
   color:var(--text);
-  font-family:Arial,"Tahoma",sans-serif;
+  font-family:"Geeza Pro","Avenir Next",-apple-system,BlinkMacSystemFont,sans-serif;
   -webkit-text-size-adjust:100%;
+  touch-action:pan-y;
+  overscroll-behavior-x:none;
 }
 
 .page{
@@ -51,68 +52,67 @@ body{
   max-width:520px;
   margin:0 auto;
   padding:18px;
-  background:rgba(8,30,49,.97);
-  border:1px solid rgba(212,175,55,.45);
-  border-radius:20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
-  overflow:hidden;
+  background:
+    linear-gradient(145deg,#111 0%,#080808 48%,#121212 100%);
+  border:1px solid rgba(212,175,55,.7);
+  border-radius:18px;
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.65),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .header{
+  position:relative;
+  min-height:86px;
   text-align:center;
-}
-
-.header-top{
   display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap:12px;
-  direction:rtl;
 }
 
-.logo{
-  width:64px;
-  height:64px;
-  flex:0 0 64px;
-  display:block;
+.title-space{
+  margin-top:47px;
 }
 
 .brand{
   margin:0;
   color:var(--gold2);
-  font-size:23px;
-  font-weight:800;
-  line-height:1.35;
+  font-size:22px;
+  font-weight:600;
+  line-height:1.4;
+  text-align:center;
 }
 
 .subtitle{
-  margin:8px 0 16px;
+  margin:5px 0 16px;
   color:var(--muted);
-  font-size:14px;
+  font-size:13px;
+  line-height:1.7;
 }
 
 .languages{
+  position:absolute;
+  top:0;
+  left:0;
   display:flex;
-  justify-content:center;
-  gap:5px;
-  flex-wrap:wrap;
-  margin-bottom:18px;
+  justify-content:flex-start;
 }
 
 .languages button{
-  border:1px solid var(--border);
-  background:var(--field);
-  color:var(--text);
-  border-radius:8px;
-  padding:7px 9px;
-  font-size:11px;
+  border:1px solid #333;
+  background:#0d0d0d;
+  color:#fff;
+  border-radius:7px;
+  padding:5px 7px;
+  font-size:9px;
   cursor:pointer;
+  font-family:inherit;
 }
 
 .languages button.active{
   background:var(--gold);
   border-color:var(--gold);
-  color:#07131d;
+  color:#050505;
   font-weight:700;
 }
 
@@ -120,123 +120,138 @@ body{
   text-align:right;
 }
 
-h1{
+.content > h1{
   margin:4px 0 14px;
   color:var(--gold2);
-  font-size:21px;
+  font-size:20px;
+  font-weight:600;
   line-height:1.4;
 }
 
 h2{
-  margin:20px 0 8px;
+  margin:0 0 8px;
   color:var(--gold2);
-  font-size:17px;
+  font-size:16px;
+  font-weight:600;
+  line-height:1.5;
 }
 
 p{
-  margin:0 0 12px;
+  margin:0 0 10px;
   color:var(--text);
-  font-size:14px;
+  font-size:13px;
   line-height:1.9;
 }
 
 ul{
-  margin:8px 0 14px;
-  padding-right:22px;
+  margin:7px 0 10px;
+  padding-right:20px;
 }
 
 li{
-  margin-bottom:8px;
+  margin-bottom:7px;
   color:var(--text);
-  font-size:14px;
+  font-size:13px;
   line-height:1.8;
 }
 
 .card{
-  margin:14px 0;
+  margin:12px 0;
   padding:14px;
-  background:var(--card);
-  border:1px solid rgba(44,120,168,.65);
-  border-radius:14px;
-}
-
-.warning{
-  border-color:rgba(220,38,38,.65);
-  background:rgba(127,29,29,.22);
-}
-
-.warning strong{
-  color:#ff8585;
+  background:
+    linear-gradient(145deg,#151515 0%,#0b0b0b 100%);
+  border:1px solid #292929;
+  border-radius:12px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
 }
 
 .note{
   border-color:rgba(212,175,55,.65);
-  background:rgba(212,175,55,.08);
+  background:
+    linear-gradient(145deg,rgba(212,175,55,.08),#0b0b0b);
+}
+
+.warning{
+  border-color:rgba(220,38,38,.55);
+  background:
+    linear-gradient(145deg,rgba(90,15,15,.25),#0b0b0b);
+}
+
+.warning h2{
+  color:#ff8585;
 }
 
 .actions{
   display:flex;
   gap:9px;
-  margin-top:20px;
+  margin-top:18px;
 }
 
 .btn{
   flex:1;
   display:block;
-  padding:12px 8px;
-  border-radius:11px;
+  padding:11px 8px;
+  border-radius:10px;
   text-align:center;
   text-decoration:none;
-  font-size:13px;
-  font-weight:700;
+  font-size:12px;
+  font-weight:600;
   border:1px solid var(--gold);
+  font-family:inherit;
 }
 
 .btn-primary{
   background:var(--gold);
-  color:#07131d;
+  color:#050505;
 }
 
 .btn-secondary{
-  background:transparent;
+  background:#0b0b0b;
   color:var(--gold2);
 }
 
 .footer{
-  margin-top:18px;
-  padding-top:12px;
+  margin-top:17px;
+  padding-top:11px;
   border-top:1px solid rgba(255,255,255,.12);
   text-align:center;
   color:var(--muted);
-  font-size:11px;
+  font-size:10px;
   line-height:1.7;
 }
 
 @media(max-width:380px){
 
+  body{
+    padding:9px;
+  }
+
   .page{
     padding:14px;
+    border-radius:16px;
   }
 
   .brand{
-    font-size:20px;
+    font-size:19px;
   }
 
-  .logo{
-    width:56px;
-    height:56px;
-    flex-basis:56px;
+  .subtitle{
+    font-size:12px;
   }
 
   .languages button{
-    padding:6px 7px;
-    font-size:10px;
+    padding:4px 6px;
+    font-size:8px;
   }
-}
 
-body{
-  touch-action:pan-y;
-  overscroll-behavior-x:none;
+  .content > h1{
+    font-size:18px;
+  }
+
+  p,
+  li{
+    font-size:12px;
+  }
 }
 
 input,
@@ -257,14 +272,15 @@ textarea{
 
 <header class="header">
 
-  <div class="header-top">
+  <div class="languages">
+    <button class="active" onclick="setLanguage('ar')">العربية</button>
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('fr')">Français</button>
+    <button onclick="setLanguage('it')">Italiano</button>
+    <button onclick="setLanguage('de')">Deutsch</button>
+  </div>
 
-    <img
-      class="logo"
-      src="logo.svg"
-      alt="حاسبة أذون الخزانة المصرية"
-    >
-
+  <div class="title-space">
     <h1
       class="brand"
       data-ar="حاسبة أذون الخزانة المصرية"
@@ -275,24 +291,15 @@ textarea{
       حاسبة أذون الخزانة المصرية
     </h1>
 
-  </div>
-
-  <div
-    class="subtitle"
-    data-ar="المعاملة الضريبية لأذون الخزانة"
-    data-en="Tax Treatment of Treasury Bills"
-    data-fr="Traitement fiscal des bons du Trésor"
-    data-it="Trattamento fiscale dei Buoni del Tesoro"
-    data-de="Steuerliche Behandlung von Schatzwechseln">
-    المعاملة الضريبية لأذون الخزانة
-  </div>
-
-  <div class="languages">
-    <button class="active" onclick="setLanguage('ar')">العربية</button>
-    <button onclick="setLanguage('en')">English</button>
-    <button onclick="setLanguage('fr')">Français</button>
-    <button onclick="setLanguage('it')">Italiano</button>
-    <button onclick="setLanguage('de')">Deutsch</button>
+    <div
+      class="subtitle"
+      data-ar="المعاملة الضريبية لأذون الخزانة"
+      data-en="Tax Treatment of Treasury Bills"
+      data-fr="Traitement fiscal des bons du Trésor"
+      data-it="Trattamento fiscale dei Buoni del Tesoro"
+      data-de="Steuerliche Behandlung von Schatzwechseln">
+      المعاملة الضريبية لأذون الخزانة
+    </div>
   </div>
 
 </header>
@@ -342,12 +349,12 @@ textarea{
     </h2>
 
     <p
-      data-ar="في أذون الخزانة يتم شراء الورقة المالية عادةً بأقل من قيمتها الاسمية، ثم يحصل المستثمر على القيمة الاسمية عند الاستحقاق. الفرق بين القيمتين يمثل العائد الإجمالي قبل أي ضرائب أو خصومات."
-      data-en="Treasury bills are generally purchased below their nominal value, and the investor receives the nominal value at maturity. The difference represents the gross return before any taxes or deductions."
-      data-fr="Les bons du Trésor sont généralement achetés en dessous de leur valeur nominale et l'investisseur reçoit la valeur nominale à l'échéance. La différence représente le rendement brut avant impôts ou déductions."
-      data-it="I Buoni del Tesoro vengono generalmente acquistati al di sotto del loro valore nominale e l'investitore riceve il valore nominale alla scadenza. La differenza rappresenta il rendimento lordo prima di imposte o detrazioni."
-      data-de="Schatzwechsel werden in der Regel unter ihrem Nominalwert gekauft, und der Anleger erhält bei Fälligkeit den Nominalwert. Die Differenz stellt den Bruttoertrag vor Steuern oder Abzügen dar.">
-      في أذون الخزانة يتم شراء الورقة المالية عادةً بأقل من قيمتها الاسمية، ثم يحصل المستثمر على القيمة الاسمية عند الاستحقاق. الفرق بين القيمتين يمثل العائد الإجمالي قبل أي ضرائب أو خصومات.
+      data-ar="في أذون الخزانة يتم شراء الورقة المالية عادةً بأقل من قيمتها الاسمية، ثم يحصل المستثمر على القيمة الاسمية عند الاستحقاق. الفرق بين القيمة الاسمية وقيمة الشراء يمثل الربح الإجمالي أو خصم الشراء قبل الضريبة."
+      data-en="Treasury bills are generally purchased below their nominal value, and the investor receives the nominal value at maturity. The difference between nominal value and purchase value represents the gross profit or purchase discount before tax."
+      data-fr="Les bons du Trésor sont généralement achetés en dessous de leur valeur nominale et l'investisseur reçoit la valeur nominale à l'échéance. La différence entre la valeur nominale et la valeur d'achat représente le bénéfice brut ou la décote avant impôt."
+      data-it="I Buoni del Tesoro vengono generalmente acquistati al di sotto del loro valore nominale e l'investitore riceve il valore nominale alla scadenza. La differenza tra valore nominale e valore di acquisto rappresenta il profitto lordo o lo sconto di acquisto prima delle imposte."
+      data-de="Schatzwechsel werden in der Regel unter ihrem Nominalwert gekauft, und der Anleger erhält bei Fälligkeit den Nominalwert. Die Differenz zwischen Nominalwert und Kaufwert stellt den Bruttogewinn bzw. den Kaufabschlag vor Steuern dar.">
+      في أذون الخزانة يتم شراء الورقة المالية عادةً بأقل من قيمتها الاسمية، ثم يحصل المستثمر على القيمة الاسمية عند الاستحقاق. الفرق بين القيمة الاسمية وقيمة الشراء يمثل الربح الإجمالي أو خصم الشراء قبل الضريبة.
     </p>
 
   </div>
@@ -364,12 +371,12 @@ textarea{
     </h2>
 
     <p
-      data-ar="الربح الإجمالي هو الفرق بين القيمة الاسمية وقيمة الشراء. أما الربح الصافي فهو المبلغ المتبقي بعد تطبيق الضرائب أو الخصومات التي تنطبق على العملية."
-      data-en="Gross profit is the difference between the nominal value and the purchase value. Net profit is the amount remaining after applicable taxes or deductions are applied."
-      data-fr="Le bénéfice brut correspond à la différence entre la valeur nominale et la valeur d'achat. Le bénéfice net est le montant restant après application des impôts ou déductions applicables."
-      data-it="Il profitto lordo è la differenza tra valore nominale e valore di acquisto. Il profitto netto è l'importo rimanente dopo l'applicazione delle imposte o detrazioni previste."
-      data-de="Der Bruttogewinn ist die Differenz zwischen Nominalwert und Kaufwert. Der Nettogewinn ist der verbleibende Betrag nach Anwendung der geltenden Steuern oder Abzüge.">
-      الربح الإجمالي هو الفرق بين القيمة الاسمية وقيمة الشراء. أما الربح الصافي فهو المبلغ المتبقي بعد تطبيق الضرائب أو الخصومات التي تنطبق على العملية.
+      data-ar="الربح الإجمالي هو الفرق بين القيمة الاسمية وقيمة الشراء. وفي الحاسبة يتم احتساب الضريبة بنسبة 20% من الربح الإجمالي، ثم يتم خصمها للوصول إلى صافي الربح."
+      data-en="Gross profit is the difference between the nominal value and the purchase value. In the calculator, tax is calculated at 20% of the gross profit and deducted to determine net profit."
+      data-fr="Le bénéfice brut est la différence entre la valeur nominale et la valeur d'achat. Dans la calculatrice, l'impôt est calculé à 20 % du bénéfice brut, puis déduit pour déterminer le bénéfice net."
+      data-it="Il profitto lordo è la differenza tra il valore nominale e il valore di acquisto. Nel calcolatore, l'imposta è calcolata al 20% del profitto lordo e detratta per determinare il profitto netto."
+      data-de="Der Bruttogewinn ist die Differenz zwischen Nominalwert und Kaufwert. Im Rechner wird die Steuer mit 20 % des Bruttogewinns berechnet und zur Ermittlung des Nettogewinns abgezogen.">
+      الربح الإجمالي هو الفرق بين القيمة الاسمية وقيمة الشراء. وفي الحاسبة يتم احتساب الضريبة بنسبة 20% من الربح الإجمالي، ثم يتم خصمها للوصول إلى صافي الربح.
     </p>
 
     <ul>
@@ -393,21 +400,30 @@ textarea{
       </li>
 
       <li
-        data-ar="الربح الإجمالي: الفرق بين القيمة الاسمية وقيمة الشراء."
-        data-en="Gross profit: the difference between nominal value and purchase value."
-        data-fr="Bénéfice brut : différence entre la valeur nominale et la valeur d'achat."
-        data-it="Profitto lordo: differenza tra valore nominale e valore di acquisto."
-        data-de="Bruttogewinn: Differenz zwischen Nominalwert und Kaufwert.">
-        الربح الإجمالي: الفرق بين القيمة الاسمية وقيمة الشراء.
+        data-ar="الربح الإجمالي: القيمة الاسمية مطروحًا منها قيمة الشراء."
+        data-en="Gross profit: nominal value minus purchase value."
+        data-fr="Bénéfice brut : valeur nominale moins valeur d'achat."
+        data-it="Profitto lordo: valore nominale meno valore di acquisto."
+        data-de="Bruttogewinn: Nominalwert minus Kaufwert.">
+        الربح الإجمالي: القيمة الاسمية مطروحًا منها قيمة الشراء.
       </li>
 
       <li
-        data-ar="الربح الصافي: الربح بعد تطبيق الضرائب والخصومات."
-        data-en="Net profit: profit after applicable taxes and deductions."
-        data-fr="Bénéfice net : bénéfice après impôts et déductions applicables."
-        data-it="Profitto netto: profitto dopo le imposte e le detrazioni applicabili."
-        data-de="Nettogewinn: Gewinn nach anwendbaren Steuern und Abzügen.">
-        الربح الصافي: الربح بعد تطبيق الضرائب والخصومات.
+        data-ar="الضريبة: 20% من الربح الإجمالي وفق النسبة المستخدمة داخل الحاسبة."
+        data-en="Tax: 20% of gross profit according to the rate used by the calculator."
+        data-fr="Impôt : 20 % du bénéfice brut selon le taux utilisé par la calculatrice."
+        data-it="Imposta: 20% del profitto lordo secondo l'aliquota utilizzata dal calcolatore."
+        data-de="Steuer: 20 % des Bruttogewinns gemäß dem vom Rechner verwendeten Satz.">
+        الضريبة: 20% من الربح الإجمالي وفق النسبة المستخدمة داخل الحاسبة.
+      </li>
+
+      <li
+        data-ar="الربح الصافي: الربح الإجمالي بعد خصم الضريبة."
+        data-en="Net profit: gross profit after deducting tax."
+        data-fr="Bénéfice net : bénéfice brut après déduction de l'impôt."
+        data-it="Profitto netto: profitto lordo dopo la detrazione dell'imposta."
+        data-de="Nettogewinn: Bruttogewinn nach Abzug der Steuer.">
+        الربح الصافي: الربح الإجمالي بعد خصم الضريبة.
       </li>
 
     </ul>
@@ -426,12 +442,12 @@ textarea{
     </h2>
 
     <p
-      data-ar="القواعد الضريبية قد تتغير بمرور الوقت، وقد تختلف المعاملة الفعلية حسب طبيعة العملية وصفة المستثمر والقواعد السارية. لذلك لا تعتبر أي نسبة أو قيمة ضريبية داخل الحاسبة بديلاً عن البيانات الرسمية."
-      data-en="Tax rules may change over time, and actual treatment may vary depending on the transaction, investor status, and applicable rules. Therefore, any tax rate or amount shown by the calculator should not be considered a substitute for official information."
-      data-fr="Les règles fiscales peuvent évoluer et le traitement réel peut varier selon la nature de la transaction, le statut de l'investisseur et les règles applicables. Tout taux ou montant fiscal affiché par la calculatrice ne remplace donc pas les informations officielles."
-      data-it="Le norme fiscali possono cambiare nel tempo e il trattamento effettivo può variare in base alla natura dell'operazione, allo status dell'investitore e alle norme applicabili. Pertanto, qualsiasi aliquota o importo fiscale mostrato dal calcolatore non sostituisce le informazioni ufficiali."
-      data-de="Steuerregeln können sich im Laufe der Zeit ändern, und die tatsächliche Behandlung kann von der Art der Transaktion, dem Status des Anlegers und den geltenden Regeln abhängen. Daher ersetzt ein vom Rechner angezeigter Steuersatz oder Steuerbetrag keine offiziellen Informationen.">
-      القواعد الضريبية قد تتغير بمرور الوقت، وقد تختلف المعاملة الفعلية حسب طبيعة العملية وصفة المستثمر والقواعد السارية. لذلك لا تعتبر أي نسبة أو قيمة ضريبية داخل الحاسبة بديلاً عن البيانات الرسمية.
+      data-ar="النسبة المستخدمة في الحاسبة هي 20% من الربح الإجمالي لأغراض الحساب. القواعد الضريبية قد تتغير بمرور الوقت، وقد تختلف المعاملة الفعلية حسب طبيعة العملية وصفة المستثمر والقواعد السارية. لذلك يجب الرجوع إلى البيانات الرسمية عند تنفيذ أي عملية."
+      data-en="The calculator uses 20% of gross profit for calculation purposes. Tax rules may change over time, and actual treatment may vary depending on the transaction, investor status, and applicable rules. Official information should therefore be checked before carrying out any transaction."
+      data-fr="La calculatrice utilise 20 % du bénéfice brut à des fins de calcul. Les règles fiscales peuvent évoluer et le traitement réel peut varier selon la transaction, le statut de l'investisseur et les règles applicables. Il convient donc de vérifier les informations officielles avant toute opération."
+      data-it="Il calcolatore utilizza il 20% del profitto lordo ai fini del calcolo. Le norme fiscali possono cambiare e il trattamento effettivo può variare in base all'operazione, allo status dell'investitore e alle norme applicabili. È quindi opportuno verificare le informazioni ufficiali prima di qualsiasi operazione."
+      data-de="Der Rechner verwendet 20 % des Bruttogewinns zu Berechnungszwecken. Steuerregeln können sich ändern, und die tatsächliche Behandlung kann von der Transaktion, dem Anlegerstatus und den geltenden Regeln abhängen. Daher sollten vor jeder Transaktion offizielle Informationen geprüft werden.">
+      النسبة المستخدمة في الحاسبة هي 20% من الربح الإجمالي لأغراض الحساب. القواعد الضريبية قد تتغير بمرور الوقت، وقد تختلف المعاملة الفعلية حسب طبيعة العملية وصفة المستثمر والقواعد السارية. لذلك يجب الرجوع إلى البيانات الرسمية عند تنفيذ أي عملية.
     </p>
 
   </div>
@@ -448,12 +464,12 @@ textarea{
     </h2>
 
     <p
-      data-ar="الحاسبة تساعدك على تقدير الربح قبل وبعد الخصم الضريبي وفق البيانات التي تدخلها. الهدف منها تسهيل فهم العملية وإجراء الحسابات بسرعة."
-      data-en="The calculator helps you estimate profit before and after the tax deduction based on the data you enter. Its purpose is to make the calculation easier to understand and perform quickly."
-      data-fr="La calculatrice vous aide à estimer le bénéfice avant et après déduction fiscale selon les données saisies. Son objectif est de faciliter la compréhension et le calcul."
-      data-it="Il calcolatore aiuta a stimare il profitto prima e dopo la detrazione fiscale in base ai dati inseriti. Il suo scopo è facilitare la comprensione e velocizzare i calcoli."
-      data-de="Der Rechner hilft Ihnen, den Gewinn vor und nach dem Steuerabzug anhand der eingegebenen Daten zu schätzen. Ziel ist es, die Berechnung verständlicher und schneller zu machen.">
-      الحاسبة تساعدك على تقدير الربح قبل وبعد الخصم الضريبي وفق البيانات التي تدخلها. الهدف منها تسهيل فهم العملية وإجراء الحسابات بسرعة.
+      data-ar="الحاسبة تساعدك على تقدير الربح قبل وبعد الخصم الضريبي وفق البيانات التي تدخلها. يتم حساب قيمة الشراء أولًا، ثم الربح الإجمالي، ثم الضريبة، ثم صافي الربح والمبلغ المسترد في نهاية المدة."
+      data-en="The calculator helps estimate profit before and after tax based on the data entered. It first calculates the purchase value, then gross profit, tax, net profit, and the amount returned at maturity."
+      data-fr="La calculatrice aide à estimer le bénéfice avant et après impôt selon les données saisies. Elle calcule d'abord la valeur d'achat, puis le bénéfice brut, l'impôt, le bénéfice net et le montant restitué à l'échéance."
+      data-it="Il calcolatore aiuta a stimare il profitto prima e dopo le imposte in base ai dati inseriti. Calcola prima il valore di acquisto, poi il profitto lordo, l'imposta, il profitto netto e l'importo restituito alla scadenza."
+      data-de="Der Rechner hilft, den Gewinn vor und nach Steuern anhand der eingegebenen Daten zu schätzen. Zuerst werden Kaufwert, Bruttogewinn, Steuer, Nettogewinn und der bei Fälligkeit zurückgezahlte Betrag berechnet.">
+      الحاسبة تساعدك على تقدير الربح قبل وبعد الخصم الضريبي وفق البيانات التي تدخلها. يتم حساب قيمة الشراء أولًا، ثم الربح الإجمالي، ثم الضريبة، ثم صافي الربح والمبلغ المسترد في نهاية المدة.
     </p>
 
   </div>
