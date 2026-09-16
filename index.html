@@ -13,16 +13,27 @@ html,body{
  margin:0;
  padding:0;
  width:100%;
- min-height:100%;
+ height:100%;
  background:#050505;
 }
 
 body{
  color:#fff;
  font-family:"Geeza Pro","Avenir Next",-apple-system,BlinkMacSystemFont,sans-serif;
- overflow-x:hidden;
+
+ /* تثبيت صفحة الحاسبة */
+ position:fixed;
+ left:0;
+ top:0;
+ right:0;
+ bottom:0;
+ width:100%;
+ height:100%;
+ overflow:hidden;
+ overscroll-behavior:none;
 }
 
+/* الحاسبة نفسها */
 .screen{
  width:calc(100% - 24px);
  max-width:450px;
@@ -343,19 +354,25 @@ input::placeholder{
 <header class="header">
 
 <div class="language">
+
 <select id="languageSelect" onchange="changeLanguage(this.value)">
+
 <option value="ar">🇪🇬 العربية</option>
 <option value="en">🇬🇧 English</option>
 <option value="fr">🇫🇷 Français</option>
 <option value="it">🇮🇹 Italiano</option>
 <option value="de">🇩🇪 Deutsch</option>
+
 </select>
+
 </div>
 
 <div class="title-space">
+
 <div class="main-title" id="mainTitle">
 حاسبة أذون الخزانة المصرية
 </div>
+
 </div>
 
 </header>
@@ -518,6 +535,7 @@ input::placeholder{
 <script>
 
 /* اللغة الحالية */
+
 let currentLanguage =
  localStorage.getItem("calculatorLanguage") || "ar";
 
@@ -1052,8 +1070,6 @@ function changeLanguage(lang){
  const t=translations[lang];
 
 
- /* الصفحة */
-
  document.documentElement.lang=
   lang;
 
@@ -1061,13 +1077,9 @@ function changeLanguage(lang){
   lang==="ar"?"rtl":"ltr";
 
 
- /* القائمة */
-
  $("languageSelect").value=
   lang;
 
-
- /* العنوان */
 
  $("mainTitle").textContent=
   t.title;
@@ -1080,16 +1092,12 @@ function changeLanguage(lang){
  );
 
 
- /* الأسواق */
-
  $("primaryBtn").textContent=
   t.primary;
 
  $("secondaryBtn").textContent=
   t.secondary;
 
-
- /* الحقول */
 
  $("nominal").placeholder=
   t.nominal;
@@ -1098,13 +1106,9 @@ function changeLanguage(lang){
   t.rate;
 
 
- /* زر الحساب */
-
  $("calcBtn").textContent=
   t.calculate;
 
-
- /* النتائج */
 
  $("priceLabel").textContent=
   t.price;
@@ -1125,16 +1129,12 @@ function changeLanguage(lang){
   t.annual;
 
 
- /* الأزرار */
-
  $("savedLink").textContent=
   t.saved;
 
  $("assistantLink").textContent=
   t.assistant;
 
-
- /* الفوتر */
 
  $("privacyLink").textContent=
   t.privacy;
@@ -1146,15 +1146,14 @@ function changeLanguage(lang){
   t.developer;
 
 
- /* إعادة بناء قائمة الأيام باللغة الجديدة */
-
  const selectedDay=
   $("days").value;
 
  setMarket(currentMarket);
 
  if(selectedDay){
-  $("days").value=selectedDay;
+  $("days").value=
+   selectedDay;
  }
 
 }
@@ -1199,4 +1198,4 @@ window.addEventListener(
 </script>
 
 </body>
-</html>
+</html>لا
