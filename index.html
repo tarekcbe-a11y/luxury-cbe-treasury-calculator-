@@ -2,10 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#050505">
-
 <title>حاسبة أذون الخزانة المصرية</title>
 
 <style>
@@ -14,517 +12,579 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-html{
+html,body{
     margin:0;
     padding:0;
-    width:100%;
     min-height:100%;
-    background:#050505;
 }
 
 body{
-    margin:0;
-    padding:0;
-    width:100%;
-    min-height:100vh;
-    background:
-        linear-gradient(145deg,#020202 0%,#111111 48%,#050505 100%);
+    font-family:
+        "Geeza Pro",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
     color:#fff;
-    font-family:"Geeza Pro","Avenir Next",-apple-system,BlinkMacSystemFont,sans-serif;
+    background:
+        radial-gradient(
+            circle at 50% -12%,
+            #343434 0%,
+            #1b1b1b 24%,
+            #0b0b0b 55%,
+            #020202 100%
+        );
     overflow-x:hidden;
     overflow-y:auto;
-    touch-action:pan-y;
-    overscroll-behavior-x:none;
+    touch-action:manipulation;
 }
 
-button,
-input,
-select{
-    font-family:inherit;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,.035),
+            transparent 20%,
+            transparent 80%,
+            rgba(255,255,255,.02)
+        );
 }
+
+/* =========================
+   MAIN FRAME
+========================= */
 
 .app{
-    width:calc(100% - 28px);
-    max-width:780px;
-    min-height:calc(100vh - 20px);
-    margin:10px auto;
-    padding:18px 14px 22px;
+    width:calc(100% - 18px);
+    max-width:450px;
+    margin:9px auto;
+    padding:11px;
+
+    border:1px solid #c99b32;
+    border-radius:20px;
+
     background:
-        linear-gradient(145deg,#151515 0%,#0d0d0d 45%,#050505 100%);
-    border:1px solid #d4af37;
-    border-radius:28px;
+        linear-gradient(
+            145deg,
+            #050505 0%,
+            #111111 28%,
+            #070707 55%,
+            #171717 76%,
+            #050505 100%
+        );
+
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.04),
-        0 0 25px rgba(0,0,0,.55);
+        inset 0 1px 0 rgba(255,255,255,.08),
+        inset 0 0 30px rgba(255,255,255,.025),
+        0 12px 35px rgba(0,0,0,.75);
 }
 
-/* ================= HEADER ================= */
+/* =========================
+   HEADER
+========================= */
 
 .header{
     position:relative;
     min-height:86px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:flex-start;
-    border-bottom:1px solid #765f18;
-    padding-bottom:15px;
+
+    padding:0 5px 10px;
+    border-bottom:1px solid rgba(201,155,50,.5);
+    margin-bottom:10px;
 }
 
-.lang-wrap{
+.language{
     position:absolute;
+    left:0;
     top:0;
-    left:0;
-    z-index:50;
-}
 
-.lang-btn{
-    height:36px;
-    min-width:128px;
-    padding:0 12px;
-    border:1px solid #d4af37;
-    border-radius:10px;
-    background:#0a0a0a;
-    color:#f0c94a;
-    font-size:13px;
-    font-weight:600;
-    white-space:nowrap;
-}
+    width:76px;
+    height:28px;
 
-.lang-menu{
-    display:none;
-    position:absolute;
-    top:42px;
-    left:0;
-    width:150px;
-    padding:6px;
-    background:#101010;
-    border:1px solid #d4af37;
-    border-radius:11px;
-    z-index:100;
-    box-shadow:0 8px 20px rgba(0,0,0,.6);
-}
+    padding:0 5px;
 
-.lang-menu.show{
-    display:block;
-}
+    border:1px solid #80621f;
+    border-radius:8px;
 
-.lang-menu button{
-    display:block;
-    width:100%;
-    height:34px;
-    border:0;
-    border-radius:7px;
-    background:transparent;
-    color:#fff;
-    text-align:right;
-    padding:0 10px;
-    font-size:12px;
-}
+    background:#090909;
+    color:#e9c55d;
 
-.lang-menu button.active{
-    background:#d4af37;
-    color:#050505;
+    font-family:inherit;
+    font-size:10px;
+    outline:none;
 }
 
 .title-space{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
     margin-top:47px;
 }
 
-.main-title{
+.title{
     margin:0;
-    color:#e0b936;
-    font-size:28px;
-    line-height:1.2;
-    font-weight:700;
-    text-align:center;
-    white-space:nowrap;
-}
 
-.main-title.long-title{
-    font-size:15px;
-}
+    color:#f5d36b;
 
-/* ================= MARKET ================= */
-
-.market-label{
-    margin-top:20px;
-    margin-bottom:7px;
-    color:#b9b9b9;
-    font-size:12px;
-}
-
-.market{
-    display:flex;
-    gap:12px;
-}
-
-.market button{
-    flex:1;
-    height:54px;
-    border:1px solid #d4af37;
-    border-radius:13px;
-    background:#101010;
-    color:#fff;
-    font-size:18px;
+    font-size:20px;
     font-weight:600;
+    line-height:1.15;
+
+    white-space:nowrap;
+    letter-spacing:.1px;
+
+    text-shadow:
+        0 1px 5px rgba(0,0,0,.8);
 }
 
-.market button.active{
+/* =========================
+   MARKET
+========================= */
+
+.market-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-bottom:10px;
+}
+
+.market-btn{
+    height:38px;
+
+    border:1px solid #66501c;
+    border-radius:10px;
+
     background:
-        linear-gradient(145deg,#e4c044,#b99116);
-    color:#050505;
+        linear-gradient(
+            180deg,
+            #1a1a1a,
+            #090909
+        );
+
+    color:#bdbdbd;
+
+    font-family:inherit;
+    font-size:13px;
+    font-weight:500;
+
+    cursor:pointer;
 }
 
-/* ================= INPUTS ================= */
+.market-btn.active{
+    border-color:#d2a83e;
+    color:#f4d36c;
+
+    background:
+        linear-gradient(
+            180deg,
+            #29210e,
+            #0d0c08
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 0 8px rgba(202,158,48,.08);
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.input-area{
+    display:grid;
+    gap:8px;
+    margin-bottom:10px;
+}
 
 .field{
-    margin-top:12px;
     position:relative;
 }
 
 .field input,
-.days-dropdown{
+.field select{
     width:100%;
-    height:56px;
-    border:1px solid #d4af37;
-    border-radius:13px;
-    background:
-        linear-gradient(145deg,#161616,#080808);
-    color:#fff;
-    font-size:19px;
-    padding:0 18px;
+    height:43px;
+
+    border:1px solid #444;
+    border-radius:10px;
+
     outline:none;
-    direction:rtl;
-    text-align:right;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+
+    background:
+        linear-gradient(
+            180deg,
+            #181818,
+            #0b0b0b
+        );
+
+    color:#fff;
+
+    font-family:inherit;
+    font-size:14px;
 }
 
-.field input::placeholder{
-    color:#f1f1f1;
-    opacity:.95;
+.field input{
+    direction:rtl;
+    text-align:right;
+    padding:0 15px;
+}
+
+.field select{
+    direction:rtl;
+    text-align:right;
+    padding:0 15px 0 42px;
+
+    appearance:none;
+    -webkit-appearance:none;
 }
 
 .field input:focus,
-.days-dropdown:focus{
-    border-color:#f0c94a;
-    box-shadow:0 0 0 1px rgba(212,175,55,.18);
-}
+.field select:focus{
+    border-color:#b78d2d;
 
-.days-dropdown{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    cursor:pointer;
-}
-
-.days-menu{
-    display:none;
-    position:absolute;
-    top:61px;
-    left:0;
-    right:0;
-    max-height:270px;
-    overflow-y:auto;
-    padding:5px;
-    background:#101010;
-    border:1px solid #d4af37;
-    border-radius:12px;
-    z-index:80;
-}
-
-.days-menu.show{
-    display:block;
-}
-
-.days-menu button{
-    display:block;
-    width:100%;
-    height:38px;
-    border:0;
-    border-radius:7px;
-    background:transparent;
-    color:#fff;
-    text-align:right;
-    padding:0 12px;
-    font-size:15px;
-}
-
-.days-menu button.active,
-.days-menu button:hover{
-    background:#d4af37;
-    color:#050505;
-}
-
-/* ================= CALCULATE ================= */
-
-.calc{
-    width:100%;
-    height:58px;
-    margin-top:15px;
-    border:0;
-    border-radius:14px;
-    background:
-        linear-gradient(145deg,#e3bf43,#bd941b);
-    color:#050505;
-    font-size:22px;
-    font-weight:700;
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.25),
-        0 5px 15px rgba(0,0,0,.35);
+        0 0 0 1px rgba(183,141,45,.12);
 }
 
-/* ================= RESULTS ================= */
+.field input::placeholder{
+    color:#858585;
+}
+
+.days-arrow{
+    position:absolute;
+    left:15px;
+    top:50%;
+
+    width:9px;
+    height:9px;
+
+    border-left:2px solid #d5ad4b;
+    border-bottom:2px solid #d5ad4b;
+
+    transform:
+        translateY(-65%)
+        rotate(-45deg);
+
+    pointer-events:none;
+}
+
+/* =========================
+   CALCULATE
+========================= */
+
+.calculate{
+    width:100%;
+    height:42px;
+
+    border:1px solid #d2a83e;
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d9b44e 0%,
+            #b88820 48%,
+            #8d6519 100%
+        );
+
+    color:#080808;
+
+    font-family:inherit;
+    font-size:14px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.35),
+        0 4px 12px rgba(0,0,0,.35);
+}
+
+.calculate:active{
+    transform:translateY(1px);
+}
+
+/* =========================
+   RESULTS
+========================= */
 
 .results{
+    margin-top:11px;
+
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:12px;
-    margin-top:16px;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
 }
 
-.card{
-    min-width:0;
-    min-height:105px;
-    padding:13px 8px;
-    border:1px solid #d4af37;
-    border-radius:14px;
+.result-card{
+    min-height:68px;
+
+    padding:7px 6px;
+
+    border:1px solid #373737;
+    border-radius:10px;
+
     background:
-        linear-gradient(145deg,#151515,#080808);
+        linear-gradient(
+            145deg,
+            #171717,
+            #090909
+        );
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.result-label{
+    color:#a8a8a8;
+
+    font-size:10px;
+    font-weight:400;
+
+    line-height:1.25;
+
+    margin-bottom:5px;
     text-align:center;
 }
 
-.card span{
-    display:block;
-    min-height:34px;
-    color:#d7d7d7;
-    font-size:13px;
-    line-height:1.35;
-}
+.result-value{
+    color:#e7c04f;
 
-.card strong{
-    display:block;
-    margin-top:7px;
-    color:#e0b936;
-    font-size:19px;
+    font-size:17px;
     font-weight:500;
+
+    line-height:1.05;
+
     white-space:nowrap;
+    letter-spacing:0;
 }
 
-/* ================= TOTAL ================= */
+/* =========================
+   TOTAL
+========================= */
 
-.total{
-    margin-top:13px;
-    padding:15px 10px;
-    border:1px solid #d4af37;
-    border-radius:15px;
+.total-box{
+    margin-top:7px;
+
+    min-height:66px;
+
+    padding:8px 10px;
+
+    border:1px solid #806322;
+    border-radius:10px;
+
     background:
-        linear-gradient(145deg,#151515,#080808);
+        linear-gradient(
+            145deg,
+            #19150b,
+            #0b0b0b 55%,
+            #17130a
+        );
+
     text-align:center;
 }
 
-.total-title{
-    color:#e2e2e2;
-    font-size:15px;
+.total-label{
+    color:#b7b7b7;
+    font-size:10px;
+    margin-bottom:5px;
 }
 
 .total-value{
-    margin-top:6px;
-    color:#e0b936;
+    color:#fff;
+
     font-size:22px;
     font-weight:500;
+
+    line-height:1.05;
     white-space:nowrap;
 }
 
-.annual{
-    margin-top:7px;
-    color:#d2d2d2;
-    font-size:13px;
+.annual-yield{
+    display:block;
+
+    margin-top:6px;
+
+    color:#d0ac48;
+
+    font-size:10px;
 }
 
-.annual strong{
-    color:#e0b936;
-    font-size:16px;
+.annual-yield strong{
+    color:#f5d36b;
     font-weight:500;
 }
 
-/* ================= ACTIONS ================= */
+/* =========================
+   ACTIONS
+========================= */
 
 .actions{
-    display:flex;
-    gap:12px;
-    margin-top:14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+
+    margin-top:9px;
 }
 
-.action{
-    flex:1;
-    min-height:48px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:1px solid #d4af37;
-    border-radius:12px;
-    background:#101010;
-    color:#f0c94a;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:600;
+.action-btn{
+    height:39px;
+
+    border:1px solid #505050;
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #191919,
+            #090909
+        );
+
+    color:#ddd;
+
+    font-family:inherit;
+    font-size:12px;
+    font-weight:500;
+
+    cursor:pointer;
 }
 
-/* ================= NOTE ================= */
+.action-btn:first-child{
+    border-color:#96752d;
+    color:#e7c45b;
+}
 
-.note{
-    margin-top:12px;
-    text-align:center;
-    color:#9e9e9e;
-    font-size:10px;
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description{
+    margin:9px 0 0;
+
+    padding:7px 8px;
+
+    border-top:1px dashed rgba(201,155,50,.25);
+
+    color:#777;
+
+    font-size:9px;
     line-height:1.5;
+
+    text-align:center;
 }
 
-/* ================= FOOTER ================= */
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
-    margin-top:14px;
-    padding-top:11px;
-    border-top:1px solid #765f18;
+    margin-top:9px;
+
+    padding-top:8px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
     text-align:center;
-    color:#969696;
-    font-size:11px;
-    line-height:1.8;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+
+    margin-bottom:6px;
 }
 
 .footer a{
-    color:#d9b63b;
+    color:#bfa14d;
+
     text-decoration:none;
-    font-weight:600;
+
+    font-size:10px;
 }
 
-/* ================= MOBILE ================= */
-
-@media(max-width:520px){
-
-    .app{
-        width:calc(100% - 24px);
-        margin:10px auto 20px;
-        padding:16px 12px 22px;
-        border-radius:24px;
-    }
-
-    .main-title{
-        font-size:27px;
-    }
-
-    .market button{
-        height:52px;
-        font-size:18px;
-    }
-
-    .field input,
-    .days-dropdown{
-        height:54px;
-        font-size:18px;
-    }
-
-    .calc{
-        height:56px;
-        font-size:21px;
-    }
-
-    .card{
-        min-height:102px;
-    }
-
-    .card span{
-        font-size:12px;
-    }
-
-    .card strong{
-        font-size:18px;
-    }
-
-    .total-value{
-        font-size:22px;
-    }
+.developer{
+    color:#777;
+    font-size:10px;
 }
 
-@media(max-width:380px){
+/* =========================
+   SMALL SCREENS
+========================= */
+
+@media(max-width:360px){
 
     .app{
-        width:calc(100% - 18px);
-        padding:14px 10px 20px;
+        width:calc(100% - 12px);
+        padding:9px;
+        margin:6px auto;
     }
 
-    .lang-btn{
-        min-width:112px;
-        height:33px;
-        font-size:11px;
+    .header{
+        min-height:82px;
+    }
+
+    .language{
+        width:70px;
+        height:27px;
+        font-size:9px;
     }
 
     .title-space{
         margin-top:45px;
     }
 
-    .main-title{
-        font-size:23px;
+    .title{
+        font-size:18px;
     }
 
-    .main-title.long-title{
-        font-size:13px;
+    .result-card{
+        min-height:64px;
     }
 
-    .market{
-        gap:8px;
-    }
-
-    .market button{
-        height:49px;
-        font-size:16px;
-    }
-
-    .field input,
-    .days-dropdown{
-        height:52px;
-        font-size:17px;
-    }
-
-    .calc{
-        height:54px;
-        font-size:20px;
-    }
-
-    .results{
-        gap:9px;
-    }
-
-    .card{
-        min-height:98px;
-        padding:11px 5px;
-    }
-
-    .card span{
-        font-size:11px;
-    }
-
-    .card strong{
+    .result-value{
         font-size:16px;
     }
 
     .total-value{
-        font-size:20px;
-    }
-
-    .action{
-        font-size:12px;
+        font-size:21px;
     }
 }
 
-/* منع التكبير بالإيماءات */
-@supports (-webkit-touch-callout:none){
-    input,
-    select,
-    button{
-        touch-action:manipulation;
-    }
+/* =========================
+   OTHER LANGUAGES
+========================= */
+
+html[lang="en"] .title{
+    font-size:17px;
+}
+
+html[lang="fr"] .title{
+    font-size:15px;
+}
+
+html[lang="it"] .title{
+    font-size:15px;
+}
+
+html[lang="de"] .title{
+    font-size:14px;
 }
 </style>
 </head>
@@ -535,336 +595,478 @@ select{
 
 <header class="header">
 
-    <div class="lang-wrap">
+    <select
+        id="language"
+        class="language"
+        aria-label="Language">
 
-        <button class="lang-btn" id="langBtn" onclick="toggleLang()">
-            🌐 العربية ▾
-        </button>
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="it">Italiano</option>
+        <option value="de">Deutsch</option>
 
-        <div class="lang-menu" id="langMenu">
-            <button data-lang="ar" onclick="setLang('ar')">العربية</button>
-            <button data-lang="en" onclick="setLang('en')">English</button>
-            <button data-lang="fr" onclick="setLang('fr')">Français</button>
-            <button data-lang="it" onclick="setLang('it')">Italiano</button>
-            <button data-lang="de" onclick="setLang('de')">Deutsch</button>
-        </div>
-
-    </div>
+    </select>
 
     <div class="title-space">
-        <h1 class="main-title" id="title">
+
+        <h1
+            class="title"
+            id="appTitle">
             حاسبة أذون الخزانة المصرية
         </h1>
+
     </div>
 
 </header>
 
-<div class="market-label" id="marketLabel">السوق</div>
 
-<div class="market">
+<section class="market-tabs">
 
-    <button id="primary"
-            class="active"
-            onclick="setMarket('primary')">
+    <button
+        class="market-btn active"
+        id="primaryBtn"
+        onclick="setMarket('primary')">
         السوق الأولي
     </button>
 
-    <button id="secondary"
-            onclick="setMarket('secondary')">
+    <button
+        class="market-btn"
+        id="secondaryBtn"
+        onclick="setMarket('secondary')">
         السوق الثانوي
     </button>
 
-</div>
+</section>
 
-<div class="field">
 
-    <input
-        id="nominal"
-        type="text"
-        inputmode="decimal"
-        autocomplete="off"
-        placeholder="القيمة الاسمية"
-    >
+<section class="input-area">
 
-</div>
+    <div class="field">
 
-<div class="field">
+        <input
+            id="nominal"
+            type="text"
+            inputmode="decimal"
+            placeholder="القيمة الاسمية"
+            autocomplete="off">
 
-    <input
-        id="rate"
-        type="text"
-        inputmode="decimal"
-        autocomplete="off"
-        placeholder="سعر العائد (%)"
-    >
+    </div>
 
-</div>
 
-<div class="field">
+    <div class="field">
 
-    <button
-        class="days-dropdown"
-        id="daysButton"
-        type="button"
-        onclick="toggleDays()">
-        91 يومًا ▾
-    </button>
+        <input
+            id="rate"
+            type="text"
+            inputmode="decimal"
+            placeholder="سعر العائد (%)"
+            autocomplete="off">
 
-    <div class="days-menu" id="daysMenu"></div>
+    </div>
 
-</div>
 
-<button class="calc" id="calcBtn" onclick="calculate()">
-    احسب الآن
+    <div class="field">
+
+        <select id="days"></select>
+
+        <span class="days-arrow"></span>
+
+    </div>
+
+</section>
+
+
+<button
+    class="calculate"
+    onclick="calculate()"
+    id="calculateBtn">
+
+    حساب العملية
+
 </button>
 
-<div class="results">
 
-    <div class="card">
-        <span id="priceLabel">قيمة الشراء</span>
-        <strong id="priceResult">0.00</strong>
+<section class="results">
+
+    <div class="result-card">
+
+        <div
+            class="result-label"
+            id="purchaseLabel">
+            قيمة الشراء
+        </div>
+
+        <div
+            class="result-value"
+            id="purchaseValue">
+            0
+        </div>
+
     </div>
 
-    <div class="card">
-        <span id="discountLabel">خصم الشراء</span>
-        <strong id="discountResult">0.00</strong>
+
+    <div class="result-card">
+
+        <div
+            class="result-label"
+            id="discountLabel">
+            خصم الشراء
+        </div>
+
+        <div
+            class="result-value"
+            id="discountValue">
+            0
+        </div>
+
     </div>
 
-    <div class="card">
-        <span id="taxLabel">الضريبة (20%)</span>
-        <strong id="taxResult">0.00</strong>
+
+    <div class="result-card">
+
+        <div
+            class="result-label"
+            id="taxLabel">
+            الضريبة (20%)
+        </div>
+
+        <div
+            class="result-value"
+            id="taxValue">
+            0
+        </div>
+
     </div>
 
-    <div class="card">
-        <span id="profitLabel">صافي الربح بعد خصم الضريبة</span>
-        <strong id="profitResult">0.00</strong>
+
+    <div class="result-card">
+
+        <div
+            class="result-label"
+            id="profitLabel">
+            صافي الربح بعد خصم الضريبة
+        </div>
+
+        <div
+            class="result-value"
+            id="profitValue">
+            0
+        </div>
+
     </div>
 
-</div>
+</section>
 
-<div class="total">
 
-    <div class="total-title" id="totalLabel">
+<section class="total-box">
+
+    <div
+        class="total-label"
+        id="totalLabel">
         المبلغ المسترد نهاية المدة
     </div>
 
-    <div class="total-value" id="totalResult">
-        0.00
+    <div
+        class="total-value"
+        id="totalValue">
+        0
     </div>
 
-    <div class="annual">
-        <span id="annualLabel">نسبة العائد السنوي:</span>
-        <strong id="annualResult">0.00%</strong>
-    </div>
+    <span class="annual-yield" id="annualLabel">
+        نسبة العائد السنوي:
+        <strong id="annualValue">0.00</strong>%
+    </span>
 
+</section>
+
+
+<div class="description" id="description">
+    تساعدك هذه الأداة على حساب العائد المتوقع من أذون الخزانة المصرية،
+    ومعرفة قيمة الضريبة وصافي الأرباح.
 </div>
 
-<div class="actions">
 
-    <a
-        class="action"
-        href="saved.html"
-        id="savedLink"
-        onclick="saveAndOpen(event)">
+<section class="actions">
+
+    <button
+        class="action-btn"
+        onclick="saveOperations()"
+        id="saveBtn">
         حفظ العمليتين
-    </a>
+    </button>
 
-    <a
-        class="action"
-        href="assistant.html"
-        id="aboutLink">
+
+    <button
+        class="action-btn"
+        onclick="openAssistant()"
+        id="assistantBtn">
         مساعدك الذكي
-    </a>
+    </button>
 
-</div>
+</section>
 
-<div class="note" id="note">
-    النتائج تقديرية ولا تمثل سعرًا أو عائدًا مضمونًا من أي جهة.
-</div>
 
 <footer class="footer">
 
-    <a href="privacy.html" id="privacyLink">
-        سياسة الخصوصية
-    </a>
+    <div class="footer-links">
 
-    <span> | </span>
+        <a
+            href="privacy.html"
+            id="privacyLink">
+            سياسة الخصوصية
+        </a>
 
-    <a href="about.html" id="guideLink">
-        دليل أذون الخزانة
-    </a>
+        <a
+            href="about.html"
+            id="guideLink">
+            دليل أذون الخزانة
+        </a>
 
-    <br>
+    </div>
 
-    <span id="developer">
+
+    <div
+        class="developer"
+        id="developer">
         أ/ طارق متولي
-    </span>
+    </div>
 
 </footer>
 
 </div>
 
+
 <script>
 
-/* ================= LANGUAGES ================= */
+/* =========================
+   TRANSLATIONS
+========================= */
 
-const T = {
+const translations = {
 
     ar:{
-        name:"العربية",
         title:"حاسبة أذون الخزانة المصرية",
-        market:"السوق",
+
         primary:"السوق الأولي",
         secondary:"السوق الثانوي",
+
         nominal:"القيمة الاسمية",
         rate:"سعر العائد (%)",
-        calc:"احسب الآن",
-        price:"قيمة الشراء",
+
+        calculate:"حساب العملية",
+
+        purchase:"قيمة الشراء",
         discount:"خصم الشراء",
+
         tax:"الضريبة (20%)",
+
         profit:"صافي الربح بعد خصم الضريبة",
+
         total:"المبلغ المسترد نهاية المدة",
+
         annual:"نسبة العائد السنوي:",
-        saved:"حفظ العمليتين",
-        about:"مساعدك الذكي",
+
+        save:"حفظ العمليتين",
+
+        assistant:"مساعدك الذكي",
+
         privacy:"سياسة الخصوصية",
+
         guide:"دليل أذون الخزانة",
-        note:"النتائج تقديرية ولا تمثل سعرًا أو عائدًا مضمونًا من أي جهة.",
+
         developer:"أ/ طارق متولي",
-        invalid:"من فضلك أدخل بيانات صحيحة.",
-        max:"مدة الإذن يجب أن تكون من 1 إلى 364 يومًا.",
-        first:"من فضلك احسب العملية أولًا.",
-        day:"يوم"
+
+        description:
+        "تساعدك هذه الأداة على حساب العائد المتوقع من أذون الخزانة المصرية، ومعرفة قيمة الضريبة وصافي الأرباح."
     },
 
     en:{
-        name:"English",
         title:"Egyptian Treasury Bills Calculator",
-        market:"Market",
+
         primary:"Primary Market",
         secondary:"Secondary Market",
+
         nominal:"Nominal Value",
         rate:"Yield Rate (%)",
-        calc:"Calculate",
-        price:"Purchase Value",
+
+        calculate:"Calculate",
+
+        purchase:"Purchase Value",
         discount:"Purchase Discount",
+
         tax:"Tax (20%)",
+
         profit:"Net Profit After Tax",
+
         total:"Amount Returned at Maturity",
-        annual:"Annual Yield:",
-        saved:"Save Two Operations",
-        about:"Smart Assistant",
+
+        annual:"Net Annual Yield:",
+
+        save:"Save Operations",
+
+        assistant:"Smart Assistant",
+
         privacy:"Privacy Policy",
+
         guide:"Treasury Bills Guide",
-        note:"Results are estimates and do not represent a guaranteed price or return.",
+
         developer:"Tarek Metwally",
-        invalid:"Please enter valid data.",
-        max:"The bill term must be between 1 and 364 days.",
-        first:"Please calculate the operation first.",
-        day:"Days"
+
+        description:
+        "This tool helps calculate the expected return on Egyptian Treasury Bills, including tax and net profit."
     },
 
     fr:{
-        name:"Français",
         title:"Calculateur des bons du Trésor égyptiens",
-        market:"Marché",
+
         primary:"Marché primaire",
         secondary:"Marché secondaire",
+
         nominal:"Valeur nominale",
         rate:"Taux de rendement (%)",
-        calc:"Calculer",
-        price:"Valeur d'achat",
-        discount:"Décote d'achat",
+
+        calculate:"Calculer",
+
+        purchase:"Valeur d'achat",
+        discount:"Remise d'achat",
+
         tax:"Impôt (20%)",
+
         profit:"Bénéfice net après impôt",
+
         total:"Montant remboursé à l'échéance",
-        annual:"Rendement annuel :",
-        saved:"Enregistrer les deux",
-        about:"Assistant intelligent",
+
+        annual:"Rendement annuel net:",
+
+        save:"Enregistrer",
+
+        assistant:"Assistant intelligent",
+
         privacy:"Politique de confidentialité",
+
         guide:"Guide des bons du Trésor",
-        note:"Les résultats sont estimatifs.",
+
         developer:"Tarek Metwally",
-        invalid:"Veuillez saisir des données valides.",
-        max:"La durée doit être comprise entre 1 et 364 jours.",
-        first:"Veuillez d'abord calculer l'opération.",
-        day:"jours"
+
+        description:
+        "Cet outil calcule le rendement attendu des bons du Trésor égyptiens, y compris l'impôt et le bénéfice net."
     },
 
     it:{
-        name:"Italiano",
         title:"Calcolatore dei Buoni del Tesoro egiziani",
-        market:"Mercato",
+
         primary:"Mercato primario",
         secondary:"Mercato secondario",
+
         nominal:"Valore nominale",
         rate:"Tasso di rendimento (%)",
-        calc:"Calcola",
-        price:"Valore di acquisto",
+
+        calculate:"Calcola",
+
+        purchase:"Valore di acquisto",
         discount:"Sconto di acquisto",
+
         tax:"Imposta (20%)",
-        profit:"Utile netto dopo le imposte",
+
+        profit:"Profitto netto dopo le imposte",
+
         total:"Importo restituito a scadenza",
-        annual:"Rendimento annuo:",
-        saved:"Salva le due operazioni",
-        about:"Assistente intelligente",
-        privacy:"Informativa sulla privacy",
+
+        annual:"Rendimento annuo netto:",
+
+        save:"Salva operazioni",
+
+        assistant:"Assistente intelligente",
+
+        privacy:"Privacy Policy",
+
         guide:"Guida ai Buoni del Tesoro",
-        note:"I risultati sono indicativi.",
+
         developer:"Tarek Metwally",
-        invalid:"Inserisci dati validi.",
-        max:"La durata deve essere compresa tra 1 e 364 giorni.",
-        first:"Calcola prima l'operazione.",
-        day:"giorni"
+
+        description:
+        "Questo strumento calcola il rendimento previsto dei Buoni del Tesoro egiziani, incluse imposte e profitto netto."
     },
 
     de:{
-        name:"Deutsch",
         title:"Ägyptischer Schatzwechsel-Rechner",
-        market:"Markt",
+
         primary:"Primärmarkt",
         secondary:"Sekundärmarkt",
+
         nominal:"Nominalwert",
-        rate:"Renditesatz (%)",
-        calc:"Berechnen",
-        price:"Kaufwert",
+        rate:"Rendite (%)",
+
+        calculate:"Berechnen",
+
+        purchase:"Kaufwert",
         discount:"Kaufrabatt",
+
         tax:"Steuer (20%)",
+
         profit:"Nettogewinn nach Steuern",
+
         total:"Rückzahlungsbetrag bei Fälligkeit",
-        annual:"Jährliche Rendite:",
-        saved:"Zwei Vorgänge speichern",
-        about:"Intelligenter Assistent",
-        privacy:"Datenschutzrichtlinie",
+
+        annual:"Netto-Jahresrendite:",
+
+        save:"Vorgänge speichern",
+
+        assistant:"Intelligenter Assistent",
+
+        privacy:"Datenschutz",
+
         guide:"Schatzwechsel-Leitfaden",
-        note:"Die Ergebnisse sind Schätzungen.",
+
         developer:"Tarek Metwally",
-        invalid:"Bitte gültige Daten eingeben.",
-        max:"Die Laufzeit muss zwischen 1 und 364 Tagen liegen.",
-        first:"Bitte zuerst berechnen.",
-        day:"Tage"
+
+        description:
+        "Dieses Tool berechnet die erwartete Rendite ägyptischer Schatzwechsel einschließlich Steuer und Nettogewinn."
     }
 
 };
 
 
-/* ================= STATE ================= */
+/* =========================
+   STATE
+========================= */
 
-let market = "primary";
+let currentLanguage =
+    localStorage.getItem("calculatorLanguage") || "ar";
 
-let lang =
-    localStorage.getItem("appLanguage") || "ar";
-
-const $ = id => document.getElementById(id);
+let currentMarket =
+    localStorage.getItem("calculatorMarket") || "primary";
 
 
-/* ================= NUMBER FUNCTIONS ================= */
+/* =========================
+   ELEMENTS
+========================= */
 
-function normalize(v){
+const nominalInput =
+    document.getElementById("nominal");
 
-    if(!v) return 0;
+const rateInput =
+    document.getElementById("rate");
 
-    const arabicNumbers = {
+const daysSelect =
+    document.getElementById("days");
+
+
+/* =========================
+   NORMALIZE INPUT
+   Supports Arabic + English
+   numbers and commas
+========================= */
+
+function normalizeInput(value){
+
+    if(!value){
+        return 0;
+    }
+
+    const arabicToEnglish = {
+
         "٠":"0",
         "١":"1",
         "٢":"2",
@@ -875,733 +1077,714 @@ function normalize(v){
         "٧":"7",
         "٨":"8",
         "٩":"9"
+
     };
 
+    let str =
+        value
+        .toString()
+        .replace(
+            /[٠-٩]/g,
+            d => arabicToEnglish[d]
+        );
+
     return parseFloat(
-        String(v)
-        .replace(/[٠-٩]/g,x=>arabicNumbers[x])
-        .replace(/,/g,"")
-        .replace(/٬/g,"")
-        .replace(/[^0-9.]/g,"")
+        str.replace(/[^0-9.]/g,"")
     ) || 0;
 }
 
 
-function money(v){
+/* =========================
+   FORMAT NUMBER
+========================= */
 
-    return Number(v || 0).toLocaleString(
+function formatNumber(value){
+
+    if(
+        value === "" ||
+        value === null ||
+        value === undefined
+    ){
+        return "";
+    }
+
+    const number =
+        Number(value);
+
+    if(!Number.isFinite(number)){
+        return "0";
+    }
+
+    return number.toLocaleString(
         "en-US",
         {
-            minimumFractionDigits:2,
+            minimumFractionDigits:0,
             maximumFractionDigits:2
         }
     );
-
 }
 
 
-/* ================= DAYS ================= */
+/* =========================
+   FORMAT NOMINAL
+========================= */
 
-function fillDays(){
+nominalInput.addEventListener(
+    "input",
+    function(){
 
-    const menu = $("daysMenu");
-    const button = $("daysButton");
+        const raw =
+            this.value
+            .replace(/,/g,"")
+            .replace(/[^\d٠-٩.]/g,"");
 
-    const old =
-        Number(localStorage.getItem("selectedDays")) || 91;
+        const number =
+            normalizeInput(raw);
 
-    const list =
-        market === "primary"
+        this.value =
+            number > 0
+            ? Math.floor(number).toLocaleString("en-US")
+            : "";
+
+    }
+);
+
+
+/* =========================
+   DAYS
+========================= */
+
+function updateDays(){
+
+    const oldValue =
+        Number(daysSelect.value);
+
+    daysSelect.innerHTML = "";
+
+    const values =
+        currentMarket === "primary"
         ? [91,182,273,364]
         : Array.from(
             {length:364},
             (_,i)=>i+1
         );
 
-    const selected =
-        list.includes(old)
-        ? old
-        : list[0];
 
-    menu.innerHTML = "";
+    values.forEach(day=>{
 
-    list.forEach(d=>{
+        const option =
+            document.createElement("option");
 
-        const b =
-            document.createElement("button");
+        option.value = day;
 
-        b.type = "button";
+        if(currentLanguage === "ar"){
 
-        b.textContent =
-            d + " " + T[lang].day;
+            option.textContent =
+                day + " يوم";
 
-        b.className =
-            d === selected
-            ? "active"
-            : "";
+        }else{
 
-        b.onclick =
-            ()=>selectDays(d);
+            option.textContent =
+                day +
+                (
+                    currentLanguage === "en"
+                    ? (day === 1 ? " day" : " days")
+                    : " days"
+                );
 
-        menu.appendChild(b);
+        }
+
+        daysSelect.appendChild(option);
 
     });
 
-    button.textContent =
-        selected + " " + T[lang].day + " ▾";
 
-    button.dataset.value =
-        selected;
+    if(values.includes(oldValue)){
 
-    localStorage.setItem(
-        "selectedDays",
-        selected
-    );
+        daysSelect.value =
+            oldValue;
+
+    }else{
+
+        daysSelect.value =
+            values[0];
+
+    }
 
 }
 
 
-function selectDays(d){
+/* =========================
+   MARKET
+========================= */
 
-    $("daysButton").dataset.value = d;
+function setMarket(market){
 
-    $("daysButton").textContent =
-        d + " " + T[lang].day + " ▾";
+    currentMarket =
+        market;
 
     localStorage.setItem(
-        "selectedDays",
-        d
+        "calculatorMarket",
+        market
     );
+
 
     document
-        .querySelectorAll("#daysMenu button")
-        .forEach(b=>{
-            b.classList.toggle(
-                "active",
-                b.textContent.startsWith(String(d)+" ")
-            );
-        });
-
-    $("daysMenu").classList.remove("show");
-
-    saveState();
-
-}
-
-
-function toggleDays(){
-
-    $("daysMenu")
-        .classList.toggle("show");
-
-}
-
-
-/* ================= MARKET ================= */
-
-function setMarket(type){
-
-    market = type;
-
-    $("primary")
+        .getElementById("primaryBtn")
         .classList.toggle(
             "active",
-            type === "primary"
+            market === "primary"
         );
 
-    $("secondary")
+
+    document
+        .getElementById("secondaryBtn")
         .classList.toggle(
             "active",
-            type === "secondary"
+            market === "secondary"
         );
 
-    fillDays();
 
-    saveState();
+    updateDays();
 
 }
 
 
-/* ================= CALCULATION ================= */
+/* =========================
+   LANGUAGE
+========================= */
+
+function applyLanguage(){
+
+    const t =
+        translations[currentLanguage];
+
+
+    document.documentElement.lang =
+        currentLanguage;
+
+
+    document.documentElement.dir =
+        currentLanguage === "ar"
+        ? "rtl"
+        : "ltr";
+
+
+    document.getElementById("appTitle")
+        .textContent =
+        t.title;
+
+
+    document.getElementById("primaryBtn")
+        .textContent =
+        t.primary;
+
+
+    document.getElementById("secondaryBtn")
+        .textContent =
+        t.secondary;
+
+
+    nominalInput.placeholder =
+        t.nominal;
+
+
+    rateInput.placeholder =
+        t.rate;
+
+
+    document.getElementById("calculateBtn")
+        .textContent =
+        t.calculate;
+
+
+    document.getElementById("purchaseLabel")
+        .textContent =
+        t.purchase;
+
+
+    document.getElementById("discountLabel")
+        .textContent =
+        t.discount;
+
+
+    document.getElementById("taxLabel")
+        .textContent =
+        t.tax;
+
+
+    document.getElementById("profitLabel")
+        .textContent =
+        t.profit;
+
+
+    document.getElementById("totalLabel")
+        .textContent =
+        t.total;
+
+
+    document.getElementById("annualLabel")
+        .innerHTML =
+        t.annual +
+        ' <strong id="annualValue">' +
+        (
+            document.getElementById("annualValue")
+            ? document.getElementById("annualValue").textContent
+            : "0.00"
+        ) +
+        '</strong>%';
+
+
+    document.getElementById("saveBtn")
+        .textContent =
+        t.save;
+
+
+    document.getElementById("assistantBtn")
+        .textContent =
+        t.assistant;
+
+
+    document.getElementById("privacyLink")
+        .textContent =
+        t.privacy;
+
+
+    document.getElementById("guideLink")
+        .textContent =
+        t.guide;
+
+
+    document.getElementById("developer")
+        .textContent =
+        t.developer;
+
+
+    document.getElementById("description")
+        .textContent =
+        t.description;
+
+
+    updateDays();
+
+}
+
+
+/* =========================
+   GET VALUES
+========================= */
+
+function getValues(){
+
+    const P =
+        normalizeInput(
+            nominalInput.value
+        );
+
+
+    const R =
+        normalizeInput(
+            rateInput.value
+        ) / 100;
+
+
+    const D =
+        parseInt(
+            daysSelect.value
+        ) || 0;
+
+
+    if(!P || P <= 0){
+
+        alert(
+            currentLanguage === "ar"
+            ? "أدخل القيمة الاسمية."
+            : "Please enter the nominal value."
+        );
+
+        return null;
+    }
+
+
+    if(!R || R <= 0){
+
+        alert(
+            currentLanguage === "ar"
+            ? "أدخل سعر العائد."
+            : "Please enter the yield rate."
+        );
+
+        return null;
+    }
+
+
+    if(!D || D <= 0){
+
+        alert(
+            currentLanguage === "ar"
+            ? "اختر مدة الأذن."
+            : "Please select the bill term."
+        );
+
+        return null;
+    }
+
+
+    return {
+        P,
+        R,
+        D
+    };
+
+}
+
+
+/* =========================
+   CORRECT TREASURY BILL
+   CALCULATION
+========================= */
 
 function calculate(){
 
-    const t = T[lang];
+    const values =
+        getValues();
+
+    if(!values){
+        return null;
+    }
+
 
     const P =
-        normalize(
-            $("nominal").value
-        );
+        values.P;
 
     const R =
-        normalize(
-            $("rate").value
-        ) / 100;
+        values.R;
 
     const D =
-        Number(
-            $("daysButton").dataset.value
-        );
-
-    if(P <= 0 || R <= 0 || !D){
-
-        alert(t.invalid);
-
-        return;
-    }
-
-    if(D < 1 || D > 364){
-
-        alert(t.max);
-
-        return;
-    }
+        values.D;
 
 
     /*
-       المعادلة الأصلية المعتمدة
+       Purchase Price
+       = P / (1 + (R × D / 365))
     */
 
     const price =
         P /
         (
             1 +
-            (R * D / 365)
+            (
+                R * D / 365
+            )
         );
 
-    const discount =
+
+    /*
+       Gross Profit / Purchase Discount
+       = Nominal Value - Purchase Price
+    */
+
+    const profit =
         P - price;
 
+
+    /*
+       Tax = 20% of gross profit
+    */
+
     const tax =
-        discount * 0.20;
+        profit * 0.20;
+
+
+    /*
+       Net Profit
+       = Gross Profit - Tax
+    */
 
     const netProfit =
-        discount - tax;
+        profit - tax;
+
+
+    /*
+       Amount Returned at Maturity
+       = Purchase Price + Net Profit
+    */
 
     const finalAmount =
         price + netProfit;
 
+
+    /*
+       Net Annual Yield
+       = Net Profit / Purchase Price
+         × 365 / Days × 100
+    */
+
     const annualYield =
-        (netProfit / price) *
-        (365 / D) *
+        (
+            netProfit /
+            price
+        ) *
+        (
+            365 / D
+        ) *
         100;
 
 
-    $("priceResult").textContent =
-        money(price);
+    /* DISPLAY */
 
-    $("discountResult").textContent =
-        money(discount);
+    document.getElementById("purchaseValue")
+        .textContent =
+        formatNumber(price);
 
-    $("taxResult").textContent =
-        money(tax);
 
-    $("profitResult").textContent =
-        money(netProfit);
+    document.getElementById("discountValue")
+        .textContent =
+        formatNumber(profit);
 
-    $("totalResult").textContent =
-        money(finalAmount);
 
-    $("annualResult").textContent =
-        annualYield.toFixed(2) + "%";
+    document.getElementById("taxValue")
+        .textContent =
+        formatNumber(tax);
+
+
+    document.getElementById("profitValue")
+        .textContent =
+        formatNumber(netProfit);
+
+
+    document.getElementById("totalValue")
+        .textContent =
+        formatNumber(finalAmount);
+
+
+    document.getElementById("annualValue")
+        .textContent =
+        annualYield.toFixed(2);
+
+
+    /*
+       Save latest operation
+    */
+
+    const operation = {
+
+        nominal:P,
+
+        rate:R * 100,
+
+        days:D,
+
+        market:currentMarket,
+
+        purchase:price,
+
+        discount:profit,
+
+        tax:tax,
+
+        profit:netProfit,
+
+        total:finalAmount,
+
+        annualYield:annualYield,
+
+        date:
+            new Date()
+            .toLocaleString("ar-EG")
+
+    };
 
 
     localStorage.setItem(
-        "currentOperation",
-        JSON.stringify({
-
-            nominal:P,
-
-            rate:R * 100,
-
-            days:D,
-
-            purchaseValue:price,
-
-            discount:discount,
-
-            tax:tax,
-
-            netProfit:netProfit,
-
-            finalAmount:finalAmount,
-
-            annualYield:annualYield,
-
-            market:market,
-
-            date:new Date().toISOString()
-
-        })
+        "lastTreasuryOperation",
+        JSON.stringify(operation)
     );
 
 
-    saveState();
+    return operation;
 
 }
 
 
-/* ================= SAVE STATE ================= */
+/* =========================
+   SAVE MAX 2 OPERATIONS
+========================= */
 
-function saveState(){
+function saveOperations(){
 
-    localStorage.setItem(
-        "calculatorState",
-        JSON.stringify({
+    const operation =
+        calculate();
 
-            nominal:
-                $("nominal").value,
-
-            rate:
-                $("rate").value,
-
-            days:
-                $("daysButton").dataset.value,
-
-            market:
-                market,
-
-            price:
-                $("priceResult").textContent,
-
-            discount:
-                $("discountResult").textContent,
-
-            tax:
-                $("taxResult").textContent,
-
-            profit:
-                $("profitResult").textContent,
-
-            total:
-                $("totalResult").textContent,
-
-            annual:
-                $("annualResult").textContent
-
-        })
-    );
-
-}
-
-
-/* ================= RESTORE ================= */
-
-function restoreState(){
-
-    try{
-
-        const s =
-            JSON.parse(
-                localStorage.getItem(
-                    "calculatorState"
-                ) || "null"
-            );
-
-        if(!s){
-
-            market = "primary";
-
-            fillDays();
-
-            return;
-        }
-
-
-        if(s.nominal)
-            $("nominal").value =
-                s.nominal;
-
-        if(s.rate)
-            $("rate").value =
-                s.rate;
-
-
-        if(s.price)
-            $("priceResult").textContent =
-                s.price;
-
-        if(s.discount)
-            $("discountResult").textContent =
-                s.discount;
-
-        if(s.tax)
-            $("taxResult").textContent =
-                s.tax;
-
-        if(s.profit)
-            $("profitResult").textContent =
-                s.profit;
-
-        if(s.total)
-            $("totalResult").textContent =
-                s.total;
-
-        if(s.annual)
-            $("annualResult").textContent =
-                s.annual;
-
-
-        market =
-            s.market || "primary";
-
-
-        if(s.days){
-
-            localStorage.setItem(
-                "selectedDays",
-                s.days
-            );
-
-        }
-
-
-        fillDays();
-
-
-        if(s.days){
-
-            $("daysButton").dataset.value =
-                s.days;
-
-            $("daysButton").textContent =
-                s.days +
-                " " +
-                T[lang].day +
-                " ▾";
-
-        }
-
-    }
-
-    catch(e){
-
-        market = "primary";
-
-        fillDays();
-
-    }
-
-}
-
-
-/* ================= SAVE TWO OPERATIONS ================= */
-
-function saveAndOpen(e){
-
-    e.preventDefault();
-
-    const t = T[lang];
-
-    const current =
-        localStorage.getItem(
-            "currentOperation"
-        );
-
-    if(!current){
-
-        alert(t.first);
-
+    if(!operation){
         return;
     }
 
 
     let operations = [];
 
+
     try{
 
         operations =
             JSON.parse(
                 localStorage.getItem(
-                    "savedOperations"
+                    "treasuryOperations"
                 ) || "[]"
             );
 
-    }
 
-    catch(e){
+        if(!Array.isArray(operations)){
+            operations = [];
+        }
+
+    }catch(e){
 
         operations = [];
 
     }
-
-
-    if(!Array.isArray(operations))
-        operations = [];
 
 
     operations.unshift(
-        JSON.parse(current)
+        operation
     );
+
+
+    operations =
+        operations.slice(0,2);
 
 
     localStorage.setItem(
-        "savedOperations",
-        JSON.stringify(
-            operations.slice(0,2)
-        )
+        "treasuryOperations",
+        JSON.stringify(operations)
     );
 
 
-    location.href =
+    window.location.href =
         "saved.html";
 
 }
 
 
-/* ================= LANGUAGE ================= */
+/* =========================
+   SMART ASSISTANT
+========================= */
 
-function toggleLang(){
+function openAssistant(){
 
-    $("langMenu")
-        .classList.toggle("show");
+    const operation =
+        calculate();
+
+    if(!operation){
+        return;
+    }
+
+
+    window.location.href =
+        "assistant.html";
 
 }
 
 
-function setLang(newLang){
+/* =========================
+   RESTORE LAST VALUES
+========================= */
 
-    lang = newLang;
+function restoreValues(){
 
-    localStorage.setItem(
-        "appLanguage",
-        lang
-    );
+    try{
 
-    const t = T[lang];
-
-
-    document.documentElement.lang =
-        lang;
-
-    document.documentElement.dir =
-        lang === "ar"
-        ? "rtl"
-        : "ltr";
+        const saved =
+            JSON.parse(
+                localStorage.getItem(
+                    "lastTreasuryOperation"
+                ) || "null"
+            );
 
 
-    $("title").textContent =
-        t.title;
+        if(!saved){
+            return;
+        }
 
 
-    $("title")
-        .classList.toggle(
-            "long-title",
-            lang === "fr" ||
-            lang === "it" ||
-            lang === "de"
+        if(saved.nominal){
+
+            nominalInput.value =
+                formatNumber(
+                    saved.nominal
+                );
+
+        }
+
+
+        if(saved.rate){
+
+            rateInput.value =
+                saved.rate;
+
+        }
+
+
+        if(saved.market){
+
+            currentMarket =
+                saved.market;
+
+        }
+
+
+        setMarket(
+            currentMarket
         );
 
 
-    $("langBtn").textContent =
-        "🌐 " + t.name + " ▾";
+        if(saved.days){
+
+            daysSelect.value =
+                saved.days;
+
+        }
 
 
-    $("marketLabel").textContent =
-        t.market;
-
-    $("primary").textContent =
-        t.primary;
-
-    $("secondary").textContent =
-        t.secondary;
-
-
-    $("nominal").placeholder =
-        t.nominal;
-
-    $("rate").placeholder =
-        t.rate;
-
-
-    $("calcBtn").textContent =
-        t.calc;
-
-
-    $("priceLabel").textContent =
-        t.price;
-
-    $("discountLabel").textContent =
-        t.discount;
-
-    $("taxLabel").textContent =
-        t.tax;
-
-    $("profitLabel").textContent =
-        t.profit;
-
-    $("totalLabel").textContent =
-        t.total;
-
-    $("annualLabel").textContent =
-        t.annual;
-
-
-    $("savedLink").textContent =
-        t.saved;
-
-    $("aboutLink").textContent =
-        t.about;
-
-    $("privacyLink").textContent =
-        t.privacy;
-
-    $("guideLink").textContent =
-        t.guide;
-
-    $("note").textContent =
-        t.note;
-
-    $("developer").textContent =
-        t.developer;
-
-
-    document
-        .querySelectorAll(
-            ".lang-menu button"
-        )
-        .forEach(b=>{
-
-            b.classList.toggle(
-                "active",
-                b.dataset.lang === lang
-            );
-
-        });
-
-
-    fillDays();
-
-
-    $("langMenu")
-        .classList.remove("show");
+    }catch(e){}
 
 }
 
 
-/* ================= NOMINAL FORMAT ================= */
+/* =========================
+   START
+========================= */
 
-$("nominal")
+document.getElementById("language").value =
+    currentLanguage;
+
+
+document.getElementById("language")
 .addEventListener(
-    "input",
+    "change",
     function(){
 
-        const v =
-            normalize(this.value);
+        currentLanguage =
+            this.value;
 
-        this.value =
-            v
-            ? v.toLocaleString(
-                "en-US",
-                {
-                    maximumFractionDigits:2
-                }
-              )
-            : "";
+        localStorage.setItem(
+            "calculatorLanguage",
+            currentLanguage
+        );
+
+        applyLanguage();
 
     }
 );
 
 
-/* ================= RATE INPUT ================= */
+applyLanguage();
 
-$("rate")
-.addEventListener(
-    "input",
-    function(){
-
-        let value =
-            this.value
-            .replace(/[^0-9.]/g,"");
-
-        const parts =
-            value.split(".");
-
-        if(parts.length > 2){
-
-            value =
-                parts[0] +
-                "." +
-                parts.slice(1).join("");
-
-        }
-
-        this.value = value;
-
-    }
+setMarket(
+    currentMarket
 );
 
-
-/* ================= CLOSE MENUS ================= */
-
-document.addEventListener(
-    "click",
-    function(e){
-
-        if(
-            !e.target.closest(
-                ".lang-wrap"
-            )
-        ){
-
-            $("langMenu")
-                .classList.remove(
-                    "show"
-                );
-
-        }
-
-
-        if(
-            !e.target.closest(
-                ".field"
-            )
-        ){
-
-            $("daysMenu")
-                .classList.remove(
-                    "show"
-                );
-
-        }
-
-    }
-);
-
-
-/* ================= PREVENT PINCH ZOOM ================= */
-
-document.addEventListener(
-    "gesturestart",
-    e=>e.preventDefault(),
-    {passive:false}
-);
-
-document.addEventListener(
-    "gesturechange",
-    e=>e.preventDefault(),
-    {passive:false}
-);
-
-document.addEventListener(
-    "gestureend",
-    e=>e.preventDefault(),
-    {passive:false}
-);
-
-
-/* ================= START ================= */
-
-window.addEventListener(
-    "load",
-    function(){
-
-        restoreState();
-
-        setLang(lang);
-
-    }
-);
+restoreValues();
 
 </script>
 
