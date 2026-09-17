@@ -1055,8 +1055,6 @@ const daysSelect =
 
 /* =========================
    NORMALIZE INPUT
-   Supports Arabic + English
-   numbers and commas
 ========================= */
 
 function normalizeInput(value){
@@ -1464,11 +1462,6 @@ function calculate(){
         values.D;
 
 
-    /*
-       Purchase Price
-       = P / (1 + (R × D / 365))
-    */
-
     const price =
         P /
         (
@@ -1479,46 +1472,21 @@ function calculate(){
         );
 
 
-    /*
-       Gross Profit / Purchase Discount
-       = Nominal Value - Purchase Price
-    */
-
     const profit =
         P - price;
 
-
-    /*
-       Tax = 20% of gross profit
-    */
 
     const tax =
         profit * 0.20;
 
 
-    /*
-       Net Profit
-       = Gross Profit - Tax
-    */
-
     const netProfit =
         profit - tax;
 
 
-    /*
-       Amount Returned at Maturity
-       = Purchase Price + Net Profit
-    */
-
     const finalAmount =
         price + netProfit;
 
-
-    /*
-       Net Annual Yield
-       = Net Profit / Purchase Price
-         × 365 / Days × 100
-    */
 
     const annualYield =
         (
@@ -1530,8 +1498,6 @@ function calculate(){
         ) *
         100;
 
-
-    /* DISPLAY */
 
     document.getElementById("purchaseValue")
         .textContent =
@@ -1562,10 +1528,6 @@ function calculate(){
         .textContent =
         annualYield.toFixed(2);
 
-
-    /*
-       Save latest operation
-    */
 
     const operation = {
 
@@ -1687,7 +1649,9 @@ function openAssistant(){
 
 
 /* =========================
-   RESTORE LAST VALUES
+   RESTORE LAST OPERATION
+   التعديل الوحيد هنا:
+   استرجاع العملية والنتائج كاملة
 ========================= */
 
 function restoreValues(){
@@ -1707,6 +1671,8 @@ function restoreValues(){
         }
 
 
+        /* المدخلات */
+
         if(saved.nominal){
 
             nominalInput.value =
@@ -1717,13 +1683,18 @@ function restoreValues(){
         }
 
 
-        if(saved.rate){
+        if(
+            saved.rate !== undefined &&
+            saved.rate !== null
+        ){
 
             rateInput.value =
                 saved.rate;
 
         }
 
+
+        /* السوق */
 
         if(saved.market){
 
@@ -1738,6 +1709,8 @@ function restoreValues(){
         );
 
 
+        /* المدة */
+
         if(saved.days){
 
             daysSelect.value =
@@ -1745,6 +1718,94 @@ function restoreValues(){
 
         }
 
+
+        /*
+           النتائج المحسوبة
+           هي أهم جزء في التعديل
+        */
+
+        if(
+            saved.purchase !== undefined
+        ){
+
+            document.getElementById(
+                "purchaseValue"
+            ).textContent =
+                formatNumber(
+                    saved.purchase
+                );
+
+        }
+
+
+        if(
+            saved.discount !== undefined
+        ){
+
+            document.getElementById(
+                "discountValue"
+            ).textContent =
+                formatNumber(
+                    saved.discount
+                );
+
+        }
+
+
+        if(
+            saved.tax !== undefined
+        ){
+
+            document.getElementById(
+                "taxValue"
+            ).textContent =
+                formatNumber(
+                    saved.tax
+                );
+
+        }
+
+
+        if(
+            saved.profit !== undefined
+        ){
+
+            document.getElementById(
+                "profitValue"
+            ).textContent =
+                formatNumber(
+                    saved.profit
+                );
+
+        }
+
+
+        if(
+            saved.total !== undefined
+        ){
+
+            document.getElementById(
+                "totalValue"
+            ).textContent =
+                formatNumber(
+                    saved.total
+                );
+
+        }
+
+
+        if(
+            saved.annualYield !== undefined
+        ){
+
+            document.getElementById(
+                "annualValue"
+            ).textContent =
+                Number(
+                    saved.annualYield
+                ).toFixed(2);
+
+        }
 
     }catch(e){}
 
